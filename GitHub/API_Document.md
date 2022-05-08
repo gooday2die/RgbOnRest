@@ -17,7 +17,7 @@ To check if `RgbOnRest` is set successfully and is running properly, you can che
 #### Success
 ```
 {
-	"result" : 200
+	"result": 200
 }
 ```
 #### Failure
@@ -43,16 +43,20 @@ This feature connects to SDKs and lets each SDK know that we are going to be usi
 #### Success
 ```
 {
-	"result" : 200
+	"result": 200
 }
 ```
 #### Failure
 ```
 {
-	"result" : error_code,
-	"error_reason" : "Error Reason"
+	"result": error_code,
+	"error_reason": "Error Reason"
 }
 ```
+#### Possible Errors:
+- SDK Already Connected Error
+- SDK Unexpected Error
+
 **For Errors, check [this document](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/Errors.md) for more information.**
 
 ### 2. Disconnecting SDK
@@ -66,7 +70,44 @@ This feature disconnects from SDK and releases control over SDK. Whenever you ar
 #### Success
 ```
 {
-	"result" : 200
+	"result": 200
+}
+```
+#### Failure
+```
+{
+	"result": error_code,
+	"error_reason": "Error Reason"
+}
+```
+#### Possible Errors:
+- SDK Not Connected Error
+- SDK Unexpected Error
+
+**For Errors, check [this document](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/Errors.md) for more information.**
+
+### 3. Getting Connected Device Information
+This feature retrieves all connected device information from SDK. **Some SDKs (Razer) might have some missing devices although they can be controlled via SDK. This is due to the outdated SDK from the original SDK provider.**
+
+- **URL**: `/SDKNAME/device_info`
+- **URL Example**: `/CORSAIR/device_info`
+- **Method**: GET
+- **Response**
+
+#### Success
+```
+{
+	"Mouse": ["GLAIVE PRO RGB"],
+	"Keyboard": ["K95 RGB PLATINUM"],
+	"Headset": ["VOID PRO RGB"],
+	"Mousemat": ["MM800 RGB"],
+	"HeadsetStand": [],
+	"GPU": [],
+	"Mainboard": [],
+	"Microphone": [],
+	"MemoryModule": [],
+	"Cooler": [],
+	"ETC": []
 }
 ```
 #### Failure
@@ -76,4 +117,9 @@ This feature disconnects from SDK and releases control over SDK. Whenever you ar
 	"error_reason" : "Error Reason"
 }
 ```
+#### Possible Errors:
+- SDK Not Connected Error
+- SDK Unexpected Error
+- No Connected Devices Error
+
 **For Errors, check [this document](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/Errors.md) for more information.**
