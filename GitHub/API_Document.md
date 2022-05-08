@@ -56,6 +56,7 @@ This feature connects to SDKs and lets each SDK know that we are going to be usi
 #### Possible Errors:
 - SDK Already Connected Error
 - SDK Unexpected Error
+- SDK service is not running
 
 **For Errors, check [this document](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/Errors.md) for more information.**
 
@@ -83,6 +84,7 @@ This feature disconnects from SDK and releases control over SDK. Whenever you ar
 #### Possible Errors:
 - SDK Not Connected Error
 - SDK Unexpected Error
+- SDK service is not running
 
 **For Errors, check [this document](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/Errors.md) for more information.**
 
@@ -121,5 +123,66 @@ This feature retrieves all connected device information from SDK. **Some SDKs (R
 - SDK Not Connected Error
 - SDK Unexpected Error
 - No Connected Devices Error
+- SDK service is not running
+
+**For Errors, check [this document](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/Errors.md) for more information.**
+
+### 4. Setting RGB Values
+This feature sets specific type of devices with specific RGB value. 
+
+- **URL**: `/SDKNAME/set_rgb`
+- **URL Example**: `/CORSAIR/set_rgb`
+- **Method**: POST
+- **Data**: JSON with following format.
+```
+{
+	"DeviceType": [r_value, g_value, b_value]
+}
+```
+The device types are listed below:
+
+- Mouse
+- Headset
+- Keyboard
+- Mousemat
+- HeadsetStand
+- GPU
+- Mainboard
+- Microphone
+- MemoryModule
+- Cooler
+- ETC
+- ALL
+
+**The `ALL` device type sets all connected devices' of this SDK color as following color**
+
+Also if you are trying to set multiple device's RGB at the same time, append them as an example like below
+```
+{
+	"Mouse": [255, 255, 0],
+	"Headset": [255, 0, 255]
+}
+```
+This will set your `Mouse` and `Headset` device become (255, 255, 0) and (255, 0, 255) respectively.
+
+#### Success
+```
+{
+	"result": 200
+}
+```
+#### Failure
+```
+{
+	"result": error_code,
+	"error_reason": "Error Reason"
+}
+```
+#### Possible Errors:
+- SDK Not Connected Error
+- SDK Unexpected Error
+- SDK service is not running
+- Invalid RGB value
+- Invalid Device Type
 
 **For Errors, check [this document](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/Errors.md) for more information.**
