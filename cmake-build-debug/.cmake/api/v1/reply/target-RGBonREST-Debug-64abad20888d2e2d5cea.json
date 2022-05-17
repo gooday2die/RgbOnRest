@@ -14,7 +14,9 @@
 		"commands" : 
 		[
 			"_add_executable",
-			"add_executable"
+			"add_executable",
+			"target_link_libraries",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -37,6 +39,18 @@
 				"file" : 0,
 				"line" : 568,
 				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 7,
+				"parent" : 0
 			}
 		]
 	},
@@ -50,6 +64,13 @@
 				},
 				{
 					"fragment" : "-std:c++14"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "C:/Users/FlagShip/Desktop/Github/RgbOnRest/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/includes"
 				}
 			],
 			"language" : "CXX",
@@ -80,6 +101,11 @@
 			{
 				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
 				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "..\\RGBonREST\\APIServer\\ServerUtils\\SDKEngine\\SDKWrapper\\CorsairSDK\\lib\\CUESDK.x64_2019.lib",
+				"role" : "libraries"
 			},
 			{
 				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",

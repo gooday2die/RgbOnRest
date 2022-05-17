@@ -1,5 +1,8 @@
 //
-// Created by FlagShip on 2022-05-17.
+// @file : CorsairSDK.h
+// @author : Gooday2die (Isu Kim)
+// @Contacts : edina00@naver.com
+// @brief :
 //
 
 #ifndef MAIN_CPP_CORSAIRSDK_H

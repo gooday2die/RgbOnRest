@@ -109,10 +109,11 @@ RGBonREST_EXTERNAL_OBJECTS =
 RGBonREST.exe: CMakeFiles\RGBonREST.dir\main.cpp.obj
 RGBonREST.exe: CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.obj
 RGBonREST.exe: CMakeFiles\RGBonREST.dir\build.make
+RGBonREST.exe: ..\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\lib\CUESDK.x64_2019.lib
 RGBonREST.exe: CMakeFiles\RGBonREST.dir\objects1.rsp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable RGBonREST.exe"
 	"C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\RGBonREST.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\mt.exe --manifests -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\link.exe /nologo @CMakeFiles\RGBonREST.dir\objects1.rsp @<<
- /out:RGBonREST.exe /implib:RGBonREST.lib /pdb:C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\RGBonREST.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+ /out:RGBonREST.exe /implib:RGBonREST.lib /pdb:C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\RGBonREST.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console  ..\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\lib\CUESDK.x64_2019.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<
 	C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug/RGBonREST.exe -installedDir C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/installed/x64-windows/debug/bin -OutVariable out
 
