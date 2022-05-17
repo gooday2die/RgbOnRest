@@ -2,7 +2,7 @@
 // @file : CorsairSDK.cpp
 // @author : Gooday2die (Isu Kim)
 // @Contacts : edina00@naver.com
-// @brief :
+// @brief : A file that implements class CorsairSDK
 //
 
 #include "CorsairSDK.h"
@@ -72,6 +72,9 @@ vector<Device> CorsairSDK::getDevices() {
     return this->devices;
 }
 
+/**
+ * A member function that sets all connected device information.
+ */
 void CorsairSDK::setAllDeviceInfo() {
     int deviceCount = CorsairGetDeviceCount();
     auto* tmpDevices = (Device*) malloc(sizeof(Device) * deviceCount);
@@ -82,6 +85,37 @@ void CorsairSDK::setAllDeviceInfo() {
         tmpDevices[i].sdkName = "CORSAIR";
         tmpDevices[i].deviceType = translateDeviceType(currentDevice->type);
     }
-
     this->devices = vector<Device>(tmpDevices, tmpDevices + deviceCount);
+}
+
+/**
+ * A member function that translates device type from CorsairDeviceType to DeviceType that is declared in Defines.h
+ * @param toTranslate the CorsairDeviceType type needs to be translated into DeviceType.
+ * @return the translated DeviceType value.
+ */
+DeviceType CorsairSDK::translateDeviceType(CorsairDeviceType toTranslate) {
+    switch (toTranslate){
+        case CDT_Unknown:
+            return DeviceType::Unknown;
+        case CDT_Mouse:
+            return DeviceType::Mouse;
+        case CDT_Keyboard:
+            return DeviceType::Keyboard;
+        case CDT_Headset:
+            return DeviceType::Headset;
+        case CDT_MouseMat:
+            return DeviceType::Mousemat;
+        case CDT_HeadsetStand:
+            return DeviceType::HeadsetStand;
+        case CDT_Cooler:
+            return DeviceType::Cooler;
+        case CDT_Motherboard:
+            return DeviceType::Mainboard;
+        case CDT_GraphicsCard:
+            return DeviceType::GPU;
+        case CDT_CommanderPro:
+        case CDT_LightingNodePro:
+        case CDT_MemoryModule:
+            return DeviceType::ETC;
+    }
 }

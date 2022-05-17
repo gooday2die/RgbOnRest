@@ -2,7 +2,7 @@
 // @file : CorsairSDK.h
 // @author : Gooday2die (Isu Kim)
 // @Contacts : edina00@naver.com
-// @brief :
+// @brief : A file that declares class CorsairSDK
 //
 
 #ifndef MAIN_CPP_CORSAIRSDK_H
@@ -21,7 +21,7 @@ public:
     vector<Device> getDevices() override;
 
 private:
-    DeviceType translateDeviceType(CorsairDeviceType);
+    static DeviceType translateDeviceType(CorsairDeviceType);
     void setAllDeviceInfo();
 };
 

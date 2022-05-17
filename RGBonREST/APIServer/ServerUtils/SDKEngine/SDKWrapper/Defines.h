@@ -2,7 +2,7 @@
 // @file : Defines.h
 // @author : Gooday2die (Isu Kim)
 // @Contacts : edina00@naver.com
-// @brief : 
+// @brief : A file that defines elements related to the AbstractSDK
 // 
 
 #ifndef RGBONREST_DEFINES_H
@@ -23,6 +23,7 @@ enum DeviceType{
     Microphone = 8,
     Cooler = 9,
     ETC = 10,
+    Unknown = 11,
     ALL = 0
 };
 
