@@ -1,16 +1,16 @@
-The system is: Windows - 10.0.19043 - AMD64
+The system is: Windows - 10.0.19044 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.30.30705/bin/Hostx64/x64/cl.exe 
+Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.31.31103/bin/Hostx64/x64/cl.exe 
 Build flags: 
 Id flags:  
 
 The output was:
 0
-Microsoft (R) C/C++ 최적화 컴파일러 버전 19.30.30709(x64)
+Microsoft (R) C/C++ 최적화 컴파일러 버전 19.31.31107(x64)
 Copyright (c) Microsoft Corporation. All rights reserved.
 
 CMakeCCompilerId.c
-Microsoft (R) Incremental Linker Version 14.30.30709.0
+Microsoft (R) Incremental Linker Version 14.31.31107.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 /out:CMakeCCompilerId.exe 
@@ -21,20 +21,20 @@ Compilation of the C compiler identification source "CMakeCCompilerId.c" produce
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
 
-The C compiler identification is MSVC, found in "C:/Users/pc/CLionProjects/RGBonREST/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdC/CMakeCCompilerId.exe"
+The C compiler identification is MSVC, found in "C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug/CMakeFiles/3.22.3/CompilerIdC/CMakeCCompilerId.exe"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
-Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.30.30705/bin/Hostx64/x64/cl.exe 
+Compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.31.31103/bin/Hostx64/x64/cl.exe 
 Build flags: 
 Id flags:  
 
 The output was:
 0
-Microsoft (R) C/C++ 최적화 컴파일러 버전 19.30.30709(x64)
+Microsoft (R) C/C++ 최적화 컴파일러 버전 19.31.31107(x64)
 Copyright (c) Microsoft Corporation. All rights reserved.
 
 CMakeCXXCompilerId.cpp
-Microsoft (R) Incremental Linker Version 14.30.30709.0
+Microsoft (R) Incremental Linker Version 14.31.31107.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
 /out:CMakeCXXCompilerId.exe 
@@ -45,21 +45,33 @@ Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" p
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
 
-The CXX compiler identification is MSVC, found in "C:/Users/pc/CLionProjects/RGBonREST/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdCXX/CMakeCXXCompilerId.exe"
+The CXX compiler identification is MSVC, found in "C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug/CMakeFiles/3.22.3/CompilerIdCXX/CMakeCXXCompilerId.exe"
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: C:/Users/pc/CLionProjects/RGBonREST/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/JetBrains/CLion 2021.3.2/bin/ninja/win/ninja.exe cmTC_9ad71 && [1/2] Building C object CMakeFiles\cmTC_9ad71.dir\CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_9ad71.exe
+Run Build Command(s):nmake -f Makefile /nologo cmTC_b1dc1\fast && 	"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\bin\HostX64\x64\nmake.exe"  -f CMakeFiles\cmTC_b1dc1.dir\build.make /nologo -L                  CMakeFiles\cmTC_b1dc1.dir\build
+Building C object CMakeFiles/cmTC_b1dc1.dir/CMakeCCompilerABI.c.obj
+	"C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\cmTC_b1dc1.dir\CMakeCCompilerABI.c.obj.d --working-dir=C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\CMakeFiles\CMakeTmp --filter-prefix="참고: 포함 파일: " -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\cl.exe @C:\Users\FlagShip\AppData\Local\Temp\nmE3BE.tmp
+CMakeCCompilerABI.c
+??? ?ы븿 ?뚯씪: C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\share\cmake-3.22\Modules\CMakeCompilerABI.h
+Linking C executable cmTC_b1dc1.exe
+	"C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_b1dc1.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\mt.exe --manifests -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\link.exe /nologo @CMakeFiles\cmTC_b1dc1.dir\objects1.rsp @C:\Users\FlagShip\AppData\Local\Temp\nmE507.tmp
+	C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug/CMakeFiles/CMakeTmp/cmTC_b1dc1.exe -installedDir C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/installed/x64-windows/debug/bin -OutVariable out
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: C:/Users/pc/CLionProjects/RGBonREST/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files/JetBrains/CLion 2021.3.2/bin/ninja/win/ninja.exe cmTC_7f858 && [1/2] Building CXX object CMakeFiles\cmTC_7f858.dir\CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_7f858.exe
+Run Build Command(s):nmake -f Makefile /nologo cmTC_d92fe\fast && 	"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\bin\HostX64\x64\nmake.exe"  -f CMakeFiles\cmTC_d92fe.dir\build.make /nologo -L                  CMakeFiles\cmTC_d92fe.dir\build
+Building CXX object CMakeFiles/cmTC_d92fe.dir/CMakeCXXCompilerABI.cpp.obj
+	"C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -E cmake_cl_compile_depends --dep-file=CMakeFiles\cmTC_d92fe.dir\CMakeCXXCompilerABI.cpp.obj.d --working-dir=C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\CMakeFiles\CMakeTmp --filter-prefix="참고: 포함 파일: " -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\cl.exe @C:\Users\FlagShip\AppData\Local\Temp\nmE739.tmp
+CMakeCXXCompilerABI.cpp
+??? ?ы븿 ?뚯씪: C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\share\cmake-3.22\Modules\CMakeCompilerABI.h
+Linking CXX executable cmTC_d92fe.exe
+	"C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_d92fe.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\mt.exe --manifests -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\link.exe /nologo @CMakeFiles\cmTC_d92fe.dir\objects1.rsp @C:\Users\FlagShip\AppData\Local\Temp\nmE778.tmp
+	C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug/CMakeFiles/CMakeTmp/cmTC_d92fe.exe -installedDir C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/installed/x64-windows/debug/bin -OutVariable out
 
 
 

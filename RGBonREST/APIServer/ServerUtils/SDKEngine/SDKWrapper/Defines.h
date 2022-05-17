@@ -26,7 +26,8 @@ enum DeviceType{
     ALL = 0
 };
 
-enum Errors{
+enum Result{
+    Success = 0,
     SDKAlreadyConnected = 1,
     SDKNotConnected = 2,
     NoDevicesConnected = 3,
