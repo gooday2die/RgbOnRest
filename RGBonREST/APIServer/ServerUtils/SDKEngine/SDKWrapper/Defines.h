@@ -34,7 +34,9 @@ enum Result{
     SDKUnexpectedError = 4,
     SDKServiceNotRunning = 5,
     InvalidRGBValue = 6,
-    InvalidDeviceType = 7
+    InvalidDeviceType = 7,
+    OutDatedSDKVersion = 8,
+    CannotConnectSDK = 9
 };
 
 typedef struct _device{

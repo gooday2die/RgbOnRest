@@ -8,9 +8,19 @@
 #ifndef MAIN_CPP_CORSAIRSDK_H
 #define MAIN_CPP_CORSAIRSDK_H
 
+#include "../AbstractSDK.h"
+#include "./includes/CUESDK.h"
 
-class CorsairSDK {
+using namespace std;
 
+class CorsairSDK : public AbstractSDK{
+private:
+    bool isConnected = false;
+public:
+    Result connect() override;
+    Result disconnect() override;
+    Result setRgb(DeviceType, int, int, int) override;
+    vector<Device> getDevices() override;
 };
 
 

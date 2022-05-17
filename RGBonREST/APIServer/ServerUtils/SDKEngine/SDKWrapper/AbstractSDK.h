@@ -24,6 +24,7 @@ public:
 
 private:
     vector<Device> devices;
+    bool isConnected;
 };
 
 
