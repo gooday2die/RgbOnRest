@@ -14,13 +14,15 @@
 using namespace std;
 
 class CorsairSDK : public AbstractSDK{
-private:
-    bool isConnected = false;
 public:
     Result connect() override;
     Result disconnect() override;
     Result setRgb(DeviceType, int, int, int) override;
     vector<Device> getDevices() override;
+
+private:
+    DeviceType translateDeviceType(CorsairDeviceType);
+    void setAllDeviceInfo();
 };
 
 

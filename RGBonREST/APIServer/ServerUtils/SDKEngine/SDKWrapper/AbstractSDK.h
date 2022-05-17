@@ -17,14 +17,13 @@ using namespace std;
 class AbstractSDK{
 public:
     string name;
+    vector<Device> devices;
+    bool isConnected;
+
     virtual Result connect();
     virtual Result disconnect();
     virtual vector<Device> getDevices();
     virtual Result setRgb(DeviceType, int, int, int);
-
-private:
-    vector<Device> devices;
-    bool isConnected;
 };
 
 

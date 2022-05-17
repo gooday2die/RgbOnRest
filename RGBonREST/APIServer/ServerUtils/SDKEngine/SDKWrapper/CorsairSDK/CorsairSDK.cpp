@@ -16,8 +16,10 @@ Result CorsairSDK::connect() {
     switch (CorsairGetLastError()) {
         case CorsairError::CE_Success: // If CorsairPerformProtocolHandshake was successful, then request control.
             this->isConnected = CorsairRequestControl(CAM_ExclusiveLightingControl);
-            if (this->isConnected)
+            if (this->isConnected) {
+                this->setAllDeviceInfo();
                 return Result::Success;
+            }
             else
                 return Result::CannotConnectSDK;
 
@@ -62,3 +64,24 @@ Result CorsairSDK::disconnect() {
     }
 }
 
+/**
+ * A member function for class CorsairSDK that returns Devices.
+ * @return returns vector of devices.
+ */
+vector<Device> CorsairSDK::getDevices() {
+    return this->devices;
+}
+
+void CorsairSDK::setAllDeviceInfo() {
+    int deviceCount = CorsairGetDeviceCount();
+    auto* tmpDevices = (Device*) malloc(sizeof(Device) * deviceCount);
+
+    for (int i = 0 ; i < deviceCount ; i++){
+        CorsairDeviceInfo* currentDevice = CorsairGetDeviceInfo(i);
+        tmpDevices[i].name = currentDevice->model;
+        tmpDevices[i].sdkName = "CORSAIR";
+        tmpDevices[i].deviceType = translateDeviceType(currentDevice->type);
+    }
+
+    this->devices = vector<Device>(tmpDevices, tmpDevices + deviceCount);
+}
