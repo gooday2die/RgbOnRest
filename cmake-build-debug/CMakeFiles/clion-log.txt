@@ -1,4 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2022.1.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_SYSTEM_NAME=WindowsStore -DCMAKE_SYSTEM_VERSION=10 -G "CodeBlocks - NMake Makefiles" -S C:\Users\WorkPC\Documents\GitHub\RgbOnRest -B C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/WorkPC/Documents/GitHub/RgbOnRest/cmake-build-debug
