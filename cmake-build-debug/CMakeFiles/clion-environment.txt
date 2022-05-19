@@ -1,4 +1,4 @@
 ToolSet: 17.0 (local)@C:\Program Files\Microsoft Visual Studio\2022\Community
-Options: msvc.arch=amd64
+Options: 
 
-Options:-DCMAKE_TOOLCHAIN_FILE=C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/scripts/buildsystems/vcpkg.cmake
+Options:

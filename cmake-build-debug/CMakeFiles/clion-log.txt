@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/scripts/buildsystems/vcpkg.cmake -G "CodeBlocks - NMake Makefiles" -S C:\Users\FlagShip\Desktop\Github\RgbOnRest -B C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2022.1.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" -S C:\Users\WorkPC\Documents\GitHub\RgbOnRest -B C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug
+-- Build files have been written to: C:/Users/WorkPC/Documents/GitHub/RgbOnRest/cmake-build-debug

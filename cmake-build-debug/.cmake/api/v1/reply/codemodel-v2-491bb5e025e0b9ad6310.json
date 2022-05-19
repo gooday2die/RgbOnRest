@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "RGBonREST::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-RGBonREST-Debug-64abad20888d2e2d5cea.json",
+					"jsonFile" : "target-RGBonREST-Debug-96a609f5f76e24ee8a97.json",
 					"name" : "RGBonREST",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug",
-		"source" : "C:/Users/FlagShip/Desktop/Github/RgbOnRest"
+		"build" : "C:/Users/WorkPC/Documents/GitHub/RgbOnRest/cmake-build-debug",
+		"source" : "C:/Users/WorkPC/Documents/GitHub/RgbOnRest"
 	},
 	"version" : 
 	{

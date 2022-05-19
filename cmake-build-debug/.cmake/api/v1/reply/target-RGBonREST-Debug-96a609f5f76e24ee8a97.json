@@ -8,47 +8,39 @@
 			"path" : "RGBonREST.pdb"
 		}
 	],
-	"backtrace" : 2,
+	"backtrace" : 1,
 	"backtraceGraph" : 
 	{
 		"commands" : 
 		[
-			"_add_executable",
 			"add_executable",
 			"target_link_libraries",
 			"include_directories"
 		],
 		"files" : 
 		[
-			"C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/scripts/buildsystems/vcpkg.cmake",
 			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
 			{
-				"file" : 1
-			},
-			{
-				"command" : 1,
-				"file" : 1,
-				"line" : 6,
-				"parent" : 0
+				"file" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 568,
-				"parent" : 1
+				"line" : 6,
+				"parent" : 0
 			},
 			{
-				"command" : 2,
-				"file" : 1,
+				"command" : 1,
+				"file" : 0,
 				"line" : 8,
 				"parent" : 0
 			},
 			{
-				"command" : 3,
-				"file" : 1,
+				"command" : 2,
+				"file" : 0,
 				"line" : 7,
 				"parent" : 0
 			}
@@ -69,8 +61,8 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 4,
-					"path" : "C:/Users/FlagShip/Desktop/Github/RgbOnRest/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/includes"
+					"backtrace" : 3,
+					"path" : "C:/Users/WorkPC/Documents/GitHub/RgbOnRest/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/includes"
 				}
 			],
 			"language" : "CXX",
@@ -78,7 +70,7 @@
 			{
 				"backtraces" : 
 				[
-					2
+					1
 				],
 				"standard" : "14"
 			},
@@ -99,11 +91,11 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"fragment" : "/machine:X86 /debug /INCREMENTAL /subsystem:console",
 				"role" : "flags"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "..\\RGBonREST\\APIServer\\ServerUtils\\SDKEngine\\SDKWrapper\\CorsairSDK\\lib\\CUESDK.x64_2019.lib",
 				"role" : "libraries"
 			},
@@ -142,19 +134,19 @@
 	"sources" : 
 	[
 		{
-			"backtrace" : 2,
+			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "main.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 2,
+			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 2,
+			"backtrace" : 1,
 			"path" : "RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.h",
 			"sourceGroupIndex" : 1
 		}

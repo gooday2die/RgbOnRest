@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/FlagShip/Desktop/Github/RgbOnRest/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp" "CMakeFiles/RGBonREST.dir/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp.obj" "msvc" "CMakeFiles/RGBonREST.dir/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp.obj.d"
-  "C:/Users/FlagShip/Desktop/Github/RgbOnRest/main.cpp" "CMakeFiles/RGBonREST.dir/main.cpp.obj" "msvc" "CMakeFiles/RGBonREST.dir/main.cpp.obj.d"
+  "C:/Users/WorkPC/Documents/GitHub/RgbOnRest/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp" "CMakeFiles/RGBonREST.dir/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp.obj" "msvc" "CMakeFiles/RGBonREST.dir/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp.obj.d"
+  "C:/Users/WorkPC/Documents/GitHub/RgbOnRest/main.cpp" "CMakeFiles/RGBonREST.dir/main.cpp.obj" "msvc" "CMakeFiles/RGBonREST.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.

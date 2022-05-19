@@ -33,19 +33,19 @@ NULL=nul
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.1.1\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.1.1\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\FlagShip\Desktop\Github\RgbOnRest
+CMAKE_SOURCE_DIR = C:\Users\WorkPC\Documents\GitHub\RgbOnRest
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles\RGBonREST.dir\depend.make
@@ -61,41 +61,41 @@ include CMakeFiles\RGBonREST.dir\flags.make
 CMakeFiles\RGBonREST.dir\main.cpp.obj: CMakeFiles\RGBonREST.dir\flags.make
 CMakeFiles\RGBonREST.dir\main.cpp.obj: ..\main.cpp
 CMakeFiles\RGBonREST.dir\main.cpp.obj: CMakeFiles\RGBonREST.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RGBonREST.dir/main.cpp.obj"
-	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\RGBonREST.dir\main.cpp.obj.d --working-dir=C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug --filter-prefix="참고: 포함 파일: " -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\RGBonREST.dir\main.cpp.obj /FdCMakeFiles\RGBonREST.dir\ /FS -c C:\Users\FlagShip\Desktop\Github\RgbOnRest\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RGBonREST.dir/main.cpp.obj"
+	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\RGBonREST.dir\main.cpp.obj.d --working-dir=C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug --filter-prefix="참고: 포함 파일: " -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1432~1.313\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\RGBonREST.dir\main.cpp.obj /FdCMakeFiles\RGBonREST.dir\ /FS -c C:\Users\WorkPC\Documents\GitHub\RgbOnRest\main.cpp
 <<
 
 CMakeFiles\RGBonREST.dir\main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RGBonREST.dir/main.cpp.i"
-	C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\cl.exe > CMakeFiles\RGBonREST.dir\main.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\FlagShip\Desktop\Github\RgbOnRest\main.cpp
+	C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1432~1.313\bin\Hostx86\x86\cl.exe > CMakeFiles\RGBonREST.dir\main.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\WorkPC\Documents\GitHub\RgbOnRest\main.cpp
 <<
 
 CMakeFiles\RGBonREST.dir\main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RGBonREST.dir/main.cpp.s"
-	C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\RGBonREST.dir\main.cpp.s /c C:\Users\FlagShip\Desktop\Github\RgbOnRest\main.cpp
+	C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1432~1.313\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\RGBonREST.dir\main.cpp.s /c C:\Users\WorkPC\Documents\GitHub\RgbOnRest\main.cpp
 <<
 
 CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.obj: CMakeFiles\RGBonREST.dir\flags.make
 CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.obj: ..\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp
 CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.obj: CMakeFiles\RGBonREST.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RGBonREST.dir/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp.obj"
-	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.obj.d --working-dir=C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug --filter-prefix="참고: 포함 파일: " -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.obj /FdCMakeFiles\RGBonREST.dir\ /FS -c C:\Users\FlagShip\Desktop\Github\RgbOnRest\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RGBonREST.dir/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp.obj"
+	$(CMAKE_COMMAND) -E cmake_cl_compile_depends --dep-file=CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.obj.d --working-dir=C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug --filter-prefix="참고: 포함 파일: " -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1432~1.313\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /showIncludes /FoCMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.obj /FdCMakeFiles\RGBonREST.dir\ /FS -c C:\Users\WorkPC\Documents\GitHub\RgbOnRest\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp
 <<
 
 CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RGBonREST.dir/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp.i"
-	C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\cl.exe > CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\FlagShip\Desktop\Github\RgbOnRest\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp
+	C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1432~1.313\bin\Hostx86\x86\cl.exe > CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\WorkPC\Documents\GitHub\RgbOnRest\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp
 <<
 
 CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RGBonREST.dir/RGBonREST/APIServer/ServerUtils/SDKEngine/SDKWrapper/CorsairSDK/CorsairSDK.cpp.s"
-	C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.s /c C:\Users\FlagShip\Desktop\Github\RgbOnRest\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp
+	C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1432~1.313\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp.s /c C:\Users\WorkPC\Documents\GitHub\RgbOnRest\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\CorsairSDK.cpp
 <<
 
 # Object files for target RGBonREST
@@ -111,11 +111,10 @@ RGBonREST.exe: CMakeFiles\RGBonREST.dir\RGBonREST\APIServer\ServerUtils\SDKEngin
 RGBonREST.exe: CMakeFiles\RGBonREST.dir\build.make
 RGBonREST.exe: ..\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\lib\CUESDK.x64_2019.lib
 RGBonREST.exe: CMakeFiles\RGBonREST.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable RGBonREST.exe"
-	"C:\Program Files\JetBrains\CLion 2022.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\RGBonREST.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x64\mt.exe --manifests -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1431~1.311\bin\Hostx64\x64\link.exe /nologo @CMakeFiles\RGBonREST.dir\objects1.rsp @<<
- /out:RGBonREST.exe /implib:RGBonREST.lib /pdb:C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\RGBonREST.pdb /version:0.0 /machine:x64 /debug /INCREMENTAL /subsystem:console  ..\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\lib\CUESDK.x64_2019.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable RGBonREST.exe"
+	"C:\Program Files\JetBrains\CLion 2022.1.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\RGBonREST.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100190~1.0\x86\mt.exe --manifests -- C:\PROGRA~1\MICROS~1\2022\COMMUN~1\VC\Tools\MSVC\1432~1.313\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\RGBonREST.dir\objects1.rsp @<<
+ /out:RGBonREST.exe /implib:RGBonREST.lib /pdb:C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug\RGBonREST.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console  ..\RGBonREST\APIServer\ServerUtils\SDKEngine\SDKWrapper\CorsairSDK\lib\CUESDK.x64_2019.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<
-	C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary C:/Users/FlagShip/Desktop/Github/RgbOnRest/cmake-build-debug/RGBonREST.exe -installedDir C:/Users/FlagShip/Desktop/vcpkg-2022.04.12/installed/x64-windows/debug/bin -OutVariable out
 
 # Rule to build all files generated by this target.
 CMakeFiles\RGBonREST.dir\build: RGBonREST.exe
@@ -126,6 +125,6 @@ CMakeFiles\RGBonREST.dir\clean:
 .PHONY : CMakeFiles\RGBonREST.dir\clean
 
 CMakeFiles\RGBonREST.dir\depend:
-	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" C:\Users\FlagShip\Desktop\Github\RgbOnRest C:\Users\FlagShip\Desktop\Github\RgbOnRest C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug C:\Users\FlagShip\Desktop\Github\RgbOnRest\cmake-build-debug\CMakeFiles\RGBonREST.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" C:\Users\WorkPC\Documents\GitHub\RgbOnRest C:\Users\WorkPC\Documents\GitHub\RgbOnRest C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug C:\Users\WorkPC\Documents\GitHub\RgbOnRest\cmake-build-debug\CMakeFiles\RGBonREST.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles\RGBonREST.dir\depend
 
