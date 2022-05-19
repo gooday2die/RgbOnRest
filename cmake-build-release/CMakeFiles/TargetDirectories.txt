@@ -1,0 +1,3 @@
+C:/Users/WorkPC/Documents/GitHub/RgbOnRest/cmake-build-release/CMakeFiles/RGBonREST.dir
+C:/Users/WorkPC/Documents/GitHub/RgbOnRest/cmake-build-release/CMakeFiles/edit_cache.dir
+C:/Users/WorkPC/Documents/GitHub/RgbOnRest/cmake-build-release/CMakeFiles/rebuild_cache.dir
