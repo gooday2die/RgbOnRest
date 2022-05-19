@@ -35,7 +35,7 @@ private:
     list<int> GPUIndexList;
     list<int> ETCIndexList;
 
-    static DeviceType translateDeviceType(CorsairDeviceType);
+    static DeviceType translateDeviceType(const CorsairDeviceType&);
     Result setMouseRgb(int, int, int);
     Result setKeyboardRgb(int, int, int);
     Result setHeadsetRgb(int, int, int);

@@ -17,6 +17,7 @@ Result CorsairSDK::connect() {
         case CorsairError::CE_Success: // If CorsairPerformProtocolHandshake was successful, then request control.
             this->isConnected = CorsairRequestControl(CAM_ExclusiveLightingControl);
             if (this->isConnected) {
+                printf("Connected Device Count : %d\n", CorsairGetDeviceCount());
                 this->setAllDeviceInfo();
                 return Result::Success;
             }
@@ -79,14 +80,13 @@ vector<Device> CorsairSDK::getDevices() {
  */
 void CorsairSDK::setAllDeviceInfo() {
     int deviceCount = CorsairGetDeviceCount();
-    auto* tmpDevices = (Device*) malloc(sizeof(Device) * deviceCount);
-
     for (int i = 0 ; i < deviceCount ; i++){
         CorsairDeviceInfo* currentDevice = CorsairGetDeviceInfo(i);
-        cout << currentDevice->model << endl;
-        tmpDevices[i].name = currentDevice->model;
-        tmpDevices[i].sdkName = "CORSAIR";
-        tmpDevices[i].deviceType = translateDeviceType(currentDevice->type);
+        Device tmpDevice;
+
+        tmpDevice.name = string(currentDevice->model);
+        tmpDevice.sdkName = "CORSAIR";
+        tmpDevice.deviceType = translateDeviceType(currentDevice->type);
 
         switch(currentDevice->type){
             case CDT_Unknown:
@@ -113,8 +113,9 @@ void CorsairSDK::setAllDeviceInfo() {
             case CDT_GraphicsCard:
                 this->GPUIndexList.push_back(i);
         }
+
+        this->devices.emplace_back(tmpDevice);
     }
-    this->devices = vector<Device>(tmpDevices, tmpDevices + deviceCount);
 }
 
 /**
@@ -122,7 +123,7 @@ void CorsairSDK::setAllDeviceInfo() {
  * @param toTranslate the CorsairDeviceType type needs to be translated into DeviceType.
  * @return the translated DeviceType value.
  */
-DeviceType CorsairSDK::translateDeviceType(CorsairDeviceType toTranslate) {
+DeviceType CorsairSDK::translateDeviceType(const CorsairDeviceType& toTranslate) {
     switch (toTranslate){
         case CDT_Unknown:
             return DeviceType::UnknownDevice;
@@ -145,9 +146,8 @@ DeviceType CorsairSDK::translateDeviceType(CorsairDeviceType toTranslate) {
         case CDT_CommanderPro:
         case CDT_LightingNodePro:
         case CDT_MemoryModule:
-            return DeviceType::ETC;
         default:
-            return DeviceType::UnknownDevice;
+            return DeviceType::ETC;
     }
 }
 

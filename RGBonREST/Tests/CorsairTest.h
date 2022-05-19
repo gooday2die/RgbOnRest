@@ -1,5 +1,8 @@
 //
-// Created by WorkPC on 2022-05-19.
+// @file : CorsairTest.h
+// @author : Gooday2die (Isu Kim)
+// @Contacts : edina00@naver.com
+// @brief : A file that declares function CorsairTest
 //
 
 #ifndef RGBONREST_CORSAIRTEST_H
