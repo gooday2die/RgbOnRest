@@ -187,6 +187,13 @@ Result CorsairSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
     } else return Result::InvalidRGBValue;
 }
 
+/**
+ * A member function for class CorsairSDK that sets RGB values into Mouses
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
+ */
 Result CorsairSDK::setMouseRgb(int r, int g, int b) {
     CorsairLedColor values[20];
     for (auto &value: values) {
@@ -216,16 +223,12 @@ Result CorsairSDK::setMouseRgb(int r, int g, int b) {
 }
 
 /**
- * A member function that sets Keyboard rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into Keyboards
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
-
 Result CorsairSDK::setKeyboardRgb(int r, int g, int b){
     CorsairLedColor values[199];
     for (auto & value : values){
@@ -255,14 +258,11 @@ Result CorsairSDK::setKeyboardRgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets Headset rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into Headsets
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
 Result CorsairSDK::setHeadsetRgb(int r, int g, int b){
     CorsairLedColor values[2];
@@ -286,14 +286,11 @@ Result CorsairSDK::setHeadsetRgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets MouseMat rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into MouseMats
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
 Result CorsairSDK::setMouseMatRgb(int r, int g, int b){
     CorsairLedColor values[15];
@@ -319,14 +316,11 @@ Result CorsairSDK::setMouseMatRgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets HeadsetStand rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into HeadsetStands
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
 Result CorsairSDK::setHeadsetStandRgb(int r, int g, int b){
     CorsairLedColor values[9];
@@ -352,14 +346,11 @@ Result CorsairSDK::setHeadsetStandRgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets Cooler rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into Coolers
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
 Result CorsairSDK::setCoolerRgb(int r, int g, int b){
     CorsairLedColor values[1050];
@@ -388,14 +379,11 @@ Result CorsairSDK::setCoolerRgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets MemoryModule rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into MemoryModules
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
 Result CorsairSDK::setMemoryModuleRgb(int r, int g, int b){
     CorsairLedColor values[12];
@@ -421,14 +409,11 @@ Result CorsairSDK::setMemoryModuleRgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets Motherboard rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into Motherboards
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
 Result CorsairSDK::setMotherboardRgb(int r, int g, int b){
     CorsairLedColor values[100];
@@ -455,14 +440,11 @@ Result CorsairSDK::setMotherboardRgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets GPU rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into GPUs
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
 Result CorsairSDK::setGPURgb(int r, int g, int b){
     CorsairLedColor values[50];
@@ -489,14 +471,11 @@ Result CorsairSDK::setGPURgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets ETC rgb by type.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 0 : failed to set rgb colors
- * 1 : successfully set rgb color of a specific device
- * -2 : could not set all device type's colors. Example would be, 1/3 mouse is not set rgb.
+ * A member function for class CorsairSDK that sets RGB values into ETC devices
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result that represents result when setting the RGBs.
  */
 Result CorsairSDK::setETCRgb(int r, int g, int b){
     CorsairLedColor values[250];
@@ -525,12 +504,11 @@ Result CorsairSDK::setETCRgb(int r, int g, int b){
 }
 
 /**
- * A member function that sets ALL rgb.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns int values depends on results
- * 1 : successfully set rgb color of a specific device
+ * A member function for class CorsairSDK that sets RGB values into All devices
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return Will always return Success
  */
 Result CorsairSDK::setAllRgb(int r, int g, int b){
     this->setMouseRgb(r, g, b);
@@ -543,11 +521,17 @@ Result CorsairSDK::setAllRgb(int r, int g, int b){
     this->setMouseMatRgb(r, g, b);
     this->setMotherboardRgb(r, g, b);
 
-    return 1;
+    return Result::Success;
 }
 
+/**
+ * A member function for class CorsairSDK that gets Nth element from list provided.
+ * @param list the list to find Nth element from
+ * @param index the index of the element
+ * @return returns int value that is the Nth element in the list
+ */
 int CorsairSDK::getNthElement(std::list<int> list, int index){
     auto l_front = list.begin();
-    std::advance(l_front, index);
+    advance(l_front, index);
     return *l_front;
 }
