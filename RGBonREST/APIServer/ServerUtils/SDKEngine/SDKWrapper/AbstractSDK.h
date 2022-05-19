@@ -7,10 +7,11 @@
 
 #ifndef RGBONREST_ABSTRACTSDK_H
 #define RGBONREST_ABSTRACTSDK_H
+#pragma once
 
 #include <string>
 #include <vector>
-#include "Defines.h"
+#include "../../Defines.h"
 
 using namespace std;
 
@@ -20,10 +21,10 @@ public:
     vector<Device> devices;
     bool isConnected;
 
-    virtual Result connect();
-    virtual Result disconnect();
-    virtual vector<Device> getDevices();
-    virtual Result setRgb(DeviceType, int, int, int);
+    virtual Result connect() = 0;
+    virtual Result disconnect() = 0;
+    virtual vector<Device> getDevices() = 0;
+    virtual Result setRgb(DeviceType, int, int, int) = 0;
 };
 
 

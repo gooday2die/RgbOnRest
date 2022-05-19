@@ -7,6 +7,7 @@
 
 #ifndef MAIN_CPP_CORSAIRSDK_H
 #define MAIN_CPP_CORSAIRSDK_H
+#pragma once
 
 #include <list>
 #include "../AbstractSDK.h"

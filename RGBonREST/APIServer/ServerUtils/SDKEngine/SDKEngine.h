@@ -7,7 +7,7 @@
 
 #ifndef RGBONREST_SDKENGINE_H
 #define RGBONREST_SDKENGINE_H
-
+#pragma once
 
 class SDKEngine {
 

@@ -155,36 +155,38 @@ DeviceType CorsairSDK::translateDeviceType(CorsairDeviceType toTranslate) {
  * @return returns Result type.
  */
 Result CorsairSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
-    if ((((r >= 0) && (r <= 255)) && ((g >= 0) && (g <= 255))) && ((b >= 0) && (b <= 255))) {
-        switch (argDeviceType) {
-            case Mouse:
-                return this->setMouseRgb(r, g, b);
-            case Headset:
-                return this->setHeadsetRgb(r, g, b);
-            case Keyboard:
-                return this->setKeyboardRgb(r, g, b);
-            case Mousemat:
-                return this->setMouseMatRgb(r, g, b);
-            case HeadsetStand:
-                return this->setHeadsetStandRgb(r, g, b);
-            case GPU:
-                return this->setGPURgb(r, g, b);
-            case ALL:
-                return this->setAllRgb(r, g, b);
-            case Mainboard:
-                return this->setMotherboardRgb(r, g, b);
-            case Cooler:
-                return this->setCoolerRgb(r, g, b);
-            case RAM:
-                return this->setMemoryModuleRgb(r, g, b);
-            case ETC:
-            case Unknown:
-            case Microphone:
-                return this->setETCRgb(r, g, b);
-            default:
-                return Result::InvalidDeviceType;
-        }
-    } else return Result::InvalidRGBValue;
+    if (this->isConnected) {
+        if ((((r >= 0) && (r <= 255)) && ((g >= 0) && (g <= 255))) && ((b >= 0) && (b <= 255))) {
+            switch (argDeviceType) {
+                case Mouse:
+                    return this->setMouseRgb(r, g, b);
+                case Headset:
+                    return this->setHeadsetRgb(r, g, b);
+                case Keyboard:
+                    return this->setKeyboardRgb(r, g, b);
+                case Mousemat:
+                    return this->setMouseMatRgb(r, g, b);
+                case HeadsetStand:
+                    return this->setHeadsetStandRgb(r, g, b);
+                case GPU:
+                    return this->setGPURgb(r, g, b);
+                case ALL:
+                    return this->setAllRgb(r, g, b);
+                case Mainboard:
+                    return this->setMotherboardRgb(r, g, b);
+                case Cooler:
+                    return this->setCoolerRgb(r, g, b);
+                case RAM:
+                    return this->setMemoryModuleRgb(r, g, b);
+                case ETC:
+                case Unknown:
+                case Microphone:
+                    return this->setETCRgb(r, g, b);
+                default:
+                    return Result::InvalidDeviceType;
+            }
+        } else return Result::InvalidRGBValue;
+    } else return Result::SDKNotConnected;
 }
 
 /**
