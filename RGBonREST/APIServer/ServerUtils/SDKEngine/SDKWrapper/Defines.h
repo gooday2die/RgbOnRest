@@ -24,6 +24,7 @@ enum DeviceType{
     Cooler = 9,
     ETC = 10,
     Unknown = 11,
+    RAM = 12,
     ALL = 0
 };
 
@@ -37,7 +38,9 @@ enum Result{
     InvalidRGBValue = 6,
     InvalidDeviceType = 7,
     OutDatedSDKVersion = 8,
-    CannotConnectSDK = 9
+    CannotConnectSDK = 9,
+    SomeRGBWasSet = 10,
+    NoRGBWasSet = 11,
 };
 
 typedef struct _device{

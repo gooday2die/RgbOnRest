@@ -84,6 +84,32 @@ void CorsairSDK::setAllDeviceInfo() {
         tmpDevices[i].name = currentDevice->model;
         tmpDevices[i].sdkName = "CORSAIR";
         tmpDevices[i].deviceType = translateDeviceType(currentDevice->type);
+
+        switch(currentDevice->type){
+            case CDT_Unknown:
+                this->ETCIndexList.push_back(i);
+            case CDT_Mouse:
+                this->MouseIndexList.push_back(i);
+            case CDT_Keyboard:
+                this->KeyboardIndexList.push_back(i);
+            case CDT_Headset:
+                this->HeadsetIndexList.push_back(i);
+            case CDT_MouseMat:
+                this->MouseMatIndexList.push_back(i);
+            case CDT_HeadsetStand:
+                this->HeadsetStandIndexList.push_back(i);
+            case CDT_CommanderPro:
+            case CDT_LightingNodePro:
+                this->ETCIndexList.push_back(i);
+            case CDT_MemoryModule:
+                this->MemoryModuleIndexList.push_back(i);
+            case CDT_Cooler:
+                this->CoolerIndexList.push_back(i);
+            case CDT_Motherboard:
+                this->MotherBoardIndexList.push_back(i);
+            case CDT_GraphicsCard:
+                this->GPUIndexList.push_back(i);
+        }
     }
     this->devices = vector<Device>(tmpDevices, tmpDevices + deviceCount);
 }
@@ -149,6 +175,8 @@ Result CorsairSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
                 return this->setMotherboardRgb(r, g, b);
             case Cooler:
                 return this->setCoolerRgb(r, g, b);
+            case RAM:
+                return this->setMemoryModuleRgb(r, g, b);
             case ETC:
             case Unknown:
             case Microphone:
@@ -156,7 +184,6 @@ Result CorsairSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
             default:
                 return Result::InvalidDeviceType;
         }
-        return Result::InvalidDeviceType;
     } else return Result::InvalidRGBValue;
 }
 
@@ -178,16 +205,14 @@ Result CorsairSDK::setMouseRgb(int r, int g, int b) {
         values[curValueIndex++].ledId = static_cast<CorsairLedId>(1694 + i);
 
     int resultSum = 0;
-    for (auto const& x : this->devices){
-        if (x.deviceType == )
-    }
+
     for (int i = 0; i < this->MouseIndexList.size(); i++) // Iterate over all mouse indexes.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->MouseIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->MouseIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->MouseIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->MouseIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -221,12 +246,12 @@ Result CorsairSDK::setKeyboardRgb(int r, int g, int b){
 
     int resultSum = 0;
     for (int i = 0; i < this->KeyboardIndexList.size(); i++) // Iterate over all keyboard indexes.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->KeyboardIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->KeyboardIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->KeyboardIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->KeyboardIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -252,12 +277,12 @@ Result CorsairSDK::setHeadsetRgb(int r, int g, int b){
 
     int resultSum = 0;
     for (int i = 0; i < this->HeadsetIndexList.size(); i++) // Iterate over all headset indexes.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->HeadsetIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->HeadsetIndexList, i),
                                                              2, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->HeadsetIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->HeadsetIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -285,12 +310,12 @@ Result CorsairSDK::setMouseMatRgb(int r, int g, int b){
 
     int resultSum = 0;
     for (int i = 0; i < this->MouseMatIndexList.size(); i++) // Iterate over all mousemat indexes.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->MouseMatIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->MouseMatIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->MouseMatIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->MouseMatIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -318,12 +343,12 @@ Result CorsairSDK::setHeadsetStandRgb(int r, int g, int b){
 
     int resultSum = 0;
     for (int i = 0; i < this->HeadsetStandIndexList.size(); i++) // Iterate over all headset stand indexes.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->HeadsetStandIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->HeadsetStandIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->HeadsetStandIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->HeadsetStandIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -354,12 +379,12 @@ Result CorsairSDK::setCoolerRgb(int r, int g, int b){
 
     int resultSum = 0;
     for (int i = 0; i < this->CoolerIndexList.size(); i++) // Iterate over all cooler indexes.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->CoolerIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->CoolerIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->CoolerIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->CoolerIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -387,12 +412,12 @@ Result CorsairSDK::setMemoryModuleRgb(int r, int g, int b){
 
     int resultSum = 0;
     for (int i = 0; i < this->MemoryModuleIndexList.size(); i++) // Iterate over all memory module indexes.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->MemoryModuleIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->MemoryModuleIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->MemoryModuleIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->MemoryModuleIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -421,12 +446,12 @@ Result CorsairSDK::setMotherboardRgb(int r, int g, int b){
     int resultSum = 0;
     for (int i = 0; i < this->MotherBoardIndexList.size(); i++) // Iterate over all mother board indexes.
         // I guess there should be no two motherboards in one pc for normal users, however just in case.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->MotherBoardIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->MotherBoardIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->MotherBoardIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->MotherBoardIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -455,12 +480,12 @@ Result CorsairSDK::setGPURgb(int r, int g, int b){
     int resultSum = 0;
     for (int i = 0; i < this->GPUIndexList.size(); i++) // Iterate over all GPU indexes.
         // I guess there should SLI or some users using multiple GPUS in one PC.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->GPUIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->GPUIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->MotherBoardIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->GPUIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -491,12 +516,12 @@ Result CorsairSDK::setETCRgb(int r, int g, int b){
     int resultSum = 0;
     for (int i = 0; i < this->ETCIndexList.size(); i++) // Iterate over all ETC indexes.
         // I guess there should SLI or some users using multiple GPUS in one PC.
-        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElementFromList(this->ETCIndexList, i),
+        resultSum += CorsairSetLedsColorsBufferByDeviceIndex(getNthElement(this->ETCIndexList, i),
                                                              curValueIndex, values);
     CorsairSetLedsColorsFlushBuffer();
 
-    if (resultSum == 0) return resultSum;
-    else return resultSum == this->ETCIndexList.size() ? 1 : -2;
+    if (resultSum == 0) return Result::NoRGBWasSet;
+    else return resultSum == this->ETCIndexList.size() ? Result::Success : Result::SomeRGBWasSet;
 }
 
 /**
@@ -519,4 +544,10 @@ Result CorsairSDK::setAllRgb(int r, int g, int b){
     this->setMotherboardRgb(r, g, b);
 
     return 1;
+}
+
+int CorsairSDK::getNthElement(std::list<int> list, int index){
+    auto l_front = list.begin();
+    std::advance(l_front, index);
+    return *l_front;
 }

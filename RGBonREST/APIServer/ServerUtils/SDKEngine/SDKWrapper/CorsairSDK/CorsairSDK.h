@@ -22,6 +22,17 @@ public:
     vector<Device> getDevices() override;
 
 private:
+    list<int> MouseIndexList;
+    list<int> KeyboardIndexList;
+    list<int> HeadsetIndexList;
+    list<int> MouseMatIndexList;
+    list<int> HeadsetStandIndexList;
+    list<int> CoolerIndexList;
+    list<int> MemoryModuleIndexList;
+    list<int> MotherBoardIndexList;
+    list<int> GPUIndexList;
+    list<int> ETCIndexList;
+
     static DeviceType translateDeviceType(CorsairDeviceType);
     Result setMouseRgb(int, int, int);
     Result setKeyboardRgb(int, int, int);
@@ -30,10 +41,12 @@ private:
     Result setHeadsetStandRgb(int, int, int);
     Result setCoolerRgb(int, int, int);
     Result setMotherboardRgb(int, int, int);
+    Result setMemoryModuleRgb(int, int, int);
     Result setGPURgb(int, int, int);
     Result setETCRgb(int, int, int);
     Result setAllRgb(int, int, int);
     void setAllDeviceInfo();
+    static int getNthElement(list<int>, int);
 };
 
 
