@@ -122,7 +122,7 @@ void CorsairSDK::setAllDeviceInfo() {
 DeviceType CorsairSDK::translateDeviceType(CorsairDeviceType toTranslate) {
     switch (toTranslate){
         case CDT_Unknown:
-            return DeviceType::Unknown;
+            return DeviceType::UnknownDevice;
         case CDT_Mouse:
             return DeviceType::Mouse;
         case CDT_Keyboard:
@@ -179,7 +179,7 @@ Result CorsairSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
                 case RAM:
                     return this->setMemoryModuleRgb(r, g, b);
                 case ETC:
-                case Unknown:
+                case UnknownDevice:
                 case Microphone:
                     return this->setETCRgb(r, g, b);
                 default:

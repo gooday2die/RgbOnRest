@@ -23,7 +23,7 @@ enum DeviceType{
     Microphone = 8,
     Cooler = 9,
     ETC = 10,
-    Unknown = 11,
+    UnknownDevice = 11,
     RAM = 12,
     ALL = 0
 };
