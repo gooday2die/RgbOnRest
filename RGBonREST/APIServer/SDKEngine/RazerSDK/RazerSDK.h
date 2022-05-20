@@ -61,7 +61,7 @@ private:
     HMODULE m_ChromaSDKModule = nullptr;
     std::list<RZDEVICEID> deviceNames;
 
-    int deviceCount;
+    int deviceCount = 0;
 
     Result setMouseRgb(int, int, int);
     Result setKeyboardRgb(int, int, int);

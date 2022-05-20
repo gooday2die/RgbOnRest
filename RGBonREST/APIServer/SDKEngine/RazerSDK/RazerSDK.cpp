@@ -8,9 +8,8 @@
 #include "RazerSDK.h"
 
 /**
- * A constructor member function that generates all this->deviceNames list.
- * This will make the list this->deviceNames filled with Razer devices which is listed in RzChromaSDKDefines.h.
- * This might be added or removed in the future due to Razer's support of each devices.
+ * A constructor member function for class RazerSDK.
+ * This member function adds all device names into the deviceNames.
  */
 RazerSDK::RazerSDK(){
     // Keyboards
@@ -49,7 +48,6 @@ RazerSDK::RazerSDK(){
     this->deviceNames.push_back(ChromaSDK::TARTARUS_CHROMA);
     this->deviceNames.push_back(ChromaSDK::ORBWEAVER_CHROMA);
 
-
     // ChromaLinks, this will be considered ETC
     this->deviceNames.push_back(ChromaSDK::LENOVO_Y900);
     this->deviceNames.push_back(ChromaSDK::LENOVO_Y27);
@@ -61,6 +59,7 @@ RazerSDK::RazerSDK(){
  * A member function that returns device name in const char* which matches the RZDEVICEID deviceName.
  * The name will be each namespace's variable names with underscore(_) removed.
  * For example, ChromaSDK::BLACKWIDOW_CHROMA will return BLACKWIDOW CHROMA
+ * Be advised that Razer official did not provide new products, that means there will be devices missing.
  * @param deviceName the DeviceID to look for
  * @return returns const char* of device names.
  */
@@ -149,11 +148,7 @@ const char* RazerSDK::getDeviceName(RZDEVICEID deviceName){
  * After this member function is done loading all process addresses, this will execute Init function and then return
  * If all functions from DLL is loaded correctly. Then this member function will call setAllDeviceInfo in order to
  * save all device information to the local attribute.
- * @return returns
- *        1 if all functions from GetProcAddress was loaded successfully,
- *        0 if any of those functions from GetProcAddress failed to load,
- *        -1 if already connected
- *        -2 if loading dll was not successful.
+ * @return returns Result type value that represents result of connection.
  */
 Result RazerSDK::connect() {
     if (this->isConnected)
@@ -194,7 +189,7 @@ Result RazerSDK::connect() {
 
 /**
  * A disconnect member function that performs UnInit for RazerSDK.
- * @return returns RZRESULT value which is in RzErrors.h
+ * @return returns Result type value that represents the disconnection result.
  */
 Result RazerSDK::disconnect() {
     if (this->UnInit() == RZRESULT_SUCCESS) return Result::Success;
@@ -204,31 +199,25 @@ Result RazerSDK::disconnect() {
 Result RazerSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
     switch (argDeviceType) {
         case Mouse:
-            break;
+            return this->setMouseRgb(r, g, b);
         case Headset:
-            break;
-        case Keyboard:
-            break;
+            return this->setHeadsetRgb(r, g, b);
+        case Keyboard: // Keypads are considered as Keyboards.
+            return this->setKeyboardRgb(r, g, b);
         case Mousemat:
-            break;
+            return this->setMouseMatRgb(r, g, b);
         case HeadsetStand:
-            break;
-        case GPU:
-            break;
-        case Mainboard:
-            break;
         case Microphone:
-            break;
-        case Cooler:
-            break;
         case ETC:
-            break;
+            return this->setETCRgb(r, g, b);
         case UnknownDevice:
-            break;
         case RAM:
-            break;
+        case Cooler:
+        case GPU:
+        case Mainboard:
+            return Result::SDKDoesNotSupportDeviceType;
         case ALL:
-            break;
+            return this->setAllRgb(r, g, b);
     }
 }
 
@@ -345,8 +334,6 @@ Result RazerSDK::setAllRgb(int r, int g, int b) {
  * @return total count of connected devices.
  */
 void RazerSDK::setDeviceCount() {
-    this->deviceCount = 0;
-
     for (int i = 0; i < this->deviceNames.size(); i++) {
         RZDEVICEID deviceName = getNthElementFromList(this->deviceNames, i);
         this->deviceCount += isConnectedDevice(deviceName);
