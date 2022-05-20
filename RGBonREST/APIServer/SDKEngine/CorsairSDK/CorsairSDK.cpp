@@ -12,28 +12,33 @@
  * @return Enum Result type that represents response from SDK.
  */
 Result CorsairSDK::connect() {
-    CorsairPerformProtocolHandshake(); // Perform handshake with SDK
-    switch (CorsairGetLastError()) {
-        case CorsairError::CE_Success: // If CorsairPerformProtocolHandshake was successful, then request control.
-            this->isConnected = CorsairRequestControl(CAM_ExclusiveLightingControl);
-            if (this->isConnected) {
-                this->setAllDeviceInfo();
-                return Result::Success;
-            }
-            else
-                return Result::CannotConnectSDK;
+    if (this->isConnected)
+        return Result::SDKAlreadyConnected;
 
-        case CorsairError::CE_IncompatibleProtocol: // If the SDK is outdated or does not match protocol.
-            return Result::OutDatedSDKVersion;
+    else {
+        CorsairPerformProtocolHandshake(); // Perform handshake with SDK
+        switch (CorsairGetLastError()) {
+            case CorsairError::CE_Success: // If CorsairPerformProtocolHandshake was successful, then request control.
+                this->isDisabled = false;
+                this->isConnected = CorsairRequestControl(CAM_ExclusiveLightingControl);
+                if (this->isConnected) {
+                    this->setAllDeviceInfo();
+                    return Result::Success;
+                } else
+                    return Result::CannotConnectSDK;
 
-        case CorsairError::CE_ServerNotFound: // If the SDK server is not found and cannot connect SDK.
-            return Result::SDKServiceNotRunning;
+            case CorsairError::CE_IncompatibleProtocol: // If the SDK is outdated or does not match protocol.
+                return Result::OutDatedSDKVersion;
 
-        case CorsairError::CE_InvalidArguments: // Other results are considered Unexpected since they will NOT occur.
-        case CorsairError::CE_NoControl:
-        case CorsairError::CE_ProtocolHandshakeMissing:
-        default:
-            return Result::SDKUnexpectedError;
+            case CorsairError::CE_ServerNotFound: // If the SDK server is not found and cannot connect SDK.
+                return Result::SDKServiceNotRunning;
+
+            case CorsairError::CE_InvalidArguments: // Other results are considered Unexpected since they will NOT occur.
+            case CorsairError::CE_NoControl:
+            case CorsairError::CE_ProtocolHandshakeMissing:
+            default:
+                return Result::SDKUnexpectedError;
+        }
     }
 }
 

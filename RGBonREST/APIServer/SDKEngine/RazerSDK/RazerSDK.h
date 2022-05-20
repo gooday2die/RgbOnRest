@@ -12,7 +12,7 @@
 #include <iostream>
 #include <tchar.h>
 #include <windows.h>
-#include <assert.h>
+#include <cassert>
 #include <wtypes.h>
 #include <list>
 
@@ -45,6 +45,37 @@ private:
     typedef RZRESULT(*REGISTEREVENTNOTIFICATION)(HWND hWnd);
     typedef RZRESULT(*UNREGISTEREVENTNOTIFICATION)(void);
     typedef RZRESULT(*QUERYDEVICE)(RZDEVICEID DeviceId, ChromaSDK::DEVICE_INFO_TYPE& DeviceInfo);
+
+    INIT Init = nullptr;
+    UNINIT UnInit = nullptr;
+    CREATEEFFECT CreateEffect = nullptr;
+    CREATEKEYBOARDEFFECT CreateKeyboardEffect = nullptr;
+    CREATEMOUSEEFFECT CreateMouseEffect = nullptr;
+    CREATEHEADSETEFFECT CreateHeadsetEffect = nullptr;
+    CREATEMOUSEPADEFFECT CreateMousepadEffect = nullptr;
+    CREATEKEYPADEFFECT CreateKeypadEffect = nullptr;
+    CREATECHROMALINKEFFECT CreateChromaLinkEffect = nullptr;
+    SETEFFECT SetEffect = nullptr;
+    DELETEEFFECT DeleteEffect = nullptr;
+    QUERYDEVICE QueryDevice = nullptr;
+    HMODULE m_ChromaSDKModule = nullptr;
+    std::list<RZDEVICEID> deviceNames;
+
+    int deviceCount;
+
+    Result setMouseRgb(int, int, int);
+    Result setKeyboardRgb(int, int, int);
+    Result setHeadsetRgb(int, int, int);
+    Result setMouseMatRgb(int, int, int);
+    Result setETCRgb(int, int, int);
+    Result setAllRgb(int, int, int);
+    void setAllDeviceInfo();
+    void setDeviceCount();
+    bool isConnectedDevice(RZDEVICEID);
+    static RZDEVICEID getNthElementFromList(std::list<RZDEVICEID>, int);
+    static int translateDeviceType(int);
+    static const char* getDeviceName(RZDEVICEID);
+
 public:
     RazerSDK();
     Result connect() override;

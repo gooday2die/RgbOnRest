@@ -42,6 +42,7 @@ enum Result{
     CannotConnectSDK = 9,
     SomeRGBWasSet = 10,
     NoRGBWasSet = 11,
+    SomeFailed = 12,
 };
 
 typedef struct device{
