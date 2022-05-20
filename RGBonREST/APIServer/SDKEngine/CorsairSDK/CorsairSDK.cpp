@@ -17,7 +17,6 @@ Result CorsairSDK::connect() {
         case CorsairError::CE_Success: // If CorsairPerformProtocolHandshake was successful, then request control.
             this->isConnected = CorsairRequestControl(CAM_ExclusiveLightingControl);
             if (this->isConnected) {
-                printf("Connected Device Count : %d\n", CorsairGetDeviceCount());
                 this->setAllDeviceInfo();
                 return Result::Success;
             }

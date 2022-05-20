@@ -10,19 +10,12 @@
 #pragma once
 
 #include <list>
-#include <iostream>
 #include "../AbstractSDK.h"
 #include "./includes/CUESDK.h"
 
 using namespace std;
 
 class CorsairSDK : public AbstractSDK{
-public:
-    Result connect() override;
-    Result disconnect() override;
-    Result setRgb(DeviceType, int, int, int) override;
-    vector<Device> getDevices() override;
-
 private:
     list<int> MouseIndexList;
     list<int> KeyboardIndexList;
@@ -49,6 +42,11 @@ private:
     Result setAllRgb(int, int, int);
     void setAllDeviceInfo();
     static int getNthElement(list<int>, int);
+public:
+    Result connect() override;
+    Result disconnect() override;
+    Result setRgb(DeviceType, int, int, int) override;
+    vector<Device> getDevices() override;
 };
 
 
