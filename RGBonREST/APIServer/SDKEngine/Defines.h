@@ -43,6 +43,7 @@ enum Result{
     SomeRGBWasSet = 10,
     NoRGBWasSet = 11,
     SomeFailed = 12,
+    CannotFindDLLError = 13,
 };
 
 typedef struct device{

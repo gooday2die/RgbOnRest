@@ -22,7 +22,7 @@
 #include "../AbstractSDK.h"
 
 #ifdef _WIN64
-#define CHROMASDKDLL        _T("RzChromaSDK64.dll")
+#define CHROMASDKDLL        "RzChromaSDK64.dll"
 #else
 #define CHROMASDKDLL        _T("RzChromaSDK.dll")
 #endif

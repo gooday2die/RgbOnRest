@@ -182,9 +182,8 @@ Result RazerSDK::connect() {
                 && QueryDevice && Init && UnInit)
                 return Result::Success;
             else return Result::SomeFailed;
-        }
+        } else return Result::CannotFindDLLError;
     }
-    return Result::SDKUnexpectedError; // Shall not reach here.
 }
 
 /**
