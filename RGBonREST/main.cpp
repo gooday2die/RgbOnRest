@@ -2,6 +2,6 @@
 #include "Tests/RazerTest.h"
 
 int main(){
-    CorsairTest();
+    //CorsairTest();
     RazerTest();
 }

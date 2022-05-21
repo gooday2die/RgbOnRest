@@ -177,6 +177,7 @@ Result RazerSDK::connect() {
 
             Init(); // perform init
             setAllDeviceInfo(); // Try getting all device information since this shall be done first right after init.
+            this->isConnected = true;
             if (CreateEffect && CreateKeyboardEffect && CreateMouseEffect && CreateHeadsetEffect &&
                 CreateMousepadEffect && CreateKeypadEffect && CreateChromaLinkEffect && SetEffect && DeleteEffect
                 && QueryDevice && Init && UnInit)
@@ -211,13 +212,13 @@ Result RazerSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
                     return this->setMouseRgb(r, g, b);
                 case Headset:
                     return this->setHeadsetRgb(r, g, b);
-                case Keyboard: // Keypads are considered as Keyboards.
+                case Keyboard:
                     return this->setKeyboardRgb(r, g, b);
                 case Mousemat:
                     return this->setMouseMatRgb(r, g, b);
                 case HeadsetStand:
                 case Microphone:
-                case ETC:
+                case ETC: // Keypads and ChromaLink devices
                     return this->setETCRgb(r, g, b);
                 case UnknownDevice:
                 case RAM:
@@ -335,11 +336,18 @@ Result RazerSDK::setETCRgb(int r, int g, int b){
  * @return returns Result type value that represents response from SDK.
  */
 Result RazerSDK::setAllRgb(int r, int g, int b) {
-    if (setMouseRgb(r, g, b) ==
-            setKeyboardRgb(r, g, b) ==
-            setMouseMatRgb(r, g, b) ==
-            setHeadsetRgb(r, g, b) ==
-            setETCRgb(r, g, b) == 1) return Result::Success;
+    vector<Result> results;
+    results.emplace_back(this->setMouseRgb(r, g, b));
+    results.emplace_back(this->setKeyboardRgb(r, g, b));
+    results.emplace_back(this->setMouseMatRgb(r, g, b));
+    results.emplace_back(this->setHeadsetRgb(r, g, b));
+    results.emplace_back(this->setETCRgb(r, g, b));
+
+    int successCount = 0;
+    for (auto const& x : results)
+        successCount += x == Result::Success;
+
+    if (successCount == results.size()) return Result::Success;
     else return Result::SomeFailed;
 }
 
