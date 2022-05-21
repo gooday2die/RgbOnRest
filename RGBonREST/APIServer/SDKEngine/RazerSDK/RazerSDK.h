@@ -73,8 +73,9 @@ private:
     void setDeviceCount();
     bool isConnectedDevice(RZDEVICEID);
     static RZDEVICEID getNthElementFromList(std::list<RZDEVICEID>, int);
-    static int translateDeviceType(int);
+    static DeviceType translateDeviceType(int);
     static const char* getDeviceName(RZDEVICEID);
+    static Result translateRzResult(RZRESULT);
 
 public:
     RazerSDK();

@@ -196,37 +196,49 @@ Result RazerSDK::disconnect() {
     else return Result ::SDKUnexpectedError;
 }
 
+/**
+ * A member function for class RazerSDK that sets RGB values into devices.
+ * @param argDeviceType the device type.
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result type.
+ */
 Result RazerSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
-    switch (argDeviceType) {
-        case Mouse:
-            return this->setMouseRgb(r, g, b);
-        case Headset:
-            return this->setHeadsetRgb(r, g, b);
-        case Keyboard: // Keypads are considered as Keyboards.
-            return this->setKeyboardRgb(r, g, b);
-        case Mousemat:
-            return this->setMouseMatRgb(r, g, b);
-        case HeadsetStand:
-        case Microphone:
-        case ETC:
-            return this->setETCRgb(r, g, b);
-        case UnknownDevice:
-        case RAM:
-        case Cooler:
-        case GPU:
-        case Mainboard:
-            return Result::SDKDoesNotSupportDeviceType;
-        case ALL:
-            return this->setAllRgb(r, g, b);
-    }
+    if (this->isConnected) {
+        if ((((r >= 0) && (r <= 255)) && ((g >= 0) && (g <= 255))) && ((b >= 0) && (b <= 255))) {
+            switch (argDeviceType) {
+                case Mouse:
+                    return this->setMouseRgb(r, g, b);
+                case Headset:
+                    return this->setHeadsetRgb(r, g, b);
+                case Keyboard: // Keypads are considered as Keyboards.
+                    return this->setKeyboardRgb(r, g, b);
+                case Mousemat:
+                    return this->setMouseMatRgb(r, g, b);
+                case HeadsetStand:
+                case Microphone:
+                case ETC:
+                    return this->setETCRgb(r, g, b);
+                case UnknownDevice:
+                case RAM:
+                case Cooler:
+                case GPU:
+                case Mainboard:
+                    return Result::InvalidDeviceType;
+                case ALL:
+                    return this->setAllRgb(r, g, b);
+            }
+        } else return Result::InvalidRGBValue;
+    } else return Result::SDKNotConnected;
 }
 
 /**
- * A member function that sets Mouse rgb.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns integer type cased RZRESULT as return value. see RzErrors.h for information about return values.
+ * A member function for setting Mouse RGB.
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result type value that represents response from SDK.
  */
 Result RazerSDK::setMouseRgb(int r, int g, int b) {
     ChromaSDK::Mouse::STATIC_EFFECT_TYPE StaticEffect = {};
@@ -236,15 +248,16 @@ Result RazerSDK::setMouseRgb(int r, int g, int b) {
     StaticEffect.LEDId = ChromaSDK::Mouse::RZLED_ALL;
 
     CreateMouseEffect(ChromaSDK::Mouse::CHROMA_STATIC, &StaticEffect, &EffectId);
-    return (RZRESULT)SetEffect(EffectId);
+    return translateRzResult((RZRESULT) this->SetEffect(EffectId));
 }
 
 /**
- * A member function that sets Keyboard rgb.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns integer type cased RZRESULT as return value. see RzErrors.h for information about return values.
+ * A member function for setting Keyboard RGB.
+ * Keypads are considered as ETC device.
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result type value that represents response from SDK.
  */
 Result RazerSDK::setKeyboardRgb(int r, int g, int b) {
     ChromaSDK::Keyboard::STATIC_EFFECT_TYPE StaticEffect = {};
@@ -253,15 +266,15 @@ Result RazerSDK::setKeyboardRgb(int r, int g, int b) {
     StaticEffect.Color = RGB(r, g, b);
 
     CreateKeyboardEffect(ChromaSDK::Keyboard::CHROMA_STATIC, &StaticEffect, &EffectId);
-    return (RZRESULT)SetEffect(EffectId);
+    return translateRzResult((RZRESULT) this->SetEffect(EffectId));
 }
 
 /**
- * A member function that sets Headset rgb.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns integer type cased RZRESULT as return value. see RzErrors.h for information about return values.
+ * A member function for setting HeadSet RGB.
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result type value that represents response from SDK.
  */
 Result RazerSDK::setHeadsetRgb(int r, int g, int b) {
     ChromaSDK::Headset::STATIC_EFFECT_TYPE StaticEffect = {};
@@ -270,15 +283,15 @@ Result RazerSDK::setHeadsetRgb(int r, int g, int b) {
     StaticEffect.Color = RGB(r, g, b);
 
     CreateHeadsetEffect(ChromaSDK::Headset::CHROMA_STATIC, &StaticEffect, &EffectId);
-    return (RZRESULT)SetEffect(EffectId);
+    return translateRzResult((RZRESULT) this->SetEffect(EffectId));
 }
 
 /**
- * A member function that sets Mousemat rgb.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns integer type cased RZRESULT as return value. see RzErrors.h for information about return values.
+ * A member function for setting MouseMat RGB.
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result type value that represents response from SDK.
  */
 Result RazerSDK::setMouseMatRgb(int r, int g, int b) {
     ChromaSDK::Mousepad::STATIC_EFFECT_TYPE StaticEffect = {};
@@ -287,16 +300,16 @@ Result RazerSDK::setMouseMatRgb(int r, int g, int b) {
     StaticEffect.Color = RGB(r, g, b);
 
     CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_STATIC, &StaticEffect, &EffectId);
-    return (RZRESULT)SetEffect(EffectId);
+    return translateRzResult((RZRESULT) this->SetEffect(EffectId));
 }
 
 /**
- * A member function that sets ETC device's rgb.
- * For Razer, we will be considering KeyPads and ChromaLink as ETC Devices.
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns 1 if every devices were successful, 0 if any of devices were not successful.
+ * A member function for setting ETC RGB.
+ * This sets Keypad and ChromaLink Effect.
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result type value that represents response from SDK.
  */
 Result RazerSDK::setETCRgb(int r, int g, int b){
     ChromaSDK::Keypad::STATIC_EFFECT_TYPE KeypadStaticEffect = {};
@@ -310,22 +323,25 @@ Result RazerSDK::setETCRgb(int r, int g, int b){
     CreateKeypadEffect(ChromaSDK::Keypad::CHROMA_STATIC, &KeypadStaticEffect, &KeypadStaticEffectId);
     CreateChromaLinkEffect(ChromaSDK::ChromaLink::CHROMA_STATIC, &KeypadStaticEffect, &ChromaLinkStaticEffectId);
 
-    return ((RZRESULT)SetEffect(KeypadStaticEffectId) || (RZRESULT)SetEffect(ChromaLinkStaticEffectId));
+    if ((RZRESULT)SetEffect(KeypadStaticEffectId) == (RZRESULT)SetEffect(ChromaLinkStaticEffectId) == 0)
+        return Result::Success;
+    else return Result::SomeFailed;
 }
 
 /**
- * A member function that sets all device rgb
- * @param r the red value of rgb color to set
- * @param g the green value of rgb color to set
- * @param b the blue value of rgb color to set
- * @return returns 0 if every devices were successful, returns error values according to RzErrors.
+ * A member function for setting All RGB.
+ * @param r the r value
+ * @param g the g value
+ * @param b the b value
+ * @return returns Result type value that represents response from SDK.
  */
 Result RazerSDK::setAllRgb(int r, int g, int b) {
-    if (setMouseRgb(r, g, b) ||
-            setKeyboardRgb(r, g, b) ||
-            setMouseMatRgb(r, g, b) ||
-            setHeadsetRgb(r, g, b) ||
-            setETCRgb(r, g, b));
+    if (setMouseRgb(r, g, b) ==
+            setKeyboardRgb(r, g, b) ==
+            setMouseMatRgb(r, g, b) ==
+            setHeadsetRgb(r, g, b) ==
+            setETCRgb(r, g, b) == 1) return Result::Success;
+    else return Result::SomeFailed;
 }
 
 /**
@@ -354,45 +370,48 @@ RZDEVICEID RazerSDK::getNthElementFromList(std::list<RZDEVICEID> list, int index
 }
 
 /**
- * A setAllDeviceInfo member function that stores all device device information.
- * This just sets the this->deviceList array with data, so if you would like to get information from devices,
- * use getDeviceInfo instead with index. This member function will call getDeviceCount to save how many devices are
- * connected currently and will be using QueryDevice function in order to save each data.
+ * A member function that sets all device information into attribute this->devices.
+ * Be advised that Razer has some missing devices in their official headers.
+ * Thus there might be missing devices.
  */
 void RazerSDK::setAllDeviceInfo() {
     this->setDeviceCount();
-    this->deviceList = (Device*)malloc(sizeof(Device) * this->deviceCount);
-    int currentIndex = 0;
-    for(int i = 0 ; i < this->this->deviceNames.size() ; i++){
+    for(int i = 0 ; i < this->deviceNames.size() ; i++){
         ChromaSDK::DEVICE_INFO_TYPE curDeviceInfo = {};
         RZDEVICEID deviceName = getNthElementFromList(this->deviceNames, i);
         QueryDevice(deviceName, curDeviceInfo);
-        if (curDeviceInfo.Connected){
-            this->deviceList[currentIndex].type = translateDeviceType(curDeviceInfo.DeviceType);
-            this->deviceList[currentIndex].index = currentIndex;
-            this->deviceList[currentIndex].name = getDeviceName(deviceName);
-            currentIndex++;
+        if (curDeviceInfo.Connected){ // If we found devices, translate it into Device struct.
+            Device tmpDevice;
+            tmpDevice.deviceType = translateDeviceType(curDeviceInfo.DeviceType);
+            tmpDevice.name = getDeviceName(deviceName);
+            tmpDevice.sdkName = "RAZER";
+
+            this->devices.emplace_back(tmpDevice);
         }
     }
 }
 
 /**
- * A member function that translates device type from Razer DeviceType to our Device types.
- * @param razerDeviceType the RazerDeviceType value to change from
- * @return translated device type in our Device struct. Default will be 9 if not specified.
+ * A member function that translates Razer DeviceType value into DeviceType enum.
+ * Check RzChromaSDKTypes.h for more information on the DeviceTypes.
+ * @param rzDeviceType the int value to translate into DeviceType.
+ * @return the translated DeviceType.
  */
-int RazerSDK::translateDeviceType(int razerDeviceType){
-    switch(razerDeviceType){
+DeviceType RazerSDK::translateDeviceType(int rzDeviceType){
+    switch(rzDeviceType){
         case 1:
-            return 1;
+            return DeviceType::Keyboard;
         case 2:
-            return 0;
+            return DeviceType::Mouse;
         case 3:
-            return 2;
+            return DeviceType::Headset;
         case 4:
-            return 3;
+            return DeviceType::Mousemat;
+        case 5: // Keypad
+        case 6: // System
+            return DeviceType::ETC;
         default:
-            return 9;
+            return DeviceType::UnknownDevice;
     }
 }
 
@@ -408,10 +427,20 @@ bool RazerSDK::isConnectedDevice(RZDEVICEID deviceName){
 }
 
 /**
- * A member function that retrieves a device information in Device type struct
- * @param index the index of device to retrieve information from
- * @return Device type struct that represents device information
+ * A member function that translates RZRESULT into Result value
+ * @param rzResult the RZRESULT type to translate into Result.
+ * @return the translated Result.
  */
-Device RazerSDK::getDeviceInfo(int index){
-    return this->deviceList[index];
+Result RazerSDK::translateRzResult(RZRESULT rzResult) {
+    if (rzResult == RZRESULT_SUCCESS) return Result::Success;
+    else if (rzResult == RZRESULT_DEVICE_NOT_CONNECTED) return Result::NoDevicesConnected;
+    else return Result::SDKUnexpectedError;
+}
+
+/**
+ * A member function for class CorsairSDK that returns Devices.
+ * @return returns vector of devices.
+ */
+vector<Device> RazerSDK::getDevices() {
+    return this->devices;
 }
