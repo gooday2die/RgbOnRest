@@ -97,6 +97,14 @@ build CMakeFiles\RGBonREST.dir\Tests\All.cpp.obj: CXX_COMPILER__RGBonREST_Releas
   TARGET_COMPILE_PDB = CMakeFiles\RGBonREST.dir\
   TARGET_PDB = RGBonREST.pdb
 
+build CMakeFiles\RGBonREST.dir\APIServer\SDKEngine\AsusSDK\AsusSDK.cpp.obj: CXX_COMPILER__RGBonREST_Release C$:\Users\WorkPC\CLionProjects\RGBonREST\APIServer\SDKEngine\AsusSDK\AsusSDK.cpp || cmake_object_order_depends_target_RGBonREST
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -MD
+  INCLUDES = -IC:\Users\WorkPC\CLionProjects\RGBonREST\APIServer\SDKEngine\CorsairSDK\includes
+  OBJECT_DIR = CMakeFiles\RGBonREST.dir
+  OBJECT_FILE_DIR = CMakeFiles\RGBonREST.dir\APIServer\SDKEngine\AsusSDK
+  TARGET_COMPILE_PDB = CMakeFiles\RGBonREST.dir\
+  TARGET_PDB = RGBonREST.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target RGBonREST
@@ -105,7 +113,7 @@ build CMakeFiles\RGBonREST.dir\Tests\All.cpp.obj: CXX_COMPILER__RGBonREST_Releas
 #############################################
 # Link the executable RGBonREST.exe
 
-build RGBonREST.exe: CXX_EXECUTABLE_LINKER__RGBonREST_Release CMakeFiles\RGBonREST.dir\main.cpp.obj CMakeFiles\RGBonREST.dir\APIServer\SDKEngine\CorsairSDK\CorsairSDK.cpp.obj CMakeFiles\RGBonREST.dir\Tests\CorsairTest.cpp.obj CMakeFiles\RGBonREST.dir\APIServer\SDKEngine\RazerSDK\RazerSDK.cpp.obj CMakeFiles\RGBonREST.dir\Tests\RazerTest.cpp.obj CMakeFiles\RGBonREST.dir\Tests\All.cpp.obj | ..\APIServer\SDKEngine\CorsairSDK\lib\CUESDK.x64_2019.lib
+build RGBonREST.exe: CXX_EXECUTABLE_LINKER__RGBonREST_Release CMakeFiles\RGBonREST.dir\main.cpp.obj CMakeFiles\RGBonREST.dir\APIServer\SDKEngine\CorsairSDK\CorsairSDK.cpp.obj CMakeFiles\RGBonREST.dir\Tests\CorsairTest.cpp.obj CMakeFiles\RGBonREST.dir\APIServer\SDKEngine\RazerSDK\RazerSDK.cpp.obj CMakeFiles\RGBonREST.dir\Tests\RazerTest.cpp.obj CMakeFiles\RGBonREST.dir\Tests\All.cpp.obj CMakeFiles\RGBonREST.dir\APIServer\SDKEngine\AsusSDK\AsusSDK.cpp.obj | ..\APIServer\SDKEngine\CorsairSDK\lib\CUESDK.x64_2019.lib
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -MD
   LINK_FLAGS = /machine:x64 /INCREMENTAL:NO /subsystem:console
   LINK_LIBRARIES = ..\APIServer\SDKEngine\CorsairSDK\lib\CUESDK.x64_2019.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

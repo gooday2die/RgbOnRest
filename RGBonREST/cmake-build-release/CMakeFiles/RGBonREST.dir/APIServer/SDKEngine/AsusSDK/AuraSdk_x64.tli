@@ -1,0 +1,965 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.32.31329.0 (b26edcd4).
+//
+// C:\Users\WorkPC\CLionProjects\RGBonREST\cmake-build-release\CMakeFiles\RGBonREST.dir\APIServer\SDKEngine\AsusSDK\AuraSdk_x64.tli
+//
+// Wrapper implementations for type library F1AA5209-5217-4B82-BA7E-A68198999AFA
+// compiler-generated file - DO NOT EDIT!
+
+#pragma once
+
+//
+// interface IAuraRgbLight wrapper method implementations
+//
+
+inline unsigned char IAuraRgbLight::GetRed ( ) {
+    unsigned char _result = 0;
+    HRESULT _hr = get_Red(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraRgbLight::PutRed ( unsigned char pVal ) {
+    HRESULT _hr = put_Red(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline unsigned char IAuraRgbLight::GetGreen ( ) {
+    unsigned char _result = 0;
+    HRESULT _hr = get_Green(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraRgbLight::PutGreen ( unsigned char pVal ) {
+    HRESULT _hr = put_Green(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline unsigned char IAuraRgbLight::GetBlue ( ) {
+    unsigned char _result = 0;
+    HRESULT _hr = get_Blue(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraRgbLight::PutBlue ( unsigned char pVal ) {
+    HRESULT _hr = put_Blue(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline _bstr_t IAuraRgbLight::GetName ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Name(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline unsigned long IAuraRgbLight::GetColor ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Color(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraRgbLight::PutColor ( unsigned long pVal ) {
+    HRESULT _hr = put_Color(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+//
+// interface IAuraRgbLightCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraRgbLightCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraRgbLightCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraRgbLightPtr IAuraRgbLightCollection::GetItem ( long index ) {
+    struct IAuraRgbLight * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightPtr(_result, false);
+}
+
+//
+// interface IAuraSyncDevice wrapper method implementations
+//
+
+inline IAuraRgbLightCollectionPtr IAuraSyncDevice::GetLights ( ) {
+    struct IAuraRgbLightCollection * _result = 0;
+    HRESULT _hr = get_Lights(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightCollectionPtr(_result, false);
+}
+
+inline unsigned long IAuraSyncDevice::GetType ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Type(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IAuraSyncDevice::GetName ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Name(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline unsigned long IAuraSyncDevice::GetWidth ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Width(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline unsigned long IAuraSyncDevice::GetHeight ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Height(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IAuraSyncDevice::Apply ( ) {
+    HRESULT _hr = raw_Apply();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IAuraEffect wrapper method implementations
+//
+
+inline long IAuraEffect::GetId ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Id(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IAuraEffect::GetName ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Name(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline long IAuraEffect::GetSynchronized ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Synchronized(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// interface IAuraEffectCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraEffectCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraEffectCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraEffectPtr IAuraEffectCollection::GetItem ( long index ) {
+    struct IAuraEffect * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraEffectPtr(_result, false);
+}
+
+//
+// interface IAuraRgbLightGroup wrapper method implementations
+//
+
+inline IUnknownPtr IAuraRgbLightGroup::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraRgbLightGroup::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraRgbLightPtr IAuraRgbLightGroup::GetItem ( long index ) {
+    struct IAuraRgbLight * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightPtr(_result, false);
+}
+
+inline _bstr_t IAuraRgbLightGroup::GetName ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Name(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline unsigned long IAuraRgbLightGroup::GetId ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Id(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// interface IAuraRgbLightGroupCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraRgbLightGroupCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraRgbLightGroupCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraRgbLightGroupPtr IAuraRgbLightGroupCollection::GetItem ( long index ) {
+    struct IAuraRgbLightGroup * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightGroupPtr(_result, false);
+}
+
+//
+// interface IAuraDevice wrapper method implementations
+//
+
+inline HRESULT IAuraDevice::SetMode ( long mode ) {
+    HRESULT _hr = raw_SetMode(mode);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IAuraDevice::SetLightColor ( unsigned long index, unsigned long Color ) {
+    HRESULT _hr = raw_SetLightColor(index, Color);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline long IAuraDevice::GetLightCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_LightCount(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraDevice::PutLightCount ( long pVal ) {
+    HRESULT _hr = put_LightCount(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline IAuraEffectCollectionPtr IAuraDevice::GetEffects ( ) {
+    struct IAuraEffectCollection * _result = 0;
+    HRESULT _hr = get_Effects(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraEffectCollectionPtr(_result, false);
+}
+
+inline IAuraEffectCollectionPtr IAuraDevice::GetStandbyEffects ( ) {
+    struct IAuraEffectCollection * _result = 0;
+    HRESULT _hr = get_StandbyEffects(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraEffectCollectionPtr(_result, false);
+}
+
+inline HRESULT IAuraDevice::GetLayout ( unsigned long * Width, unsigned long * Height, unsigned long * depth ) {
+    HRESULT _hr = raw_GetLayout(Width, Height, depth);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IAuraDevice::Synchronize ( unsigned long effectIndex, unsigned long tickcount ) {
+    HRESULT _hr = raw_Synchronize(effectIndex, tickcount);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline long IAuraDevice::GetDefaultLightCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_DefaultLightCount(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IAuraDevice::GetMaxLightCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_MaxLightCount(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline unsigned long IAuraDevice::GetLightCountVariable ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_LightCountVariable(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IAuraDevice::GetManufacture ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Manufacture(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline _bstr_t IAuraDevice::GetModel ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Model(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline IAuraRgbLightGroupCollectionPtr IAuraDevice::GetGroups ( ) {
+    struct IAuraRgbLightGroupCollection * _result = 0;
+    HRESULT _hr = get_Groups(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightGroupCollectionPtr(_result, false);
+}
+
+inline unsigned long IAuraDevice::GetKeyboardKeyZone ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_KeyboardKeyZone(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline unsigned long IAuraDevice::GetOtherInformationCount ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_OtherInformationCount(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline unsigned long IAuraDevice::GetOtherInformation ( unsigned long index ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_OtherInformation(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IAuraDevice::GetMaxTotalLedCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_MaxTotalLedCount(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline unsigned long IAuraDevice::GetStripStaticID ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_StripStaticID(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline unsigned long IAuraDevice::GetStripARGBID ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_StripARGBID(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IAuraDevice::SetCallbackFunction ( void * funcObj ) {
+    HRESULT _hr = raw_SetCallbackFunction(funcObj);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IAuraDeviceCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraDeviceCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraDeviceCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraDevicePtr IAuraDeviceCollection::GetItem ( long index ) {
+    struct IAuraDevice * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraDevicePtr(_result, false);
+}
+
+//
+// interface IAuraHal wrapper method implementations
+//
+
+inline IAuraDeviceCollectionPtr IAuraHal::EumerateDevices ( ) {
+    struct IAuraDeviceCollection * _result = 0;
+    HRESULT _hr = raw_EumerateDevices(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraDeviceCollectionPtr(_result, false);
+}
+
+//
+// interface IAuraHalInfo wrapper method implementations
+//
+
+inline _bstr_t IAuraHalInfo::GetGuid ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Guid(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline unsigned long IAuraHalInfo::GetPluging ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Pluging(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraHalPtr IAuraHalInfo::CreateHal ( ) {
+    struct IAuraHal * _result = 0;
+    HRESULT _hr = raw_CreateHal(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraHalPtr(_result, false);
+}
+
+//
+// interface IAuraHalInfoCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraHalInfoCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraHalInfoCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraHalInfoPtr IAuraHalInfoCollection::GetItem ( long index ) {
+    struct IAuraHalInfo * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraHalInfoPtr(_result, false);
+}
+
+//
+// interface IAuraDevelopement wrapper method implementations
+//
+
+inline IAuraDeviceCollectionPtr IAuraDevelopement::GetAllDevices ( ) {
+    struct IAuraDeviceCollection * _result = 0;
+    HRESULT _hr = raw_GetAllDevices(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraDeviceCollectionPtr(_result, false);
+}
+
+inline IAuraHalInfoCollectionPtr IAuraDevelopement::EumerateHalInfo ( ) {
+    struct IAuraHalInfoCollection * _result = 0;
+    HRESULT _hr = raw_EumerateHalInfo(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraHalInfoCollectionPtr(_result, false);
+}
+
+inline IAuraDeviceCollectionPtr IAuraDevelopement::EumerateDevicesFromHal ( GUID * guids, unsigned long Count ) {
+    struct IAuraDeviceCollection * _result = 0;
+    HRESULT _hr = raw_EumerateDevicesFromHal(guids, Count, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraDeviceCollectionPtr(_result, false);
+}
+
+inline HRESULT IAuraDevelopement::AURARequireToken ( unsigned long token ) {
+    HRESULT _hr = raw_AURARequireToken(token);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IAuraMbHal wrapper method implementations
+//
+
+inline unsigned long IAuraMbHal::GetBiosOnOff ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = raw_GetBiosOnOff(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IAuraMbHal::SetBiosOnOff ( unsigned long value ) {
+    HRESULT _hr = raw_SetBiosOnOff(value);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline unsigned long IAuraMbHal::GetBiosStandbyOnOff ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = raw_GetBiosStandbyOnOff(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline HRESULT IAuraMbHal::SetBiosStandbyOnOff ( unsigned long value ) {
+    HRESULT _hr = raw_SetBiosStandbyOnOff(value);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IAuraHPHalIIDCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraHPHalIIDCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraHPHalIIDCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IAuraHPHalIIDCollection::GetItem ( long index ) {
+    BSTR _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+//
+// interface IAuraHPHalDIDCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraHPHalDIDCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraHPHalDIDCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline unsigned long IAuraHPHalDIDCollection::GetItem ( long index ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// interface IAuraHotPlugHal wrapper method implementations
+//
+
+inline IAuraHPHalIIDCollectionPtr IAuraHotPlugHal::GetAllInterfaceGuids ( ) {
+    struct IAuraHPHalIIDCollection * _result = 0;
+    HRESULT _hr = raw_GetAllInterfaceGuids(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraHPHalIIDCollectionPtr(_result, false);
+}
+
+inline IAuraHPHalDIDCollectionPtr IAuraHotPlugHal::GetAllDeviceIds ( ) {
+    struct IAuraHPHalDIDCollection * _result = 0;
+    HRESULT _hr = raw_GetAllDeviceIds(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraHPHalDIDCollectionPtr(_result, false);
+}
+
+//
+// interface IAuraRgbKey wrapper method implementations
+//
+
+inline unsigned short IAuraRgbKey::GetCode ( ) {
+    unsigned short _result = 0;
+    HRESULT _hr = get_Code(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IAuraRgbKey::GetX ( ) {
+    long _result = 0;
+    HRESULT _hr = get_X(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline long IAuraRgbKey::GetY ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Y(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// interface IAuraRgbKeyCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraRgbKeyCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraRgbKeyCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraRgbKeyPtr IAuraRgbKeyCollection::GetItem ( long index ) {
+    struct IAuraRgbKey * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbKeyPtr(_result, false);
+}
+
+//
+// interface IAuraSyncKeyboard wrapper method implementations
+//
+
+inline IAuraRgbLightPtr IAuraSyncKeyboard::GetKey ( unsigned short keyCode ) {
+    struct IAuraRgbLight * _result = 0;
+    HRESULT _hr = get_Key(keyCode, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightPtr(_result, false);
+}
+
+inline IAuraRgbKeyCollectionPtr IAuraSyncKeyboard::GetKeys ( ) {
+    struct IAuraRgbKeyCollection * _result = 0;
+    HRESULT _hr = get_Keys(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbKeyCollectionPtr(_result, false);
+}
+
+//
+// interface IAuraRgbKeyState wrapper method implementations
+//
+
+inline unsigned long IAuraRgbKeyState::GetState ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_State(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// interface IAuraRgbKeyStateCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraRgbKeyStateCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraRgbKeyStateCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraRgbKeyStatePtr IAuraRgbKeyStateCollection::GetItem ( long index ) {
+    struct IAuraRgbKeyState * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbKeyStatePtr(_result, false);
+}
+
+//
+// interface IAuraKeyboard wrapper method implementations
+//
+
+inline IAuraRgbLightPtr IAuraKeyboard::GetKey ( unsigned short keyCode ) {
+    struct IAuraRgbLight * _result = 0;
+    HRESULT _hr = get_Key(keyCode, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightPtr(_result, false);
+}
+
+inline IAuraRgbKeyCollectionPtr IAuraKeyboard::GetKeys ( ) {
+    struct IAuraRgbKeyCollection * _result = 0;
+    HRESULT _hr = get_Keys(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbKeyCollectionPtr(_result, false);
+}
+
+inline IAuraRgbKeyStateCollectionPtr IAuraKeyboard::WaitKeyInput ( void * event, unsigned long timeout ) {
+    struct IAuraRgbKeyStateCollection * _result = 0;
+    HRESULT _hr = raw_WaitKeyInput(event, timeout, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbKeyStateCollectionPtr(_result, false);
+}
+
+//
+// interface IAuraDeviceThermal wrapper method implementations
+//
+
+inline long IAuraDeviceThermal::GetTemperature ( ) {
+    long _result = 0;
+    HRESULT _hr = raw_GetTemperature(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline _bstr_t IAuraDeviceThermal::GetTemperatureName ( ) {
+    BSTR _result = 0;
+    HRESULT _hr = raw_GetTemperatureName(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _bstr_t(_result, false);
+}
+
+inline HRESULT IAuraDeviceThermal::Reset ( ) {
+    HRESULT _hr = raw_Reset();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline unsigned long IAuraDeviceThermal::IsResetSupported ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = raw_IsResetSupported(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// interface IAuraMotherboard wrapper method implementations
+//
+
+inline HRESULT IAuraMotherboard::SetStandbyMode ( unsigned long index ) {
+    HRESULT _hr = raw_SetStandbyMode(index);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IAuraMotherboard::SetStandbyLightColor ( unsigned long index, unsigned long Color ) {
+    HRESULT _hr = raw_SetStandbyLightColor(index, Color);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IAuraMotherboard::ApplyStandby ( ) {
+    HRESULT _hr = raw_ApplyStandby();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline IAuraRgbLightCollectionPtr IAuraMotherboard::GetStandbyLights ( ) {
+    struct IAuraRgbLightCollection * _result = 0;
+    HRESULT _hr = get_StandbyLights(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightCollectionPtr(_result, false);
+}
+
+inline HRESULT IAuraMotherboard::put_StandbyDirection ( unsigned long pVal ) {
+    HRESULT _hr = raw_put_StandbyDirection(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IAuraMotherboard::put_StandbySpeed ( unsigned long pVal ) {
+    HRESULT _hr = raw_put_StandbySpeed(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline unsigned long IAuraMotherboard::GetStandbyMode ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_StandbyMode(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraMotherboard::PutStandbyMode ( unsigned long pVal ) {
+    HRESULT _hr = put_StandbyMode(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline unsigned long IAuraMotherboard::Getmode ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_mode(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraMotherboard::Putmode ( unsigned long pVal ) {
+    HRESULT _hr = put_mode(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline HRESULT IAuraMotherboard::RefreshStandbyStatus ( ) {
+    HRESULT _hr = raw_RefreshStandbyStatus();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IAuraMotherboard::RefreshStatus ( ) {
+    HRESULT _hr = raw_RefreshStatus();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+inline HRESULT IAuraMotherboard::SetEnabled ( unsigned long pVal ) {
+    HRESULT _hr = raw_SetEnabled(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IAuraNotebookKeyboard wrapper method implementations
+//
+
+inline IAuraRgbLightPtr IAuraNotebookKeyboard::GetKey ( unsigned short keyCode ) {
+    struct IAuraRgbLight * _result = 0;
+    HRESULT _hr = get_Key(keyCode, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbLightPtr(_result, false);
+}
+
+inline IAuraRgbKeyCollectionPtr IAuraNotebookKeyboard::GetKeys ( ) {
+    struct IAuraRgbKeyCollection * _result = 0;
+    HRESULT _hr = get_Keys(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbKeyCollectionPtr(_result, false);
+}
+
+inline IAuraRgbKeyStateCollectionPtr IAuraNotebookKeyboard::WaitKeyInput ( void * event, unsigned long timeout ) {
+    struct IAuraRgbKeyStateCollection * _result = 0;
+    HRESULT _hr = raw_WaitKeyInput(event, timeout, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraRgbKeyStateCollectionPtr(_result, false);
+}
+
+//
+// interface IAuraMbLight wrapper method implementations
+//
+
+inline unsigned long IAuraMbLight::GetSpeed ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Speed(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraMbLight::PutSpeed ( unsigned long pVal ) {
+    HRESULT _hr = put_Speed(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline unsigned long IAuraMbLight::GetDirection ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_Direction(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline void IAuraMbLight::PutDirection ( unsigned long pVal ) {
+    HRESULT _hr = put_Direction(pVal);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+}
+
+inline unsigned long IAuraMbLight::GetLocationId ( ) {
+    unsigned long _result = 0;
+    HRESULT _hr = get_LocationId(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+//
+// interface IAuraSyncDeviceCollection wrapper method implementations
+//
+
+inline IUnknownPtr IAuraSyncDeviceCollection::Get_NewEnum ( ) {
+    IUnknown * _result = 0;
+    HRESULT _hr = get__NewEnum(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IUnknownPtr(_result, false);
+}
+
+inline long IAuraSyncDeviceCollection::GetCount ( ) {
+    long _result = 0;
+    HRESULT _hr = get_Count(&_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _result;
+}
+
+inline IAuraSyncDevicePtr IAuraSyncDeviceCollection::GetItem ( long index ) {
+    struct IAuraSyncDevice * _result = 0;
+    HRESULT _hr = get_Item(index, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraSyncDevicePtr(_result, false);
+}
+
+//
+// interface IAuraSdk wrapper method implementations
+//
+
+inline IAuraSyncDeviceCollectionPtr IAuraSdk::Enumerate ( unsigned long devType ) {
+    struct IAuraSyncDeviceCollection * _result = 0;
+    HRESULT _hr = raw_Enumerate(devType, &_result);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return IAuraSyncDeviceCollectionPtr(_result, false);
+}
+
+inline HRESULT IAuraSdk::SwitchMode ( ) {
+    HRESULT _hr = raw_SwitchMode();
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
+
+//
+// interface IAuraSdk2 wrapper method implementations
+//
+
+inline HRESULT IAuraSdk2::ReleaseControl ( unsigned long reserve ) {
+    HRESULT _hr = raw_ReleaseControl(reserve);
+    if (FAILED(_hr)) _com_issue_errorex(_hr, this, __uuidof(this));
+    return _hr;
+}
