@@ -48,9 +48,39 @@ If you have any other devices and SDKs to test with, as well as willingness to c
 3. This member function **must** return `Result::Success` if intializing SDK was successful. If there is no way of finding results of the disconnection process, return `Result::Success` instead.
 4. This member funcction **must** have `exception` handling when exception raised. For example, when an exception occured during releasing SDK, this member function must be ready for the exception handling. If not the whole program will be crashed. 
 5. This member function **must** disconnect as *gently* and *properly* as possible.
-6. This member function **must not** perform anything beyond disconnecting SDK. For example, it is prohibited to set LED colors (255, 255, 255) before disconnecting. 
+6. This member function **must** return `Result::SDKNotConnected` if attribute `isConnected` was set `false`.
+7. This member function **must not** perform anything beyond disconnecting SDK. For example, it is prohibited to set LED colors (255, 255, 255) before disconnecting. 
+8. This member function **must not** use any features from IO. The term IO includes using files as well. For example, it is prohibited for this member function to use `std::cout` or `printf` to output any information to the screen. The IO part will be processed via other modules.
+9. This member function **must not** throw any `exception`. 
+10. This member function **must not** interfere with any other SDK wrappers as well as including and using features from them. For example, CorsairSDK must not use any member functions from RazerSDK.  
+
+###  `vector<Device> getDevices()`
+- **Description**: This member function will return `vector<Device>` that represents all connected devices.
+- **Requirements**: 
+1. This member function **must** return attribute `devices`. 
+2. This member function is **suggested** to only return attribute `devices`. This means that retrieving all device information should be taken care of in the `connect` member function.
+3. This member funcction **must** have `exception` handling when exception raised. If not the whole program will be crashed. 
+4. This member function **must not** perform anything beyond returning device information. For example, it is prohibited to set LED colors (255, 255, 255) before returning device information. 
+5. This member function **must not** use any features from IO. The term IO includes using files as well. For example, it is prohibited for this member function to use `std::cout` or `printf` to output any information to the screen. The IO part will be processed via other modules.
+6. This member function **must not** throw any `exception`. 
+7. This member function **must not** interfere with any other SDK wrappers as well as including and using features from them. For example, CorsairSDK must not use any member functions from RazerSDK.  
+
+### `Result setRgb(DeviceType, int, int, int)`
+- **Description**: This member function will set desiginated `DeviceType`'s LED color as provided color.
+- **Arguments**: 
+1. `DeviceType`: The `DeviceType` that represents the device type to set LED into.
+2. `int`: The `int` value that represents Red value from RGB.
+3. `int`: The `int` value that represents Green value from RGB.
+4. `int`: The `int` value that represents Blue value from RGB.
+
+- **Requirements**: 
+
+1. This member function **must** return `Result::SDKNotConnected` if attribute `isConnected` was set `false`.
+2. This member function **must** return `Result::Success` if setting RGB value was successful. 
+3. This member funcction **must** have `exception` handling when exception raised. For example, when a single dll file is missing while on connection phase and made an exception or error, this member function must be ready for the exception handling. If not the whole program will be crashed. 
+4. This member function **must** set designated `DeviceType` into provided RGB value. 
+5. This member function is **suggested** return `Result` type return value as specific as possible. For example, instead of just returning `Result::SDKUnexpectedError`, return `Result::SDKServiceNotRunning` when SDK service is not running. This is for providing the user as much as information as possible so that they can trobuleshoot their circumstances. 
+6. This member function **must not** perform anything beyond setting LED color.
 7. This member function **must not** use any features from IO. The term IO includes using files as well. For example, it is prohibited for this member function to use `std::cout` or `printf` to output any information to the screen. The IO part will be processed via other modules.
 8. This member function **must not** throw any `exception`. 
 9. This member function **must not** interfere with any other SDK wrappers as well as including and using features from them. For example, CorsairSDK must not use any member functions from RazerSDK.  
-
-###  
