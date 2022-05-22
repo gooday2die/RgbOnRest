@@ -19,13 +19,14 @@ using namespace AuraServiceLib;
 
 class AsusSDK : public AbstractSDK{
 public:
+    AsusSDK();
     Result connect() override;
     Result disconnect() override;
     Result setRgb(DeviceType, int, int, int) override;
     vector<Device> getDevices() override;
 private:
     static uint32_t translateRgb(int, int, int);
-    HRESULT hr;
+    HRESULT hr{};
     IAuraSdkPtr sdk = nullptr;
 };
 

@@ -12,6 +12,7 @@
  * This member function adds all device names into the deviceNames.
  */
 RazerSDK::RazerSDK(){
+    this->name = "RazerSDK";
     // Keyboards
     this->deviceNames.push_back(ChromaSDK::BLACKWIDOW_CHROMA);
     this->deviceNames.push_back(ChromaSDK::BLACKWIDOW_CHROMA_TE);

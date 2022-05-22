@@ -7,6 +7,10 @@
 
 #include "AsusSDK.h"
 
+AsusSDK::AsusSDK() {
+    this->name = "AsusSDK";
+}
+
 /**
  * A member function that translates rgb value into uint32_t type
  * @param r the r value

@@ -7,6 +7,10 @@
 
 #include "CorsairSDK.h"
 
+CorsairSDK::CorsairSDK() {
+    this->name = "CorsairSDK";
+}
+
 /**
  * A member function for class CorsairSDk that connects into SDK and requests control over SDK.
  * @return Enum Result type that represents response from SDK.
@@ -19,7 +23,6 @@ Result CorsairSDK::connect() {
         CorsairPerformProtocolHandshake(); // Perform handshake with SDK
         switch (CorsairGetLastError()) {
             case CorsairError::CE_Success: // If CorsairPerformProtocolHandshake was successful, then request control.
-                this->isDisabled = false;
                 this->isConnected = CorsairRequestControl(CAM_ExclusiveLightingControl);
                 if (this->isConnected) {
                     this->setAllDeviceInfo();

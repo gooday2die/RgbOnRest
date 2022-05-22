@@ -20,7 +20,6 @@ public:
     string name;
     vector<Device> devices;
     bool isConnected = false;
-    bool isDisabled = true;
 
     virtual Result connect() = 0;
     virtual Result disconnect() = 0;

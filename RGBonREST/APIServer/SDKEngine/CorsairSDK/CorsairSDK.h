@@ -43,6 +43,7 @@ private:
     void setAllDeviceInfo();
     static int getNthElement(list<int>, int);
 public:
+    CorsairSDK();
     Result connect() override;
     Result disconnect() override;
     Result setRgb(DeviceType, int, int, int) override;
