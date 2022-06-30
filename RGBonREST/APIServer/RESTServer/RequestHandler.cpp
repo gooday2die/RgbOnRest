@@ -14,7 +14,10 @@
  */
 void RequestHandler::General::connection(const http_request& request) {
     json responseData;
+
     responseData["result"] = 200;
+    responseData["version"] = RGBONREST_VERSION;
+    responseData["text"] = "Yay! Server is running.";
 
     wstring responseString = Misc::convertWstring(responseData.dump()); // convert json into string so that we can make response.
     request.reply(status_codes::OK, responseString);

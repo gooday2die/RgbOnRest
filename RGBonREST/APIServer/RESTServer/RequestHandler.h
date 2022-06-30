@@ -14,6 +14,7 @@
 #include <iostream>
 
 #include "../Utils/Misc.h"
+#include "../Utils/Defines.h"
 
 using namespace web::http;
 using namespace web::http::experimental::listener;

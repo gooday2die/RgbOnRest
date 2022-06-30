@@ -40,8 +40,6 @@ RESTServer::~RESTServer() {
     }
     cout << "[+] Stopped server. Press any key to exit" << endl;
     system("pause");
-
-    exit(0);
 }
 
 /**
