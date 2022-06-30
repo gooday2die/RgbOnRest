@@ -14,6 +14,9 @@ using std::wstring;
 using std::string;
 
 
+/**
+ * A class that is a set of static member functions for misc uses.
+ */
 class Misc {
 public:
     static wstring convertWstring(string);

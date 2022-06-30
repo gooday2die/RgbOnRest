@@ -24,8 +24,9 @@ ConfigReader::ConfigReader() {
  * 5. Set member variable 'values' as read json.
  */
 void ConfigReader::readFile() {
-    ifstream fileObject = ifstream("./config.json");
+    ifstream fileObject;
     string allContent;
+    json jsonData;
 
     auto defaultContent = R"(
       {
@@ -34,29 +35,34 @@ void ConfigReader::readFile() {
       }
     )"_json;
 
-    if (!fileObject) { // If config.json is not found, generate a default one.
-        cout << "[+] config.json is not found. Generating one" << endl;
-        std::ofstream out("./config.json");  // Write config.json
-        try {
-            out << defaultContent.dump();
-            out.close();
-        } catch (const std::ofstream::failure& e){
-            cout << "[-] Cannot generate config.json" << endl;
+    try {
+        fileObject = ifstream("./config.json"); // try loading config.json using ifstream.
+        if (!fileObject) { // If config.json is not found, generate a default one.
+            cout << "[+] config.json is not found. Generating one" << endl;
+            std::ofstream out("./config.json");  // Write config.json
+            try {
+                out << defaultContent.dump();
+                out.close();
+            } catch (const std::ofstream::failure& e) {
+                cout << "[-] Cannot generate config.json" << endl;
+            }
+            allContent = defaultContent.dump();
+        } else { // If config.json is found, try loading it.
+            while (!fileObject.eof()) {
+                string curLine;
+                getline(fileObject, curLine, '\n');
+                allContent += curLine; // Append each lines to allContent to load file
+            }
         }
+    } catch (const std::ios_base::failure& e){ // If this throws exception, set default.
+        cout << "[-] Cannot load config.json, using default settings..." << endl;
         allContent = defaultContent.dump();
-    } else { // If config.json is found, try loading it.
-        while (!fileObject.eof()) {
-            string curLine;
-            getline(fileObject, curLine, '\n');
-            allContent += curLine; // Append each lines to allContent to load file
-        }
     }
 
-    json jsonData;
     try { // Try parsing json data
         jsonData = json::parse(allContent);
     } catch (const json::exception &e) { // If it was not parsable, set it to default.
-        cout << "[-] Cannot parse config.json, setting it to default" << endl;
+        cout << "[-] Cannot parse config.json, using default settings..." << endl;
         jsonData = defaultContent;
     }
 
@@ -64,7 +70,7 @@ void ConfigReader::readFile() {
         this->values.ip = jsonData["ip"];
         this->values.port = jsonData["port"];
     } catch (const json::exception& e) { // If not possible, set it to default.
-        cout << "[-] Cannot parse config.json, setting it to default" << endl;
+        cout << "[-] Cannot parse config.json, using default settings..." << endl;
         this->values.ip = defaultContent["ip"];
         this->values.port = defaultContent["port"];
     }

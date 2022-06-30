@@ -10,6 +10,8 @@
 
 #include <cpprest/http_listener.h>
 #include <map>
+#include <thread>
+#include <atomic>
 
 #include "../Utils/ConfigReader.h"
 #include "./RequestHandler.h"
@@ -20,31 +22,48 @@ using std::wstring;
 using std::map;
 using std::pair;
 using std::tuple;
+using std::thread;
+using std::atomic;
+using std::function;
 
-
+/**
+ * A enumeration that is for all Endpoints.
+ */
 enum EndPoints {
-    ConnectionCheck = 0
+    ConnectionCheck = 0,
+    StopServer = 1,
 };
 
+/**
+ * A struct that stores endpoint information.
+ */
 typedef struct endPoint {
     wstring uri;
+    method method;
+    function<void(http_request)> handler;
     http_listener* listener;
-    const method& method;
-    void* handlerFunction;
 } EndPoint;
 
+/**
+ * A class that is for running cpprestsdk (aka casablanca) server for REST API.
+ */
 class RESTServer {
 private:
     ConfigValues configValues;
     wstring baseAddress;
-    map<int, http_listener*> listeners;
+    thread* serverThread;
+    atomic<bool> exitFlag{false};
+
+    map<int, endPoint*> endpoints;
+
     void activateListeners();
     void initListeners();
+    EndPoint* generateEndPoint(const wstring&, const method&, const function<void(http_request)>&);
+
 public:
     RESTServer();
     ~RESTServer();
     void startServer();
-    void stopServer();
 };
 
 
