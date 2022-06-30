@@ -13,6 +13,7 @@
 
 using std::string;
 
+
 class AbstractLogger {
 public:
     string loggerName;

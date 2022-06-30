@@ -20,6 +20,10 @@ using std::endl;
 using std::ifstream;
 using json = nlohmann::json;
 
+
+/**
+ * A class that is for reading and writing config.json.
+ */
 class ConfigReader {
 private:
     ConfigValues values;

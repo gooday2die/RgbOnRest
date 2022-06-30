@@ -12,9 +12,14 @@
 
 using std::string;
 
+
+/**
+ * A struct that is for saving config values for server.
+ */
 typedef struct configValues {
     string ip;
     unsigned int port;
 } ConfigValues;
+
 
 #endif //RGBONREST_CONFIGVALUES_H
