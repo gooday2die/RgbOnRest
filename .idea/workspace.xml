@@ -49,6 +49,11 @@
     "settings.editor.selected.configurable": "CMakeSettings"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\WorkPC\Documents\GitHub\RgbOnRest\RGBonREST\APIServer\RESTServer" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.RGBonREST">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -78,7 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1656559260073</updated>
-      <workItem from="1656559261887" duration="4687000" />
+      <workItem from="1656559261887" duration="13335000" />
     </task>
     <servers />
   </component>

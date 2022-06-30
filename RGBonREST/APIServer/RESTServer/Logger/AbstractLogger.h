@@ -14,6 +14,9 @@
 using std::string;
 
 
+/**
+ * An abstract class for Loggers. This is meant to be implemented using real classes.
+ */
 class AbstractLogger {
 public:
     string loggerName;
