@@ -11,4 +11,4 @@ Since REST API will be ran on a local machine, authentication is not needed in a
 ### General Endpoints
 These endpoints are for general purposes. These endpoints will provide information about the running API server, as well as option to stop the API server.
 - [connection](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/general/connection.md) : `GET /general/connection`
-- [stop_server](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/general/connection.md) : `DEL /general/stop_server`
+- [stop_server](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/general/stop_server.md) : `DEL /general/stop_server`
