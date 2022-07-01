@@ -13,7 +13,9 @@ add_executable(RGBonREST main.cpp ./APIServer/RESTServer/Logger/AbstractLogger.h
         ./APIServer/Utils/ConfigReader.h ./APIServer/Utils/ConfigValues.h ./APIServer/RESTServer/RESTServer.cpp
         ./APIServer/RESTServer/RESTServer.h ./APIServer/Utils/Misc.cpp ./APIServer/Utils/Misc.h
         ./APIServer/RESTServer/RequestHandler.cpp ./APIServer/RESTServer/RequestHandler.h
-        ./APIServer/Utils/Defines.h)
+        ./APIServer/Utils/Defines.h ./APIServer/RESTServer/Logger/Sqlite3Logger.cpp
+        ./APIServer/RESTServer/Logger/Sqlite3Logger.h ./APIServer/RESTServer/Logger/Library/sqlite3.c
+        ./APIServer/RESTServer/Logger/Library/sqlite3.h)
 
 target_link_libraries(RGBonREST cpprestsdk::cpprest cpprestsdk::cpprestsdk_zlib_internal
         cpprestsdk::cpprestsdk_brotli_internal nlohmann_json::nlohmann_json)

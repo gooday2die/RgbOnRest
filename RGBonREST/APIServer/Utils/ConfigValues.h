@@ -19,6 +19,8 @@ using std::string;
 typedef struct configValues {
     string ip;
     unsigned int port;
+    string logFileName;
+    string loggerName;
 } ConfigValues;
 
 

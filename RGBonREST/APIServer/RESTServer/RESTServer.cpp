@@ -19,6 +19,14 @@ RESTServer::RESTServer() {
 
     this->baseAddress = wstring(tmpAddr.begin(), tmpAddr.end()); // The base URL for API itself.
 
+    this->logger = nullptr;
+    try {
+        this->generateLoggerInstance(); // generate logger instance
+    } catch (const Sqlite3Logger::connectionFailedError& ex) { // if Sqlite3 failed to open db file
+        cout << "[+] Cannot open database. Logging disabled." << endl; // disable logging.
+        this->loggingDisabled = true;
+    }
+
     this->initListeners(); // Init all http_listener instances.
     this->activateListeners(); // Activate and call .open and .support for all http_listeners.
 
@@ -64,11 +72,23 @@ void RESTServer::activateListeners() {
  * A member function for class RESTServer that initializes endpoints for http_listener instances.
  */
 void RESTServer::initListeners() {
-    this->endpoints.insert(pair<int, EndPoint*>(EndPoints::ConnectionCheck, generateEndPoint(this->baseAddress + U("/general/connection"), methods::GET, RequestHandler::General::connection)));
-    this->endpoints.insert(pair<int, EndPoint*>(EndPoints::StopServer, generateEndPoint(this->baseAddress + U("/general/stop_server"), methods::DEL, [this](const http_request &request) {
-        request.reply(status_codes::OK, "Bye :)");
-        this->exitFlag = true;
-    })));
+    this->endpoints.insert( // For endpoint /general/connection
+            pair<int, EndPoint*>(
+                EndPoints::ConnectionCheck,
+                generateEndPoint(
+                            this->baseAddress + U("/general/connection"),
+                            methods::GET,
+                            [this](const http_request &request) { RequestHandler::General::connection(request, this->logger);
+                            })));
+
+    this->endpoints.insert( // For endpoint /general/stop_server
+            pair<int, EndPoint*>(
+                    EndPoints::StopServer,
+                    generateEndPoint(
+                            this->baseAddress + U("/general/stop_server"),
+                            methods::DEL,
+                            [this](const http_request &request) { RequestHandler::General::stop_server(request, this->logger); this->exitFlag = true;
+                            })));
 }
 
 /**
@@ -100,4 +120,14 @@ void RESTServer::startServer() {
     while (!this->exitFlag);
     cout << "[+] Stopping server..." << endl;
     delete this;
+}
+
+void RESTServer::generateLoggerInstance() {
+    string loggerName = this->configValues.loggerName;
+    string fileName = this->configValues.logFileName;
+
+    if (loggerName == "sqlite3") {
+        cout << "[+] Using Sqlite3 as logger with file " << fileName << endl;
+        this->logger = new Sqlite3Logger(fileName);
+    }
 }

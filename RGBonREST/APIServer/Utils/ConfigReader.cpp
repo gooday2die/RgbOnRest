@@ -30,8 +30,10 @@ void ConfigReader::readFile() {
 
     auto defaultContent = R"(
       {
-        "ip": "127.0.0.1",
-        "port": 9000
+        "host_ip": "127.0.0.1",
+        "host_port": 9000,
+        "log_logger": "sqlite3",
+        "log_logfile": "log.db"
       }
     )"_json;
 
@@ -41,7 +43,7 @@ void ConfigReader::readFile() {
             cout << "[+] config.json is not found. Generating one" << endl;
             std::ofstream out("./config.json");  // Write config.json
             try {
-                out << defaultContent.dump();
+                out << defaultContent.dump(4);
                 out.close();
             } catch (const std::ofstream::failure& e) {
                 cout << "[-] Cannot generate config.json" << endl;
@@ -67,12 +69,16 @@ void ConfigReader::readFile() {
     }
 
     try { // Try loading into struct
-        this->values.ip = jsonData["ip"];
-        this->values.port = jsonData["port"];
+        this->values.ip = jsonData["host_ip"];
+        this->values.port = jsonData["host_port"];
+        this->values.loggerName = jsonData["log_logger"];
+        this->values.logFileName = jsonData["log_logfile"];
     } catch (const json::exception& e) { // If not possible, set it to default.
         cout << "[-] Cannot parse config.json, using default settings..." << endl;
-        this->values.ip = defaultContent["ip"];
-        this->values.port = defaultContent["port"];
+        this->values.ip = defaultContent["host_ip"];
+        this->values.port = defaultContent["host_port"];
+        this->values.loggerName = defaultContent["log_logger"];
+        this->values.logFileName = defaultContent["log_logfile"];
     }
 }
 

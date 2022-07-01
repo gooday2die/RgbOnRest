@@ -15,6 +15,7 @@
 
 #include "../Utils/ConfigReader.h"
 #include "./RequestHandler.h"
+#include "./Logger/Sqlite3Logger.h"
 
 using namespace web::http;
 using namespace web::http::experimental::listener;
@@ -53,13 +54,15 @@ private:
     wstring baseAddress;
     thread* serverThread;
     atomic<bool> exitFlag{false};
+    bool loggingDisabled;
 
     map<int, endPoint*> endpoints;
+    AbstractLogger* logger;
 
     void activateListeners();
     void initListeners();
     EndPoint* generateEndPoint(const wstring&, const method&, const function<void(http_request)>&);
-
+    void generateLoggerInstance();
 public:
     RESTServer();
     ~RESTServer();

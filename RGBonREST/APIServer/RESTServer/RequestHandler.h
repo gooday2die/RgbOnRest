@@ -15,6 +15,7 @@
 
 #include "../Utils/Misc.h"
 #include "../Utils/Defines.h"
+#include "./Logger/AbstractLogger.h"
 
 using namespace web::http;
 using namespace web::http::experimental::listener;
@@ -33,7 +34,8 @@ public:
      */
     class General {
     public:
-        static void connection(const http_request& request);
+        static void connection(const http_request&, AbstractLogger*);
+        static void stop_server(const http_request&, AbstractLogger*);
     };
 };
 
