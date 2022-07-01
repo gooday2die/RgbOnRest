@@ -66,6 +66,7 @@ void RESTServer::activateListeners() {
 void RESTServer::initListeners() {
     this->endpoints.insert(pair<int, EndPoint*>(EndPoints::ConnectionCheck, generateEndPoint(this->baseAddress + U("/general/connection"), methods::GET, RequestHandler::General::connection)));
     this->endpoints.insert(pair<int, EndPoint*>(EndPoints::StopServer, generateEndPoint(this->baseAddress + U("/general/stop_server"), methods::DEL, [this](const http_request &request) {
+        request.reply(status_codes::OK, "Bye :)");
         this->exitFlag = true;
     })));
 }
