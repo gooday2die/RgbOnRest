@@ -60,7 +60,7 @@ void Sqlite3Logger::initDB() {
  */
 void Sqlite3Logger::log(int endpointType, const string& message) {
     // Generate query statements.
-    string query = "INSERT INTO logs VALUES(DATETIME('now'), ";
+    string query = "INSERT INTO logs VALUES(DATETIME('now', 'localtime'), ";
     query += to_string(endpointType);
     query += ", \"";
     query += message;

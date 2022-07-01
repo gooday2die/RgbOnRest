@@ -13,7 +13,7 @@
 #include <exception>
 #include <mutex>
 
-#include "Library/sqlite3.h"
+#include <sqlite3.h>
 #include "AbstractLogger.h"
 
 using std::string;
