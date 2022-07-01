@@ -1,6 +1,3 @@
-mainreadme
-mainreadme
-
 # RGBOnREST
 ![License](https://img.shields.io/github/license/gooday2die/RgbOnRest) ![Language](https://img.shields.io/github/languages/top/gooday2die/RgbOnRest)
 ![Downloads](https://img.shields.io/github/downloads/gooday2die/RgbOnRest/latest/total) 
