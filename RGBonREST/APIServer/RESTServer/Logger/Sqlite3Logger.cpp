@@ -39,7 +39,7 @@ void Sqlite3Logger::connect() {
     if(result) {
         throw Sqlite3Logger::connectionFailedError(); // if sqlite3 could not open file, throw exception.
     } else {
-        cout << "[+] Opened database successfully" << endl;
+        cout << "[+] Connected to database" << endl;
     }
 }
 

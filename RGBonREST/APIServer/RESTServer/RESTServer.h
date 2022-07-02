@@ -13,9 +13,9 @@
 #include <thread>
 #include <atomic>
 
-#include "../Utils/ConfigReader.h"
 #include "./RequestHandler.h"
 #include "./Logger/Sqlite3Logger.h"
+#include "../Utils/Misc.h"
 
 using namespace web::http;
 using namespace web::http::experimental::listener;
@@ -26,6 +26,7 @@ using std::tuple;
 using std::thread;
 using std::atomic;
 using std::function;
+
 
 /**
  * A enumeration that is for all Endpoints.

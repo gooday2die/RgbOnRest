@@ -11,8 +11,8 @@ FetchContent_MakeAvailable(json)
 set(CMAKE_CXX_STANDARD 14)
 message(STATUS "foo include dir: ${SQLite3_FOUND}")
 
-add_executable(RGBonREST main.cpp ./APIServer/RESTServer/Logger/AbstractLogger.h ./APIServer/Utils/ConfigReader.cpp
-        ./APIServer/Utils/ConfigReader.h ./APIServer/Utils/ConfigValues.h ./APIServer/RESTServer/RESTServer.cpp
+add_executable(RGBonREST main.cpp ./APIServer/RESTServer/Logger/AbstractLogger.h
+        ./APIServer/Utils/ConfigValues.h ./APIServer/RESTServer/RESTServer.cpp
         ./APIServer/RESTServer/RESTServer.h ./APIServer/Utils/Misc.cpp ./APIServer/Utils/Misc.h
         ./APIServer/RESTServer/RequestHandler.cpp ./APIServer/RESTServer/RequestHandler.h
         ./APIServer/Utils/Defines.h ./APIServer/RESTServer/Logger/Sqlite3Logger.cpp

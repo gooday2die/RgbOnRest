@@ -12,8 +12,7 @@
  * This initializes all listeners in REST API using http_listener.open, http_listener.support.
  */
 RESTServer::RESTServer() {
-    ConfigReader configReader = ConfigReader(); // Read Config file.
-    this->configValues = configReader.getConfigValues();
+    this->configValues = Misc::readConfig();
     string tmpAddr = "http://" + configValues.ip + ":" + std::to_string(configValues.port);
     cout << "[+] Starting server at " << tmpAddr << endl;
 

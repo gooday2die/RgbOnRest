@@ -9,9 +9,19 @@
 #pragma once
 
 #include <string>
+#include <iostream>
+#include <filesystem>
+#include <fstream>
+#include <nlohmann/json.hpp>
+
+#include "ConfigValues.h"
 
 using std::wstring;
 using std::string;
+using std::cout;
+using std::endl;
+using std::ifstream;
+using json = nlohmann::json;
 
 
 /**
@@ -20,6 +30,7 @@ using std::string;
 class Misc {
 public:
     static wstring convertWstring(string);
+    static ConfigValues readConfig();
 };
 
 
