@@ -49,22 +49,23 @@ void Sqlite3Logger::connect() {
  * @throws Sqlite3Logger::queryFailedError when it could not process query.
  */
 void Sqlite3Logger::initDB() {
-    this->executeQuery("CREATE TABLE IF NOT EXISTS logs (time DATETIME, endpoint INT, parameters VARCHAR(255));");
+    this->executeQuery("CREATE TABLE IF NOT EXISTS logs (time DATETIME, endpoint VARCHAR(255), parameters VARCHAR(255), result VARCHAR(255));");
 }
 
 /**
  * A member function that logs data into sqlite3 db.
- * @param endpointType An integer value that represents endpoint type.
- *                     Take a look at enum RESTServer::EndPoints for more information on the integer values.
+ * @param endpointType A string object that represents the endpoint
  * @param message A string object that represents the message to save in the log.
+ * @param result A string object that represents the result of the log
  */
-void Sqlite3Logger::log(int endpointType, const string& message) {
+void Sqlite3Logger::log(const string& endpointName, const string& parameters, const string& result) {
     // Generate query statements.
-    string query = "INSERT INTO logs VALUES(DATETIME('now', 'localtime'), ";
-    query += to_string(endpointType);
-    query += ", \"";
-    query += message;
-    query += "\");";
+    string query = "INSERT INTO logs VALUES(DATETIME('now', 'localtime'), \"";
+    query += endpointName;
+    query += "\", \"";
+    query += parameters;
+    query += "\", \"";
+    query += result + "\");";
 
     this->executeQuery(query); // execute the query
 }

@@ -17,7 +17,7 @@ using std::list;
 using std::pair;
 
 
-class CorsairSDK : public AbstractSDK{
+class CorsairSDK : public AbstractSDK {
 private:
     int setMouseRgb(int, int, int);
     int setKeyboardRgb(int, int, int);
@@ -33,7 +33,6 @@ private:
     void setAllDeviceInfo();
 
     static DeviceType translateDeviceType(const CorsairDeviceType&);
-    static int getNthElement(list<int>, int);
 public:
     CorsairSDK();
     ~CorsairSDK();

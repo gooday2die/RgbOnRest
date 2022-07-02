@@ -43,7 +43,7 @@ public:
     explicit Sqlite3Logger(const string&);
     ~Sqlite3Logger();
 
-    void log(int, const string&) override;
+    void log(const string&, const string&, const string&) override;
     /**
      * A class that is for exception when connection had failed.
      */

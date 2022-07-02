@@ -12,7 +12,6 @@
 #include <string>
 #include <cstdint>
 #include <exception>
-#include <stdbool.h>
 #include <map>
 #include <list>
 
@@ -25,13 +24,16 @@ using std::endl;
 using std::map;
 using std::list;
 
+
+/**
+ * An abstract class that is meant to be implemented by other SDKs.
+ */
 class AbstractSDK {
 public:
     string sdkName;
     bool isConnected;
     map<DeviceType, list<Device*>*> devices;
 
-    AbstractSDK();
     virtual void connect() = 0;
     virtual void disconnect() = 0;
     virtual void setRGB(DeviceType, int, int, int) = 0;

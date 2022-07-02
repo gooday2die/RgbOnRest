@@ -21,7 +21,7 @@ class AbstractLogger {
 public:
     string loggerName;
 public:
-    virtual void log(int, const string&) = 0;
+    virtual void log(const string&, const string&, const string&) = 0;
 };
 
 

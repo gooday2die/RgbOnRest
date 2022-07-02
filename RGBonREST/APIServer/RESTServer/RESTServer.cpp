@@ -18,13 +18,17 @@ RESTServer::RESTServer() {
 
     this->baseAddress = wstring(tmpAddr.begin(), tmpAddr.end()); // The base URL for API itself.
 
+    this->sdks = nullptr;
     this->logger = nullptr;
+
     try {
         this->generateLoggerInstance(); // generate logger instance
     } catch (const Sqlite3Logger::connectionFailedError& ex) { // if Sqlite3 failed to open db file
         cout << "[+] Cannot open database. Logging disabled." << endl; // disable logging.
         this->logger = nullptr;
     }
+
+    this->generateSDKInstances(); // Generate all SDK instances
 
     this->initListeners(); // Init all http_listener instances.
     this->activateListeners(); // Activate and call .open and .support for all http_listeners.
@@ -88,6 +92,24 @@ void RESTServer::initListeners() {
                             methods::DEL,
                             [this](const http_request &request) { RequestHandler::General::stop_server(request, this->logger); this->exitFlag = true;
                             })));
+
+    this->endpoints.insert( // For endpoint /corsair/connect
+            pair<int, EndPoint*>(
+                    EndPoints::CorsairConnect,
+                    generateEndPoint(
+                            this->baseAddress + U("/corsair/connect"),
+                            methods::POST,
+                            [this](const http_request &request) { RequestHandler::SDK::connect(request, this->logger, this->sdks[0], "/corsair/connect");
+                            })));
+
+    this->endpoints.insert( // For endpoint /corsair/disconnect
+            pair<int, EndPoint*>(
+                    EndPoints::CorsairDisconnect,
+                    generateEndPoint(
+                            this->baseAddress + U("/corsair/disconnect"),
+                            methods::DEL,
+                            [this](const http_request &request) { RequestHandler::SDK::disconnect(request, this->logger, this->sdks[0], "/corsair/disconnect");
+                            })));
 }
 
 /**
@@ -121,6 +143,10 @@ void RESTServer::startServer() {
     delete this;
 }
 
+/**
+ * A member function that generates AbstractLogger instance.
+ * This will generate AbstractLogger instance according to the json values.
+ */
 void RESTServer::generateLoggerInstance() {
     string loggerName = this->configValues.loggerName;
     string fileName = this->configValues.logFileName;
@@ -129,4 +155,14 @@ void RESTServer::generateLoggerInstance() {
         cout << "[+] Using Sqlite3 as logger with file " << fileName << endl;
         this->logger = new Sqlite3Logger(fileName);
     }
+}
+
+/**
+ * A member function that generates all SDK instances.
+ * This member function will generate all SDK instances so that it can be used in the future.
+ */
+void RESTServer::generateSDKInstances() {
+    this->sdks = (AbstractSDK**) malloc (sizeof(AbstractSDK*) * SUPPORTED_SDK_COUNT); // Generate array pointers to sdks.
+
+    this->sdks[0] = new CorsairSDK(); // index 0 = Corsair
 }

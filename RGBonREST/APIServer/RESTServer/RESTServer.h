@@ -16,6 +16,7 @@
 #include "./RequestHandler.h"
 #include "./Logger/Sqlite3Logger.h"
 #include "../Utils/Misc.h"
+#include "../SDKEngine/CorsairSDK/CorsairSDK.h"
 
 using namespace web::http;
 using namespace web::http::experimental::listener;
@@ -34,6 +35,8 @@ using std::function;
 enum EndPoints {
     ConnectionCheck = 0,
     StopServer = 1,
+    CorsairConnect = 2,
+    CorsairDisconnect = 3,
 };
 
 /**
@@ -58,11 +61,13 @@ private:
 
     map<int, endPoint*> endpoints;
     AbstractLogger* logger;
+    AbstractSDK** sdks;
 
     void activateListeners();
     void initListeners();
-    EndPoint* generateEndPoint(const wstring&, const method&, const function<void(http_request)>&);
+    static EndPoint* generateEndPoint(const wstring&, const method&, const function<void(http_request)>&);
     void generateLoggerInstance();
+    void generateSDKInstances();
 public:
     RESTServer();
     ~RESTServer();

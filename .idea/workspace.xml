@@ -60,6 +60,11 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.RGBonREST">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RGBonREST" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="RGBonREST" TARGET_NAME="RGBonREST" CONFIG_NAME="Debug-Visual Studio" RUN_TARGET_PROJECT_NAME="RGBonREST" RUN_TARGET_NAME="RGBonREST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -86,7 +91,7 @@
       <workItem from="1656559261887" duration="23094000" />
       <workItem from="1656640179999" duration="11462000" />
       <workItem from="1656672262955" duration="21000" />
-      <workItem from="1656725386356" duration="12498000" />
+      <workItem from="1656725386356" duration="20046000" />
     </task>
     <servers />
   </component>

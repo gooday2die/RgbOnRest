@@ -11,7 +11,7 @@
  * This sets default values to member variable for this instance.
  */
 CorsairSDK::CorsairSDK() {
-    this->sdkName = "CorsairSDK";
+    this->sdkName = "Corsair";
     this->isConnected = false;
 }
 
@@ -38,8 +38,9 @@ CorsairSDK::~CorsairSDK() {
  */
 void CorsairSDK::connect() {
     if (this->isConnected) // if CorsairSDK was connected before.
-        throw SDKExceptions::SDKAlreadyConnected(this->sdkName, DeviceType::UnknownDevice);
+        throw SDKExceptions::SDKAlreadyConnected();
     else { // if CorsairSDK was not connected before.
+
         CorsairPerformProtocolHandshake(); // Perform handshake with SDK
         switch (CorsairGetLastError()) {
             case CorsairError::CE_Success: // If CorsairPerformProtocolHandshake was successful, then request control.
@@ -48,19 +49,19 @@ void CorsairSDK::connect() {
                     this->setAllDeviceInfo();
                     return;
                 } else // If connection was not successful, throw exception
-                    throw SDKExceptions::SDKConnectionFailed(this->sdkName, DeviceType::UnknownDevice);
+                    throw SDKExceptions::SDKConnectionFailed();
 
             case CorsairError::CE_IncompatibleProtocol: // If the SDK is outdated or does not match protocol.
-                throw SDKExceptions::SDKVersionMismatch(this->sdkName, DeviceType::UnknownDevice);
+                throw SDKExceptions::SDKVersionMismatch();
 
             case CorsairError::CE_ServerNotFound: // If the SDK server is not found and cannot connect SDK.
-                throw SDKExceptions::SDKServiceNotRunning(this->sdkName, DeviceType::UnknownDevice);
+                throw SDKExceptions::SDKServiceNotRunning();
 
             case CorsairError::CE_InvalidArguments: // Other results are considered Unexpected since they will NOT occur.
             case CorsairError::CE_NoControl:
             case CorsairError::CE_ProtocolHandshakeMissing:
             default:
-                throw SDKExceptions::SDKUnexpectedError(this->sdkName, DeviceType::UnknownDevice);
+                throw SDKExceptions::SDKUnexpectedError();
         }
     }
 }
@@ -81,19 +82,19 @@ void CorsairSDK::disconnect() {
                 return;
 
             case CorsairError::CE_IncompatibleProtocol: // If the SDK is outdated or does not match protocol.
-                throw SDKExceptions::SDKVersionMismatch(this->sdkName, DeviceType::UnknownDevice);
+                throw SDKExceptions::SDKVersionMismatch();
 
             case CorsairError::CE_ServerNotFound: // If the SDK server is not found and cannot connect SDK.
-                throw SDKExceptions::SDKServiceNotRunning(this->sdkName, DeviceType::UnknownDevice);
+                throw SDKExceptions::SDKServiceNotRunning();
 
             case CorsairError::CE_InvalidArguments: // Other results are considered Unexpected since they will NOT occur.
             case CorsairError::CE_NoControl:
             case CorsairError::CE_ProtocolHandshakeMissing:
             default:
-                throw SDKExceptions::SDKUnexpectedError(this->sdkName, DeviceType::UnknownDevice);
+                throw SDKExceptions::SDKUnexpectedError();
         }
     } else{
-        throw SDKExceptions::SDKNotConnected(this->sdkName, DeviceType::UnknownDevice);
+        throw SDKExceptions::SDKNotConnected();
     }
 }
 
@@ -245,10 +246,10 @@ void CorsairSDK::setRGB(DeviceType argDeviceType, int r, int g, int b) {
                 case Microphone:
                     this->setETCRgb(r, g, b);
                 default:
-                    throw SDKExceptions::InvalidDeviceType(this->sdkName, argDeviceType);
+                    throw SDKExceptions::InvalidDeviceType();
             }
-        } else throw SDKExceptions::InvalidRGBValue(this->sdkName, argDeviceType);
-    } else throw SDKExceptions::SDKNotConnected(this->sdkName, argDeviceType);
+        } else throw SDKExceptions::InvalidRGBValue();
+    } else throw SDKExceptions::SDKNotConnected();
 }
 
 /**
@@ -288,9 +289,9 @@ int CorsairSDK::setMouseRgb(int r, int g, int b) {
 
     if (resultSum == mouseList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < mouseList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::Mouse);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::Mouse);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -330,9 +331,9 @@ int CorsairSDK::setKeyboardRgb(int r, int g, int b) {
 
     if (resultSum == keyboardList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < keyboardList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::Keyboard);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::Keyboard);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -367,9 +368,9 @@ int CorsairSDK::setHeadsetRgb(int r, int g, int b) {
 
     if (resultSum == headsetList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < headsetList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::Headset);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::Headset);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -406,9 +407,9 @@ int CorsairSDK::setMouseMatRgb(int r, int g, int b) {
 
     if (resultSum == mouseMatList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < mouseMatList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::Mousemat);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::Mousemat);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -445,9 +446,9 @@ int CorsairSDK::setHeadsetStandRgb(int r, int g, int b) {
 
     if (resultSum == headsetStandList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < headsetStandList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::HeadsetStand);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::HeadsetStand);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -487,9 +488,9 @@ int CorsairSDK::setCoolerRgb(int r, int g, int b) {
 
     if (resultSum == coolerList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < coolerList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::Cooler);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::Cooler);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -525,9 +526,9 @@ int CorsairSDK::setMemoryModuleRgb(int r, int g, int b) {
 
     if (resultSum == memoryModuleList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < memoryModuleList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::RAM);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::RAM);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -564,9 +565,9 @@ int CorsairSDK::setMotherboardRgb(int r, int g, int b) {
 
     if (resultSum == mainboardList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < mainboardList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::Mainboard);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::Mainboard);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -603,9 +604,9 @@ int CorsairSDK::setGPURgb(int r, int g, int b) {
 
     if (resultSum == gpuList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < gpuList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::GPU);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::GPU);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -644,9 +645,9 @@ int CorsairSDK::setETCRgb(int r, int g, int b) {
 
     if (resultSum == etcList.size() + 1) return 1; // When all results were true, it means success
     else if ((resultSum < etcList.size() + 1) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::ETC);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::ETC);
+        throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -673,7 +674,7 @@ int CorsairSDK::setAllRgb(int r, int g, int b) {
 
     if (resultSum == 9) return 1; // When all results were true, it means success
     else if ((resultSum < 9) && (resultSum > 0))  // When Some RGBs failed.
-        throw SDKExceptions::SomeRGBFailed(this->sdkName, DeviceType::ALL);
+        throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.
-        throw SDKExceptions::AllRGBFailed(this->sdkName, DeviceType::ALL);
+        throw SDKExceptions::AllRGBFailed();
 }
