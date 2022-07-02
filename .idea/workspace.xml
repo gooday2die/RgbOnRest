@@ -24,7 +24,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug-Visual Studio" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release-Visual Studio" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -91,7 +91,7 @@
       <workItem from="1656559261887" duration="23094000" />
       <workItem from="1656640179999" duration="11462000" />
       <workItem from="1656672262955" duration="21000" />
-      <workItem from="1656725386356" duration="20046000" />
+      <workItem from="1656725386356" duration="23014000" />
     </task>
     <servers />
   </component>

@@ -12,3 +12,10 @@ Since REST API will be ran on a local machine, authentication is not needed in a
 These endpoints are for general purposes. These endpoints will provide information about the running API server, as well as option to stop the API server.
 - [connection](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/general/connection.md) : `GET /general/connection`
 - [stop_server](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/general/stop_server.md) : `DEL /general/stop_server`
+
+### SDK Endpoints
+These endpoints are for interacting with SDK features. Each SDK will be having a same REST API structure.
+- [connect](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/sdks/connect.md) : `POST /sdk_name/connect` (Example: `POST /corsair/connect`)
+- [disconnect](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/sdks/disconnect.md) : `POST /sdk_name/disconnect` (Example: `POST /corsair/disconnect`)
+#### Supported SDK Names
+- Corsair ICUE SDK as `corsair`
