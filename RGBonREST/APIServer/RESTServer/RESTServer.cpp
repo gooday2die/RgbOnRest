@@ -23,7 +23,7 @@ RESTServer::RESTServer() {
         this->generateLoggerInstance(); // generate logger instance
     } catch (const Sqlite3Logger::connectionFailedError& ex) { // if Sqlite3 failed to open db file
         cout << "[+] Cannot open database. Logging disabled." << endl; // disable logging.
-        this->loggingDisabled = true;
+        this->logger = nullptr;
     }
 
     this->initListeners(); // Init all http_listener instances.

@@ -21,3 +21,6 @@ add_executable(RGBonREST main.cpp ./APIServer/RESTServer/Logger/AbstractLogger.h
 
 target_link_libraries(RGBonREST cpprestsdk::cpprest cpprestsdk::cpprestsdk_zlib_internal
         cpprestsdk::cpprestsdk_brotli_internal nlohmann_json::nlohmann_json unofficial::sqlite3::sqlite3)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/APIServer/SDKEngine/CorsairSDK/includes)
+target_link_libraries (RGBonREST ${CMAKE_CURRENT_SOURCE_DIR}/APIServer/SDKEngine/CorsairSDK/lib/CUESDK.x64_2019.lib)

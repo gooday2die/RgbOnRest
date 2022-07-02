@@ -55,7 +55,6 @@ private:
     wstring baseAddress;
     thread* serverThread;
     atomic<bool> exitFlag{false};
-    bool loggingDisabled;
 
     map<int, endPoint*> endpoints;
     AbstractLogger* logger;

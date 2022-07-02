@@ -6,11 +6,36 @@
 
 #ifndef RGBONREST_ABSTRACTSDK_H
 #define RGBONREST_ABSTRACTSDK_H
+#pragma once
 
+#include <iostream>
+#include <string>
+#include <cstdint>
+#include <exception>
+#include <stdbool.h>
+#include <map>
+#include <list>
 
+#include "SDKDefines.h"
+
+using std::exception;
+using std::string;
+using std::cout;
+using std::endl;
+using std::map;
+using std::list;
 
 class AbstractSDK {
+public:
+    string sdkName;
+    bool isConnected;
+    map<DeviceType, list<Device*>*> devices;
 
+    AbstractSDK();
+    virtual void connect() = 0;
+    virtual void disconnect() = 0;
+    virtual void setRGB(DeviceType, int, int, int) = 0;
+    virtual map<DeviceType, list<Device*>*> getDevices() = 0;
 };
 
 

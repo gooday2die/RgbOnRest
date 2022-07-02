@@ -21,7 +21,8 @@ void RequestHandler::General::connection(const http_request& request, AbstractLo
     responseData["text"] = "Yay! Server is running.";
 
     wstring responseString = Misc::convertWstring(responseData.dump(4)); // convert json into string so that we can make response.
-    logger->log(0, "None");
+    if (logger != nullptr)
+        logger->log(0, "None");
     request.reply(status_codes::OK, responseString);
 }
 
@@ -32,6 +33,7 @@ void RequestHandler::General::connection(const http_request& request, AbstractLo
  * @param logger the pointer address of AbstractLogger's instance to log with
  */
 void RequestHandler::General::stop_server(const http_request &request, AbstractLogger* logger) {
-    logger->log(1, "None");
+    if (logger != nullptr)
+        logger->log(1, "None");
     request.reply(status_codes::OK, "Bye :)");
 }

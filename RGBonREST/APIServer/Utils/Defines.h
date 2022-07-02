@@ -6,7 +6,9 @@
 
 #ifndef RGBONREST_DEFINES_H
 #define RGBONREST_DEFINES_H
+#pragma once
 
 #define RGBONREST_VERSION "1.0.0_SNAPSHOT"
+
 
 #endif //RGBONREST_DEFINES_H
