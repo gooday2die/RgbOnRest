@@ -45,9 +45,9 @@ RESTServer::RESTServer() {
 RESTServer::~RESTServer() {
     this->exitFlag = true;
     for (auto const& x : this->endpoints) {
-        x.second->listener->close(); // close listener
-        delete(x.second->listener); // delete http_listener instance
-        delete(x.second); // delete EndPoint instance
+        x->listener->close(); // close listener
+        delete(x->listener); // delete http_listener instance
+        delete(x); // delete EndPoint instance
     }
     cout << "[+] Stopped server. Press any key to exit" << endl;
     system("pause");
@@ -61,13 +61,12 @@ RESTServer::~RESTServer() {
  * 3. http_listener::support
  */
 void RESTServer::activateListeners() {
-    for (auto const &x : this->endpoints) {
-        EndPoint* curEndPoint = x.second;
+    for (auto const&x : this->endpoints) {
         http_listener* listener;
-        listener = new http_listener(curEndPoint->uri);
+        listener = new http_listener(x->uri);
         listener->open().wait();
-        listener->support(curEndPoint->method, curEndPoint->handler);
-        curEndPoint->listener = listener;
+        listener->support(x->method, x->handler);
+        x->listener = listener;
     }
 }
 
@@ -75,49 +74,39 @@ void RESTServer::activateListeners() {
  * A member function for class RESTServer that initializes endpoints for http_listener instances.
  */
 void RESTServer::initListeners() {
-    this->endpoints.insert( // For endpoint /general/connection
-            pair<int, EndPoint*>(
-                EndPoints::ConnectionCheck,
+    this->endpoints.push_back( // For endpoint /general/connection
                 generateEndPoint(
                             this->baseAddress + U("/general/connection"),
                             methods::GET,
                             [this](const http_request &request) { RequestHandler::General::connection(request, this->logger);
-                            })));
+                            }));
 
-    this->endpoints.insert( // For endpoint /general/stop_server
-            pair<int, EndPoint*>(
-                    EndPoints::StopServer,
+    this->endpoints.push_back( // For endpoint /general/stop_server
                     generateEndPoint(
                             this->baseAddress + U("/general/stop_server"),
                             methods::DEL,
                             [this](const http_request &request) { RequestHandler::General::stop_server(request, this->logger); this->exitFlag = true;
-                            })));
+                            }));
 
-    this->endpoints.insert( // For endpoint /corsair/connect
-            pair<int, EndPoint*>(
-                    EndPoints::CorsairConnect,
+    this->endpoints.push_back( // For endpoint /corsair/connect
                     generateEndPoint(
                             this->baseAddress + U("/corsair/connect"),
                             methods::POST,
                             [this](const http_request &request) { RequestHandler::SDK::connect(request, this->logger, this->sdks[0]);
-                            })));
+                            }));
 
-    this->endpoints.insert( // For endpoint /corsair/disconnect
-            pair<int, EndPoint*>(
-                    EndPoints::CorsairDisconnect,
+    this->endpoints.push_back( // For endpoint /corsair/disconnect
                     generateEndPoint(
                             this->baseAddress + U("/corsair/disconnect"),
                             methods::DEL,
                             [this](const http_request &request) { RequestHandler::SDK::disconnect(request, this->logger, this->sdks[0]);
-                            })));
-    this->endpoints.insert( // For endpoint /corsair/disconnect
-            pair<int, EndPoint*>(
-                    EndPoints::CorsairGetDevice,
+                            }));
+    this->endpoints.push_back( // For endpoint /corsair/disconnect
                     generateEndPoint(
                             this->baseAddress + U("/corsair/get_devices"),
                             methods::GET,
                             [this](const http_request &request) { RequestHandler::SDK::get_device(request, this->logger, this->sdks[0]);
-                            })));
+                            }));
 }
 
 /**

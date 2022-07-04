@@ -12,6 +12,7 @@
 #include <map>
 #include <thread>
 #include <atomic>
+#include <list>
 
 #include "./RequestHandler.h"
 #include "./Logger/Sqlite3Logger.h"
@@ -27,18 +28,8 @@ using std::tuple;
 using std::thread;
 using std::atomic;
 using std::function;
+using std::list;
 
-
-/**
- * A enumeration that is for all Endpoints.
- */
-enum EndPoints {
-    ConnectionCheck = 0,
-    StopServer = 1,
-    CorsairConnect = 2,
-    CorsairDisconnect = 3,
-    CorsairGetDevice = 4,
-};
 
 /**
  * A struct that stores endpoint information.
@@ -60,7 +51,7 @@ private:
     thread* serverThread;
     atomic<bool> exitFlag{false};
 
-    map<int, endPoint*> endpoints;
+    list<endPoint*> endpoints;
     AbstractLogger* logger;
     AbstractSDK** sdks;
 
