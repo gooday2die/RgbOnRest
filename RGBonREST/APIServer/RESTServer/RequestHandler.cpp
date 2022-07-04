@@ -103,7 +103,7 @@ void RequestHandler::SDK::disconnect(const http_request& request, AbstractLogger
         request.reply(status_codes::OK, replyString);
         errorMessage = "Success";
     } catch (const SDKExceptions::SDKNotConnected& e) {
-        errorMessage = sdkName + " SDK was not connected. Connect SDK before executing this request";
+        errorMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
         wstring replyString = Misc::convertWstring(errorMessage);
         request.reply(status_codes::InternalError, errorMessage);
     } catch (const SDKExceptions::SDKVersionMismatch& e) {
@@ -161,7 +161,7 @@ void RequestHandler::SDK::get_device(const http_request& request, AbstractLogger
         request.reply(status_codes::OK, responseString);
 
     } catch (const SDKExceptions::SDKNotConnected& e) {
-        errorMessage = sdkName + " SDK was not connected. Connect SDK before executing this request";
+        errorMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
         wstring replyString = Misc::convertWstring(errorMessage);
         request.reply(status_codes::InternalError, errorMessage);
     }
