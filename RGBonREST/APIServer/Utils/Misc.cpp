@@ -82,3 +82,40 @@ ConfigValues Misc::readConfig() {
 
     return values;
 }
+
+/**
+ * A member function for class Misc that converts device type enumeration value into string.
+ * @param enumValue an integer value that represents DeviceType enum
+ * @return return string object that represents devicetype.
+ */
+string Misc::convertDeviceType(int enumValue) {
+    switch (enumValue) {
+        case 0:
+            return "All";
+        case 1:
+            return "Mouse";
+        case 2:
+            return "Headset";
+        case 3:
+            return "Keyboard";
+        case 4:
+            return "MouseMat";
+        case 5:
+            return "HeadsetStand";
+        case 6:
+            return "GPU";
+        case 7:
+            return "Mainboard";
+        case 8:
+            return "Microphone";
+        case 9:
+            return "Cooler";
+        case 10:
+            return "ETC";
+        case 12:
+            return "RAM";
+        case 11:
+        default:
+            return "Unknown";
+    }
+}

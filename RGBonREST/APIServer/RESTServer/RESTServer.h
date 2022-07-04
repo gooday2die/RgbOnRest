@@ -37,6 +37,7 @@ enum EndPoints {
     StopServer = 1,
     CorsairConnect = 2,
     CorsairDisconnect = 3,
+    CorsairGetDevice = 4,
 };
 
 /**

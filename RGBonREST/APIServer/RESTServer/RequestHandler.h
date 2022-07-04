@@ -12,6 +12,7 @@
 #include <nlohmann/json.hpp>
 #include <string>
 #include <iostream>
+#include <algorithm>
 
 #include "../Utils/Misc.h"
 #include "../Utils/Defines.h"
@@ -23,6 +24,7 @@ using namespace web::http;
 using namespace web::http::experimental::listener;
 using std::wstring;
 using json = nlohmann::json;
+using std::transform;
 
 
 /**
@@ -46,8 +48,9 @@ public:
      */
     class SDK {
     public:
-        static void connect(const http_request&, AbstractLogger*, AbstractSDK*, const string&);
-        static void disconnect(const http_request&, AbstractLogger*, AbstractSDK*, const string&);
+        static void connect(const http_request&, AbstractLogger*, AbstractSDK*);
+        static void disconnect(const http_request&, AbstractLogger*, AbstractSDK*);
+        static void get_device(const http_request&, AbstractLogger*, AbstractSDK*);
     };
 };
 

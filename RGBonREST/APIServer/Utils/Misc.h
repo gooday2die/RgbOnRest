@@ -31,6 +31,7 @@ class Misc {
 public:
     static wstring convertWstring(string);
     static ConfigValues readConfig();
+    static string convertDeviceType(int);
 };
 
 

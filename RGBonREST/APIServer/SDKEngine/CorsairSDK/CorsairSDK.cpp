@@ -103,7 +103,10 @@ void CorsairSDK::disconnect() {
  * @return returns a map of list that represents pointer address to connected devices.
  */
 map<DeviceType, list<Device*>*> CorsairSDK::getDevices() {
-    return this->devices;
+    if (this->isConnected)
+        return this->devices;
+    else
+        throw SDKExceptions::SDKNotConnected();
 }
 
 /**
@@ -134,27 +137,38 @@ void CorsairSDK::setAllDeviceInfo() {
         switch(curDevice->type) { // Add device information into each device type lists.
             case CDT_Unknown:
                 ETCList->push_back(tmpDevice);
+                break;
             case CDT_Mouse:
                 MouseList->push_back(tmpDevice);
+                break;
             case CDT_Keyboard:
                 KeyboardList->push_back(tmpDevice);
+                break;
             case CDT_Headset:
                 HeadsetList->push_back(tmpDevice);
+                break;
             case CDT_MouseMat:
                 MouseMatList->push_back(tmpDevice);
+                break;
             case CDT_HeadsetStand:
                 HeadsetStandList->push_back(tmpDevice);
+                break;
             case CDT_CommanderPro:
             case CDT_LightingNodePro:
                 ETCList->push_back(tmpDevice);
+                break;
             case CDT_MemoryModule:
                 MemoryModuleList->push_back(tmpDevice);
+                break;
             case CDT_Cooler:
                 CoolerList->push_back(tmpDevice);
+                break;
             case CDT_Motherboard:
                 MotherBoardList->push_back(tmpDevice);
+                break;
             case CDT_GraphicsCard:
                 GPUList->push_back(tmpDevice);
+                break;
         }
     }
 
@@ -169,6 +183,7 @@ void CorsairSDK::setAllDeviceInfo() {
     this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::Cooler, CoolerList));
     this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::ETC, ETCList));
     this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::RAM, MemoryModuleList));
+
 }
 
 /**

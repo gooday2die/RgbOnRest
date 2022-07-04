@@ -99,7 +99,7 @@ void RESTServer::initListeners() {
                     generateEndPoint(
                             this->baseAddress + U("/corsair/connect"),
                             methods::POST,
-                            [this](const http_request &request) { RequestHandler::SDK::connect(request, this->logger, this->sdks[0], "/corsair/connect");
+                            [this](const http_request &request) { RequestHandler::SDK::connect(request, this->logger, this->sdks[0]);
                             })));
 
     this->endpoints.insert( // For endpoint /corsair/disconnect
@@ -108,7 +108,15 @@ void RESTServer::initListeners() {
                     generateEndPoint(
                             this->baseAddress + U("/corsair/disconnect"),
                             methods::DEL,
-                            [this](const http_request &request) { RequestHandler::SDK::disconnect(request, this->logger, this->sdks[0], "/corsair/disconnect");
+                            [this](const http_request &request) { RequestHandler::SDK::disconnect(request, this->logger, this->sdks[0]);
+                            })));
+    this->endpoints.insert( // For endpoint /corsair/disconnect
+            pair<int, EndPoint*>(
+                    EndPoints::CorsairGetDevice,
+                    generateEndPoint(
+                            this->baseAddress + U("/corsair/get_devices"),
+                            methods::GET,
+                            [this](const http_request &request) { RequestHandler::SDK::get_device(request, this->logger, this->sdks[0]);
                             })));
 }
 
