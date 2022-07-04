@@ -51,7 +51,7 @@ A text that shows what happended wrong while connecting to SDK.
 
 - **When  SDK was not connected to RGB software.**
 ```
-Corsair SDK was not connected.
+Corsair SDK was not connected. Connect SDK before executing this request.
 ```
 - **When RGBonREST's SDK does not support installed RGB software version.**
 1. Update RGB software version to the latest version
