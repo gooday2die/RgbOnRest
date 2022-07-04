@@ -13,6 +13,7 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 #include "../Utils/Misc.h"
 #include "../Utils/Defines.h"
@@ -25,6 +26,7 @@ using namespace web::http::experimental::listener;
 using std::wstring;
 using json = nlohmann::json;
 using std::transform;
+using std::vector;
 
 
 /**

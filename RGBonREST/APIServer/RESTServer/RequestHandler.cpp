@@ -147,16 +147,14 @@ void RequestHandler::SDK::get_device(const http_request& request, AbstractLogger
 
         for (auto const& category : result) {
             string deviceType = Misc::convertDeviceType(category.first);
-            list<Device *> devices = *category.second;
+            list<Device*> devices = *category.second;
+            vector<string> deviceNameVector;
 
             if (!devices.empty()) {
-                string tmpString = "(";
-                for (auto const &device: devices) {
-                    tmpString += "\"" + device->name + "\", ";
+                for (auto const& device: devices) {
+                    deviceNameVector.emplace_back(device->name);
                 }
-
-                tmpString.back() = ')';
-                responseData[deviceType] = tmpString;
+                responseData[deviceType] = deviceNameVector;
             }
         }
         wstring responseString = Misc::convertWstring(responseData.dump(4)); // convert json into string so that we can make response.
