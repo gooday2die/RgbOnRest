@@ -48,7 +48,7 @@ void RequestHandler::General::stop_server(const http_request& request, AbstractL
  * @param sdk the pointer to AbstractSDK instance.
  */
 void RequestHandler::SDK::connect(const http_request& request, AbstractLogger* logger, AbstractSDK* sdk) {
-    string errorMessage;
+    string responseMessage;
     string sdkName = sdk->sdkName;
 
     string lowerSDKName = sdkName;
@@ -56,29 +56,24 @@ void RequestHandler::SDK::connect(const http_request& request, AbstractLogger* l
 
     try {
         sdk->connect();
-        wstring replyString = Misc::convertWstring(sdkName + " SDK connected.");
-        request.reply(status_codes::OK, replyString);
-        errorMessage = "Success";
+        responseMessage = "Success";
+        request.reply(status_codes::OK, responseMessage);
     } catch (const SDKExceptions::SDKAlreadyConnected& e) {
-        errorMessage = sdkName + " SDK is already connected.";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK is already connected.";
+        request.reply(status_codes::InternalError, responseMessage);
     } catch (const SDKExceptions::SDKVersionMismatch& e) {
-        errorMessage = sdkName + " SDK does not support current version. Please reinstall " + sdkName + " software";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK does not support current version. Please reinstall " + sdkName + " software";
+        request.reply(status_codes::InternalError, responseMessage);
     } catch (const SDKExceptions::SDKServiceNotRunning& e) {
-        errorMessage = sdkName + " SDK could not connect to " + sdkName + " software. Please make sure " + sdkName +" software has SDK feature enabled";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK could not connect to " + sdkName + " software. Please make sure " + sdkName +" software has SDK feature enabled";
+        request.reply(status_codes::InternalError, responseMessage);
     } catch (const SDKExceptions::SDKUnexpectedError& e) {
-        errorMessage = sdkName + " SDK had unexpected error while connecting.";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK had unexpected error while connecting.";
+        request.reply(status_codes::InternalError, responseMessage);
     }
 
     if (logger != nullptr)
-        logger->log("/" + lowerSDKName + "/connect", "None", errorMessage);
+        logger->log("/" + lowerSDKName + "/connect", "None", responseMessage);
 }
 
 /**
@@ -91,7 +86,7 @@ void RequestHandler::SDK::connect(const http_request& request, AbstractLogger* l
  * @param sdk the pointer to AbstractSDK instance.
  */
 void RequestHandler::SDK::disconnect(const http_request& request, AbstractLogger* logger, AbstractSDK* sdk) {
-    string errorMessage;
+    string responseMessage;
     string sdkName = sdk->sdkName;
 
     string lowerSDKName = sdkName;
@@ -99,28 +94,23 @@ void RequestHandler::SDK::disconnect(const http_request& request, AbstractLogger
 
     try {
         sdk->disconnect();
-        wstring replyString = Misc::convertWstring(sdkName + " SDK disconnected.");
-        request.reply(status_codes::OK, replyString);
-        errorMessage = "Success";
+        responseMessage = "Success";
+        request.reply(status_codes::OK, responseMessage);
     } catch (const SDKExceptions::SDKNotConnected& e) {
-        errorMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
+        request.reply(status_codes::InternalError, responseMessage);
     } catch (const SDKExceptions::SDKVersionMismatch& e) {
-        errorMessage = sdkName + " SDK does not support current version. Please reinstall " + sdkName + " software";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK does not support current version. Please reinstall " + sdkName + " software";
+        request.reply(status_codes::InternalError, responseMessage);
     } catch (const SDKExceptions::SDKServiceNotRunning& e) {
-        errorMessage = sdkName + " SDK could not connect to " + sdkName + " software. Please make sure " + sdkName +" software has SDK feature enabled";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK could not connect to " + sdkName + " software. Please make sure " + sdkName +" software has SDK feature enabled";
+        request.reply(status_codes::InternalError, responseMessage);
     } catch (const SDKExceptions::SDKUnexpectedError& e) {
-        errorMessage = sdkName + " SDK had unexpected error while connecting.";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK had unexpected error while connecting.";
+        request.reply(status_codes::InternalError, responseMessage);
     }
     if (logger != nullptr)
-        logger->log("/" + lowerSDKName + "/disconnect", "None", errorMessage);
+        logger->log("/" + lowerSDKName + "/disconnect", "None", responseMessage);
 }
 
 /**
@@ -133,7 +123,7 @@ void RequestHandler::SDK::disconnect(const http_request& request, AbstractLogger
  * @param sdk the pointer to AbstractSDK instance.
  */
 void RequestHandler::SDK::get_device(const http_request& request, AbstractLogger* logger, AbstractSDK* sdk) {
-    string errorMessage;
+    string responseMessage;
     string sdkName = sdk->sdkName;
 
     string lowerSDKName = sdkName;
@@ -143,7 +133,7 @@ void RequestHandler::SDK::get_device(const http_request& request, AbstractLogger
 
     try {
         map<DeviceType, list<Device*>*> result = sdk->getDevices();
-        errorMessage = "Success";
+        responseMessage = "Success";
 
         for (auto const& category : result) {
             string deviceType = Misc::convertDeviceType(category.first);
@@ -161,12 +151,12 @@ void RequestHandler::SDK::get_device(const http_request& request, AbstractLogger
         request.reply(status_codes::OK, responseString);
 
     } catch (const SDKExceptions::SDKNotConnected& e) {
-        errorMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
-        wstring replyString = Misc::convertWstring(errorMessage);
-        request.reply(status_codes::InternalError, errorMessage);
+        responseMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
+        wstring replyString = Misc::convertWstring(responseMessage);
+        request.reply(status_codes::InternalError, responseMessage);
     }
     if (logger != nullptr)
-        logger->log("/" + lowerSDKName + "/get_device", "None", errorMessage);
+        logger->log("/" + lowerSDKName + "/get_device", "None", responseMessage);
 }
 
 /**
@@ -183,7 +173,9 @@ void RequestHandler::SDK::set_rgb(const http_request& request, AbstractLogger* l
     string sdkName = sdk->sdkName;
     string lowerSDKName = sdkName;
     transform(lowerSDKName.begin(), lowerSDKName.end(), lowerSDKName.begin(), ::tolower);
-    string errorMessage;
+    string responseMessage;
+    string requestString;
+
 
     pplx::task<utility::string_t> body_json = copy.extract_string();
     string jsonString = utility::conversions::to_utf8string(body_json.get()); // turn json into string.
@@ -193,38 +185,40 @@ void RequestHandler::SDK::set_rgb(const http_request& request, AbstractLogger* l
         string deviceType = jsonData["DeviceType"];
 
         int type = Misc::convertDeviceType(deviceType);
-
         int rValue = jsonData["r"];
         int gValue = jsonData["g"];
         int bValue = jsonData["b"];
 
+        requestString = deviceType + " : (" + to_string(rValue) + " , " + to_string(gValue) + " , " + to_string(bValue) + ")";
+
         try {
             sdk->setRGB((DeviceType) type, rValue, gValue, bValue);
-            request.reply(status_codes::OK, "Successfully set RGB");
-        } catch (const SDKExceptions::InvalidDeviceType& e) {
-            errorMessage = "Invalid device type was provided";
-            request.reply(status_codes::InternalError, errorMessage);
-        } catch (const SDKExceptions::InvalidRGBValue& e) {
-            errorMessage = "Invalid rgb value was provided";
-            request.reply(status_codes::InternalError, errorMessage);
-        } catch (const SDKExceptions::SDKNotConnected& e) {
-            errorMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
-            wstring replyString = Misc::convertWstring(errorMessage);
-            request.reply(status_codes::InternalError, errorMessage);
-        } catch (const SDKExceptions::SomeRGBFailed& e) {
-            errorMessage = "Some RGBs were set, however some failed.";
-            request.reply(status_codes::OK, errorMessage);
-        } catch (const SDKExceptions::AllRGBFailed& e) {
-            errorMessage = "All RGBs failed.";
-            request.reply(status_codes::InternalError, errorMessage);
+            responseMessage = "Successfully set RGB";
+            request.reply(status_codes::OK, responseMessage);
+        } catch (const SDKExceptions::InvalidDeviceType &e) {
+            responseMessage = "Invalid device type was provided";
+            request.reply(status_codes::InternalError, responseMessage);
+        } catch (const SDKExceptions::InvalidRGBValue &e) {
+            responseMessage = "Invalid rgb value was provided";
+            request.reply(status_codes::InternalError, responseMessage);
+        } catch (const SDKExceptions::SDKNotConnected &e) {
+            responseMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
+            request.reply(status_codes::InternalError, responseMessage);
+        } catch (const SDKExceptions::SomeRGBFailed &e) {
+            responseMessage = "Some RGBs were set, however some failed.";
+            request.reply(status_codes::OK, responseMessage);
+        } catch (const SDKExceptions::AllRGBFailed &e) {
+            responseMessage = "All RGBs failed.";
+            request.reply(status_codes::InternalError, responseMessage);
         }
 
-    } catch (const std::exception& ex) { // if somewhat json was not able to parse request, throw exception;
+    } catch (const std::exception &ex) { // if somewhat json was not able to parse request, throw exception;
         request.reply(status_codes::UnprocessableEntity, "Wrong POST data format. Check reference.");
-        errorMessage = "Wrong POST data format. Check reference.";
+        responseMessage = "Wrong POST data format. Check reference.";
     }
 
-    if (logger != nullptr)
-        logger->log("/" + lowerSDKName + "/set_rgb", jsonString, errorMessage);
+    if (logger != nullptr) {
+        logger->log("/" + lowerSDKName + "/set_rgb", requestString, responseMessage);
 
+    }
 }
