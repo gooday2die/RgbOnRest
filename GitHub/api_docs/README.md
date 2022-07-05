@@ -19,6 +19,7 @@ These endpoints are for interacting with SDK features. Each SDK will be having a
 - [connect](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/sdks/connect.md) : `POST /sdk_name/connect` (Example: `POST /corsair/connect`)  
 - [disconnect](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/sdks/disconnect.md) : `DEL/sdk_name/disconnect` (Example: `DEL /corsair/disconnect`)  
 - [get_devices](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/sdks/get_devices.md) : `GET/sdk_name/get_devices` (Example: `GET /corsair/get_devices`)  
+- [set_rgb](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/api_docs/sdks/set_rgb.md) : `POST /sdk_name/set_rgb` (Example: `POST /corsair/set_rgb`)  
 
 #### Supported SDK Names  
 - Corsair ICUE SDK as `corsair`

@@ -17,7 +17,7 @@ You can check on API documents about REST API [here](https://github.com/gooday2d
 - Corsair
 
 ## Working Devices
-Check working devices [here](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/api_docs/WorkingDevices)
+Check working devices [here](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/WorkingDevices.md)
 
 ## Contribution
 I do not have every RGB devices on planet earth, so if you have any SDK that you can provide support to this project, please refer to the guide **here**
