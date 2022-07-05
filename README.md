@@ -16,6 +16,9 @@ You can check on API documents about REST API [here](https://github.com/gooday2d
 ## Supported SDK
 - Corsair
 
+## Examples and Guides
+For example codes and guides, check [here](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/examples/README.md)
+
 ## Working Devices
 Check working devices [here](https://github.com/gooday2die/RgbOnRest/blob/main/GitHub/WorkingDevices.md)
 
