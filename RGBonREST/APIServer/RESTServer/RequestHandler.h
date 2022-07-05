@@ -53,6 +53,7 @@ public:
         static void connect(const http_request&, AbstractLogger*, AbstractSDK*);
         static void disconnect(const http_request&, AbstractLogger*, AbstractSDK*);
         static void get_device(const http_request&, AbstractLogger*, AbstractSDK*);
+        static void set_rgb(const http_request&, AbstractLogger*, AbstractSDK*);
     };
 };
 

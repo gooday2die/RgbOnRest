@@ -119,3 +119,37 @@ string Misc::convertDeviceType(int enumValue) {
             return "Unknown";
     }
 }
+
+/**
+ * A member function for class Misc that translates string device type into device type integer
+ * @param deviceType the string that represents device type
+ * @return returns integer of enum DeviceType value for storing device types.
+ */
+int Misc::convertDeviceType(const string& deviceType) {
+    if (deviceType == "All")
+        return 0;
+    else if (deviceType == "Mouse")
+        return 1;
+    else if (deviceType == "Headset")
+        return 2;
+    else if (deviceType == "Keyboard")
+        return 3;
+    else if (deviceType == "MouseMat")
+        return 4;
+    else if (deviceType == "HeadsetStand")
+        return 5;
+    else if (deviceType == "GPU")
+        return 6;
+    else if (deviceType == "Mainboard")
+        return 7;
+    else if (deviceType == "Microphone")
+        return 8;
+    else if (deviceType == "Cooler")
+        return 9;
+    else if (deviceType == "ETC")
+        return 10;
+    else if (deviceType == "RAM")
+        return 12;
+    else
+        return 11;
+}

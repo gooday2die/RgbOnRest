@@ -107,6 +107,13 @@ void RESTServer::initListeners() {
                             methods::GET,
                             [this](const http_request &request) { RequestHandler::SDK::get_device(request, this->logger, this->sdks[0]);
                             }));
+
+    this->endpoints.push_back( // For endpoint /corsair/disconnect
+            generateEndPoint(
+                    this->baseAddress + U("/corsair/set_rgb"),
+                    methods::POST,
+                    [this](const http_request &request) { RequestHandler::SDK::set_rgb(request, this->logger, this->sdks[0]);
+                    }));
 }
 
 /**

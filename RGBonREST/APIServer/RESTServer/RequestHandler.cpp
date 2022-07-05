@@ -40,7 +40,7 @@ void RequestHandler::General::stop_server(const http_request& request, AbstractL
 
 /**
  * A member function for RequestHandler::SDK that handles /sdk/connect/ endpoints.
- * For example this member function will take care of /corsair/connect endpoint.
+ * For example this member function will take care of /corsair/connect/ endpoint.
  * This member function was designed for polymorphism in mind.
  * As mentioned in the document, this member function will call AbstractSDK::connect();
  * @param request the http_request that was sent
@@ -83,7 +83,7 @@ void RequestHandler::SDK::connect(const http_request& request, AbstractLogger* l
 
 /**
  * A member function for RequestHandler::SDK that handles /sdk/disconnect/ endpoints.
- * For example this member function will take care of /corsair/disconnect endpoint.
+ * For example this member function will take care of /corsair/disconnect/ endpoint.
  * This member function was designed for polymorphism in mind.
  * As mentioned in the document, this member function will call AbstractSDK::disconnect();
  * @param request the http_request that was sent
@@ -125,9 +125,9 @@ void RequestHandler::SDK::disconnect(const http_request& request, AbstractLogger
 
 /**
  * A member function for RequestHandler::SDK that handles /sdk/get_devices/ endpoints.
- * For example this member function will take care of /corsair/disconnect endpoint.
+ * For example this member function will take care of /corsair/get_devices endpoint.
  * This member function was designed for polymorphism in mind.
- * As mentioned in the document, this member function will call AbstractSDK::disconnect();
+ * As mentioned in the document, this member function will call AbstractSDK::getDevices();
  * @param request the http_request that was sent
  * @param logger the pointer to AbstractLogger instance.
  * @param sdk the pointer to AbstractSDK instance.
@@ -167,4 +167,64 @@ void RequestHandler::SDK::get_device(const http_request& request, AbstractLogger
     }
     if (logger != nullptr)
         logger->log("/" + lowerSDKName + "/get_device", "None", errorMessage);
+}
+
+/**
+ * A member function for RequestHandler::SDK that handles /sdk/set_rgb/ endpoints.
+ * For example this member function will take care of /corsair/set_rgb/ endpoint.
+ * As mentioned in the document, this member function will call AbstractSDK::setRGB();
+ * @param request the http_request that was sent
+ * @param logger the pointer to AbstractLogger instance.
+ * @param sdk the pointer to AbstractSDK instance.
+ */
+void RequestHandler::SDK::set_rgb(const http_request& request, AbstractLogger* logger, AbstractSDK* sdk) {
+    http_request copy = request; // copy request
+
+    string sdkName = sdk->sdkName;
+    string lowerSDKName = sdkName;
+    transform(lowerSDKName.begin(), lowerSDKName.end(), lowerSDKName.begin(), ::tolower);
+    string errorMessage;
+
+    pplx::task<utility::string_t> body_json = copy.extract_string();
+    string jsonString = utility::conversions::to_utf8string(body_json.get()); // turn json into string.
+
+    try {
+        auto jsonData = json::parse(jsonString);
+        string deviceType = jsonData["DeviceType"];
+
+        int type = Misc::convertDeviceType(deviceType);
+
+        int rValue = jsonData["r"];
+        int gValue = jsonData["g"];
+        int bValue = jsonData["b"];
+
+        try {
+            sdk->setRGB((DeviceType) type, rValue, gValue, bValue);
+            request.reply(status_codes::OK, "Successfully set RGB");
+        } catch (const SDKExceptions::InvalidDeviceType& e) {
+            errorMessage = "Invalid device type was provided";
+            request.reply(status_codes::InternalError, errorMessage);
+        } catch (const SDKExceptions::InvalidRGBValue& e) {
+            errorMessage = "Invalid rgb value was provided";
+            request.reply(status_codes::InternalError, errorMessage);
+        } catch (const SDKExceptions::SDKNotConnected& e) {
+            errorMessage = sdkName + " SDK was not connected. Connect SDK before executing this request.";
+            wstring replyString = Misc::convertWstring(errorMessage);
+            request.reply(status_codes::InternalError, errorMessage);
+        } catch (const SDKExceptions::SomeRGBFailed& e) {
+            errorMessage = "Some RGBs were set, however some failed.";
+            request.reply(status_codes::OK, errorMessage);
+        } catch (const SDKExceptions::AllRGBFailed& e) {
+            errorMessage = "All RGBs failed.";
+            request.reply(status_codes::InternalError, errorMessage);
+        }
+
+    } catch (const std::exception& ex) { // if somewhat json was not able to parse request, throw exception;
+        request.reply(status_codes::UnprocessableEntity, "Wrong POST data format. Check reference.");
+        errorMessage = "Wrong POST data format. Check reference.";
+    }
+
+    if (logger != nullptr)
+        logger->log("/" + lowerSDKName + "/set_rgb", jsonString, errorMessage);
+
 }

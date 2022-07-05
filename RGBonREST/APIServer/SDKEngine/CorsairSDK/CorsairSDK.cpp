@@ -133,6 +133,7 @@ void CorsairSDK::setAllDeviceInfo() {
         tmpDevice->sdkName = "Corsair";
         tmpDevice->name = string(curDevice->model);
         tmpDevice->deviceType = translateDeviceType(curDevice->type);
+        tmpDevice->deviceIndex = i;
 
         switch(curDevice->type) { // Add device information into each device type lists.
             case CDT_Unknown:
@@ -236,30 +237,41 @@ void CorsairSDK::setRGB(DeviceType argDeviceType, int r, int g, int b) {
     if (this->isConnected) {
         if ((((r >= 0) && (r <= 255)) && ((g >= 0) && (g <= 255))) && ((b >= 0) && (b <= 255))) {
             switch (argDeviceType) {
-                case Mouse:
+                case DeviceType::Mouse:
                     this->setMouseRgb(r, g, b);
-                case Headset:
+                    break;
+                case DeviceType::Headset:
                     this->setHeadsetRgb(r, g, b);
-                case Keyboard:
+                    break;
+                case DeviceType::Keyboard:
                     this->setKeyboardRgb(r, g, b);
-                case Mousemat:
+                    break;
+                case DeviceType::Mousemat:
                     this->setMouseMatRgb(r, g, b);
-                case HeadsetStand:
+                    break;
+                case DeviceType::HeadsetStand:
                     this->setHeadsetStandRgb(r, g, b);
-                case GPU:
+                    break;
+                case DeviceType::GPU:
                     this->setGPURgb(r, g, b);
-                case ALL:
+                    break;
+                case DeviceType::ALL:
                     this->setAllRgb(r, g, b);
-                case Mainboard:
+                    break;
+                case DeviceType::Mainboard:
                     this->setMotherboardRgb(r, g, b);
-                case Cooler:
+                    break;
+                case DeviceType::Cooler:
                     this->setCoolerRgb(r, g, b);
-                case RAM:
+                    break;
+                case DeviceType::RAM:
                     this->setMemoryModuleRgb(r, g, b);
-                case ETC:
-                case UnknownDevice:
-                case Microphone:
+                    break;
+                case DeviceType::ETC:
+                case DeviceType::UnknownDevice:
+                case DeviceType::Microphone:
                     this->setETCRgb(r, g, b);
+                    break;
                 default:
                     throw SDKExceptions::InvalidDeviceType();
             }
@@ -298,6 +310,7 @@ int CorsairSDK::setMouseRgb(int r, int g, int b) {
     list<Device*> mouseList = *this->devices.at(DeviceType::Mouse);
     for (auto const& x : mouseList) {
         int deviceIndex = x->deviceIndex;
+
         resultSum += CorsairSetLedsColorsBufferByDeviceIndex(deviceIndex, ledCount, ledValues);
     }
     resultSum += CorsairSetLedsColorsFlushBuffer();
@@ -321,10 +334,10 @@ int CorsairSDK::setMouseRgb(int r, int g, int b) {
  */
 int CorsairSDK::setKeyboardRgb(int r, int g, int b) {
     CorsairLedColor ledValues[199];
-    for (auto& value : ledValues) {
-        value.r = r;
-        value.g = g;
-        value.b = b;
+    for (auto & ledValue : ledValues) {
+        ledValue.r = r;
+        ledValue.g = g;
+        ledValue.b = b;
     }
 
     int ledCount = 0;
@@ -455,6 +468,7 @@ int CorsairSDK::setHeadsetStandRgb(int r, int g, int b) {
 
     for (auto const& x : headsetStandList) {
         int deviceIndex = x->deviceIndex;
+
         resultSum += CorsairSetLedsColorsBufferByDeviceIndex(deviceIndex, ledCount, ledValues);
     }
     resultSum += CorsairSetLedsColorsFlushBuffer();
@@ -497,6 +511,7 @@ int CorsairSDK::setCoolerRgb(int r, int g, int b) {
 
     for (auto const& x : coolerList) {
         int deviceIndex = x->deviceIndex;
+
         resultSum += CorsairSetLedsColorsBufferByDeviceIndex(deviceIndex, ledCount, ledValues);
     }
     resultSum += CorsairSetLedsColorsFlushBuffer();
@@ -535,6 +550,7 @@ int CorsairSDK::setMemoryModuleRgb(int r, int g, int b) {
 
     for (auto const& x : memoryModuleList) {
         int deviceIndex = x->deviceIndex;
+
         resultSum += CorsairSetLedsColorsBufferByDeviceIndex(deviceIndex, ledCount, ledValues);
     }
     resultSum += CorsairSetLedsColorsFlushBuffer();
@@ -574,6 +590,7 @@ int CorsairSDK::setMotherboardRgb(int r, int g, int b) {
 
     for (auto const& x : mainboardList) {
         int deviceIndex = x->deviceIndex;
+
         resultSum += CorsairSetLedsColorsBufferByDeviceIndex(deviceIndex, ledCount, ledValues);
     }
     resultSum += CorsairSetLedsColorsFlushBuffer();

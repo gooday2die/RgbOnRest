@@ -32,6 +32,7 @@ public:
     static wstring convertWstring(string);
     static ConfigValues readConfig();
     static string convertDeviceType(int);
+    static int convertDeviceType(const string&);
 };
 
 
