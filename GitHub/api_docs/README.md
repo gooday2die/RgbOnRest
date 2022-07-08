@@ -28,3 +28,4 @@ These endpoints are for interacting an virtual SDK that controls all connected S
 
 #### Supported SDK Names  
 - Corsair ICUE SDK as `corsair`
+- Razer Chroma SDK as `razer`
