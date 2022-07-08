@@ -21,10 +21,16 @@ RESTServer::RESTServer() {
     this->sdks = nullptr;
     this->logger = nullptr;
 
-    try {
-        this->generateLoggerInstance(); // generate logger instance
-    } catch (const Sqlite3Logger::connectionFailedError& ex) { // if Sqlite3 failed to open db file
-        cout << "[+] Cannot open database. Logging disabled." << endl; // disable logging.
+    if (this->configValues.logEnabled) {
+        cout << "[+] Logging Enabled" << endl;
+        try {
+            this->generateLoggerInstance(); // generate logger instance
+        } catch (const Sqlite3Logger::connectionFailedError &ex) { // if Sqlite3 failed to open db file
+            cout << "[+] Cannot open database. Logging disabled." << endl; // disable logging.
+            this->logger = nullptr;
+        }
+    } else {
+        cout << "[+] Logging Disabled";
         this->logger = nullptr;
     }
 

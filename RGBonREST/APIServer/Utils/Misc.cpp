@@ -32,7 +32,8 @@ ConfigValues Misc::readConfig() {
         "host_ip": "127.0.0.1",
         "host_port": 9000,
         "log_logger": "sqlite3",
-        "log_logfile": "log.db"
+        "log_logfile": "log.db",
+        "log_enabled": true
       }
     )"_json;
 
@@ -72,14 +73,15 @@ ConfigValues Misc::readConfig() {
         values.port = jsonData["host_port"];
         values.loggerName = jsonData["log_logger"];
         values.logFileName = jsonData["log_logfile"];
+        values.logEnabled = jsonData["log_enabled"];
     } catch (const json::exception& e) { // If not possible, set it to default.
         cout << "[-] Cannot parse config.json, using default settings..." << endl;
         values.ip = defaultContent["host_ip"];
         values.port = defaultContent["host_port"];
         values.loggerName = defaultContent["log_logger"];
         values.logFileName = defaultContent["log_logfile"];
+        values.logEnabled = defaultContent["log_enabled"];
     }
-
     return values;
 }
 

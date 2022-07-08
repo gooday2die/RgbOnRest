@@ -21,6 +21,7 @@ typedef struct configValues {
     unsigned int port;
     string logFileName;
     string loggerName;
+    bool logEnabled;
 } ConfigValues;
 
 
