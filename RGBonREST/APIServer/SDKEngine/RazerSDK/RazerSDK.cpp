@@ -558,5 +558,8 @@ int RazerSDK::translateRzResult(RZRESULT rzResult) {
  * @return returns a map of list that represents pointer address to connected devices.
  */
 map<DeviceType, list<Device*>*> RazerSDK::getDevices() {
-    return this->devices;
+    if (this->isConnected)
+        return this->devices;
+    else
+        throw SDKExceptions::SDKNotConnected();
 }

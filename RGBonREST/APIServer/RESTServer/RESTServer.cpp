@@ -126,6 +126,33 @@ void RESTServer::initListeners() {
                         [this, i](const http_request &request) { RequestHandler::SDK::set_rgb(request, this->logger, this->sdks[i]);
                         }));
     }
+
+    this->endpoints.push_back( // For endpoint /all/connect
+            generateEndPoint(
+                    this->baseAddress + Misc::convertWstring("/all/connect"),
+                    methods::POST,
+                    [this](const http_request &request) { RequestHandler::ALL::connect(request, this->logger, this->sdks);
+                    }));
+
+    this->endpoints.push_back( // For endpoint /all/disconnect
+            generateEndPoint(
+                    this->baseAddress + Misc::convertWstring("/all/disconnect"),
+                    methods::DEL,
+                    [this](const http_request &request) { RequestHandler::ALL::disconnect(request, this->logger, this->sdks);
+                    }));
+    this->endpoints.push_back( // For endpoint /all/disconnect
+            generateEndPoint(
+                    this->baseAddress + Misc::convertWstring("/all/get_devices"),
+                    methods::GET,
+                    [this](const http_request &request) { RequestHandler::ALL::get_device(request, this->logger, this->sdks);
+                    }));
+    this->endpoints.push_back( // For endpoint /all/disconnect
+            generateEndPoint(
+                    this->baseAddress + Misc::convertWstring("/all/set_rgb"),
+                    methods::POST,
+                    [this](const http_request &request) { RequestHandler::ALL::set_rgb(request, this->logger, this->sdks);
+                    }));
+
 }
 
 /**
