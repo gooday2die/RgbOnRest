@@ -19,3 +19,8 @@ If you have checked a new device that was confirmed working, please report an is
 
 ### Motherboard
 - TUF GAMING Z690-PLUS WIFI D4
+
+## Razer
+### Mouse
+- DeathAdder Elite Chroma
+- DeathAdder V2

@@ -15,6 +15,7 @@ You can check on API documents about REST API [here](https://github.com/gooday2d
 
 ## Supported SDK
 - Corsair
+- Razer
 
 ## Examples and Guides
 For example codes and guides, check [here](https://github.com/gooday2die/RgbOnRest/tree/main/GitHub/examples/README.md)
