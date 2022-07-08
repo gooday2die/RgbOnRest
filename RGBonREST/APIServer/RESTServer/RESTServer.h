@@ -18,6 +18,7 @@
 #include "./Logger/Sqlite3Logger.h"
 #include "../Utils/Misc.h"
 #include "../SDKEngine/CorsairSDK/CorsairSDK.h"
+#include "../SDKEngine/RazerSDK/RazerSDK.h"
 
 using namespace web::http;
 using namespace web::http::experimental::listener;

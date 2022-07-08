@@ -88,32 +88,38 @@ void RESTServer::initListeners() {
                             [this](const http_request &request) { RequestHandler::General::stop_server(request, this->logger); this->exitFlag = true;
                             }));
 
-    this->endpoints.push_back( // For endpoint /corsair/connect
-                    generateEndPoint(
-                            this->baseAddress + U("/corsair/connect"),
-                            methods::POST,
-                            [this](const http_request &request) { RequestHandler::SDK::connect(request, this->logger, this->sdks[0]);
-                            }));
+    // Generate SDK endpoints automatically.
+    for (int i = 0 ; i < SUPPORTED_SDK_COUNT ; i++) {
+        string sdkName = this->sdks[i]->sdkName;
+        string lowerSDKName = sdkName;
+        transform(lowerSDKName.begin(), lowerSDKName.end(), lowerSDKName.begin(), ::tolower);
 
-    this->endpoints.push_back( // For endpoint /corsair/disconnect
-                    generateEndPoint(
-                            this->baseAddress + U("/corsair/disconnect"),
-                            methods::DEL,
-                            [this](const http_request &request) { RequestHandler::SDK::disconnect(request, this->logger, this->sdks[0]);
-                            }));
-    this->endpoints.push_back( // For endpoint /corsair/disconnect
-                    generateEndPoint(
-                            this->baseAddress + U("/corsair/get_devices"),
-                            methods::GET,
-                            [this](const http_request &request) { RequestHandler::SDK::get_device(request, this->logger, this->sdks[0]);
-                            }));
+        this->endpoints.push_back( // For endpoint /sdk_name/connect
+                generateEndPoint(
+                        this->baseAddress + Misc::convertWstring("/" + lowerSDKName + "/connect"),
+                        methods::POST,
+                        [this, i](const http_request &request) { RequestHandler::SDK::connect(request, this->logger, this->sdks[i]);
+                        }));
 
-    this->endpoints.push_back( // For endpoint /corsair/disconnect
-            generateEndPoint(
-                    this->baseAddress + U("/corsair/set_rgb"),
-                    methods::POST,
-                    [this](const http_request &request) { RequestHandler::SDK::set_rgb(request, this->logger, this->sdks[0]);
-                    }));
+        this->endpoints.push_back( // For endpoint /sdk_name/disconnect
+                generateEndPoint(
+                        this->baseAddress + Misc::convertWstring("/" + lowerSDKName + "/disconnect"),
+                        methods::DEL,
+                        [this, i](const http_request &request) { RequestHandler::SDK::disconnect(request, this->logger, this->sdks[i]);
+                        }));
+        this->endpoints.push_back( // For endpoint /sdk_name/disconnect
+                generateEndPoint(
+                        this->baseAddress + Misc::convertWstring("/" + lowerSDKName + "/get_devices"),
+                        methods::GET,
+                        [this, i](const http_request &request) { RequestHandler::SDK::get_device(request, this->logger, this->sdks[i]);
+                        }));
+        this->endpoints.push_back( // For endpoint /sdk_name/disconnect
+                generateEndPoint(
+                        this->baseAddress + Misc::convertWstring("/" + lowerSDKName + "/set_rgb"),
+                        methods::POST,
+                        [this, i](const http_request &request) { RequestHandler::SDK::set_rgb(request, this->logger, this->sdks[i]);
+                        }));
+    }
 }
 
 /**
@@ -166,7 +172,8 @@ void RESTServer::generateLoggerInstance() {
  * This member function will generate all SDK instances so that it can be used in the future.
  */
 void RESTServer::generateSDKInstances() {
-    this->sdks = (AbstractSDK**) malloc (sizeof(AbstractSDK*) * SUPPORTED_SDK_COUNT); // Generate array pointers to sdks.
+    this->sdks = (AbstractSDK**) malloc (sizeof(void*) * SUPPORTED_SDK_COUNT); // Generate array pointers to sdks.
 
     this->sdks[0] = new CorsairSDK(); // index 0 = Corsair
+    this->sdks[1] = new RazerSDK(); // index 1 = Razer
 }

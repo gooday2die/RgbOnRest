@@ -9,6 +9,6 @@
 #pragma once
 
 #define RGBONREST_VERSION "1.0.0_SNAPSHOT"
-#define SUPPORTED_SDK_COUNT 1
+#define SUPPORTED_SDK_COUNT 2
 
 #endif //RGBONREST_DEFINES_H
