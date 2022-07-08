@@ -226,6 +226,7 @@ void RazerSDK::connect() {
  * @throws SDKExceptions::SDKUnexpectedError: when this->UnInit() was not RZRESULT_SUCCESS.
  */
 void RazerSDK::disconnect() {
+    this->isConnected = false;
     if (this->UnInit() == RZRESULT_SUCCESS) return;
     else throw SDKExceptions::SDKUnexpectedError();
 }
@@ -248,16 +249,21 @@ void RazerSDK::setRGB(DeviceType argDeviceType, int r, int g, int b) {
             switch (argDeviceType) {
                 case Mouse:
                     this->setMouseRgb(r, g, b);
+                    break;
                 case Headset:
                     this->setHeadsetRgb(r, g, b);
+                    break;
                 case Keyboard:
                     this->setKeyboardRgb(r, g, b);
+                    break;
                 case Mousemat:
                     this->setMouseMatRgb(r, g, b);
+                    break;
                 case HeadsetStand:
                 case Microphone:
                 case ETC: // Keypads and ChromaLink devices
                     this->setETCRgb(r, g, b);
+                    break;
                 case UnknownDevice:
                 case RAM:
                 case Cooler:
@@ -266,6 +272,7 @@ void RazerSDK::setRGB(DeviceType argDeviceType, int r, int g, int b) {
                     throw SDKExceptions::InvalidDeviceType();
                 case ALL:
                     this->setAllRgb(r, g, b);
+                    break;
             }
         } else throw SDKExceptions::InvalidRGBValue();
     } else throw SDKExceptions::SDKNotConnected();

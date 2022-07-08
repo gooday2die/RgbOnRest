@@ -152,7 +152,6 @@ void RESTServer::initListeners() {
                     methods::POST,
                     [this](const http_request &request) { RequestHandler::ALL::set_rgb(request, this->logger, this->sdks);
                     }));
-
 }
 
 /**

@@ -329,9 +329,6 @@ void RequestHandler::ALL::get_device(const http_request& request, AbstractLogger
     }
     wstring replyString = Misc::convertWstring(responseData.dump(4));
 
-    cout << "REPLYSTRING" << endl;
-    std::wcout << replyString << endl;
-
     if (successCount == SUPPORTED_SDK_COUNT)
         request.reply(status_codes::OK, replyString);
     else
