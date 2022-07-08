@@ -30,8 +30,8 @@ CorsairSDK::~CorsairSDK() {
 
 /**
  * A member function for class CorsairSDK that connects into Corsair ICUE SDK.
- * @throws SDKExceptions::SDKAlreadyConnected: when SDK was already connected
- * @throws SDKExceptions::SDKConnectionFailed: when SDK failed to connect Corsair ICUE
+ * @throws SDKExceptions::SDKAlreadyConnected: when SDK was already connected.
+ * @throws SDKExceptions::SDKConnectionFailed: when SDK failed to connect Corsair ICUE.
  * @throws SDKExceptions::SDKVersionMismatch: when SDK had Corsair ICUE version which was not supported.
  * @throws SDKExceptions::SDKServiceNotRunning: when SDK could not find Corsair ICUE service running.
  * @throws SDKExceptions::SDKUnexpectedError: when SDK encountered unexpected error.

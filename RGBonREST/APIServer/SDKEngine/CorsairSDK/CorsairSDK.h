@@ -31,7 +31,6 @@ private:
     int setETCRgb(int, int, int);
     int setAllRgb(int, int, int);
     void setAllDeviceInfo();
-
     static DeviceType translateDeviceType(const CorsairDeviceType&);
 public:
     CorsairSDK();
