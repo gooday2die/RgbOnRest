@@ -162,7 +162,6 @@ namespace ChromaSDK
             DURATION_MEDIUM,    //!< Medium duration.
             DURATION_LONG       //!< Long duration.
         } Duration;             //!< The time taken for the effect to fade away.
-
     } STARLIGHT_EFFECT_TYPE;
 
     //! Static effect (This effect type has deprecated and should not be used).
@@ -422,7 +421,6 @@ namespace ChromaSDK
                 DURATION_MEDIUM,    //!< Medium duration.
                 DURATION_LONG       //!< Long duration.
             } Duration;             //!< The time taken for the effect to fade away.
-
         } STARLIGHT_EFFECT_TYPE;
 
         //! Static effect type

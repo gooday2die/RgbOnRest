@@ -21,12 +21,6 @@
 #include "./includes/RzErrors.h"
 #include "../AbstractSDK.h"
 
-#ifdef _WIN64
-#define CHROMASDKDLL        "RzChromaSDK64.dll"
-#else
-#define CHROMASDKDLL        _T("RzChromaSDK.dll")
-#endif
-
 using std::vector;
 using std::list;
 using std::pair;
@@ -75,6 +69,7 @@ private:
     void setAllDeviceInfo();
     void setDeviceCount();
     void initDeviceNames();
+    void initDLL();
     bool isConnectedDevice(RZDEVICEID);
     static RZDEVICEID getNthElementFromList(std::list<RZDEVICEID>, int);
     static DeviceType translateDeviceType(int);

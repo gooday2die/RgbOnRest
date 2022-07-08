@@ -40,7 +40,6 @@ void CorsairSDK::connect() {
     if (this->isConnected) // if CorsairSDK was connected before.
         throw SDKExceptions::SDKAlreadyConnected();
     else { // if CorsairSDK was not connected before.
-
         CorsairPerformProtocolHandshake(); // Perform handshake with SDK
         switch (CorsairGetLastError()) {
             case CorsairError::CE_Success: // If CorsairPerformProtocolHandshake was successful, then request control.
@@ -185,7 +184,6 @@ void CorsairSDK::setAllDeviceInfo() {
     this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::Cooler, CoolerList));
     this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::ETC, ETCList));
     this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::RAM, MemoryModuleList));
-
 }
 
 /**

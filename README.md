@@ -2,7 +2,7 @@
 
 # RGBOnREST
 ![License](https://img.shields.io/github/license/gooday2die/RgbOnRest) ![Language](https://img.shields.io/github/languages/top/gooday2die/RgbOnRest)
-![Downloads](https://img.shields.io/github/downloads/gooday2die/RgbOnRest/latest/total) 
+![Downloads](https://img.shields.io/github/downloads/gooday2die/RgbOnRest/total) 
 ### REST API that controls RGB devices
 Having multiple brands of RGB brands makes it difficult for users to control their RGB devices. `RGBonRest` is for controlling multiple RGB SDKs at the same time using REST API.
 

@@ -80,6 +80,35 @@ void RazerSDK::initDeviceNames() {
 }
 
 /**
+ * A member function that inits DLL using LoadLibrary
+ * @throws SDKExceptions::SDKUnexpectedError: when SDK failed to initialize some functions.
+ */
+void RazerSDK::initDLL() {
+    this->m_ChromaSDKModule = LoadLibrary("./RzChromaSDK64.dll"); // Load dll
+    if (this->m_ChromaSDKModule != nullptr) { // if loading dll was successful, GetProcAddress
+        this->CreateEffect = reinterpret_cast<CREATEEFFECT>(GetProcAddress(this->m_ChromaSDKModule, "CreateEffect"));
+        this->CreateKeyboardEffect = reinterpret_cast<CREATEKEYBOARDEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
+                                                                                           "CreateKeyboardEffect"));
+        this->CreateMouseEffect = reinterpret_cast<CREATEMOUSEEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
+                                                                                     "CreateMouseEffect"));
+        this->CreateHeadsetEffect = reinterpret_cast<CREATEHEADSETEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
+                                                                                         "CreateHeadsetEffect"));
+        this->CreateMousepadEffect = reinterpret_cast<CREATEMOUSEPADEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
+                                                                                           "CreateMousepadEffect"));
+        this->CreateKeypadEffect = reinterpret_cast<CREATEKEYPADEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
+                                                                                       "CreateKeypadEffect"));
+        this->CreateChromaLinkEffect = reinterpret_cast<CREATECHROMALINKEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
+                                                                                               "CreateChromaLinkEffect"));
+        this->SetEffect = reinterpret_cast<SETEFFECT>(GetProcAddress(this->m_ChromaSDKModule, "SetEffect"));
+        this->DeleteEffect = reinterpret_cast<DELETEEFFECT>(GetProcAddress(this->m_ChromaSDKModule, "DeleteEffect"));
+        this->QueryDevice = reinterpret_cast<QUERYDEVICE>(GetProcAddress(this->m_ChromaSDKModule, "QueryDevice"));
+
+        this->Init = (INIT) GetProcAddress(this->m_ChromaSDKModule, "Init"); // get process address of init
+        this->UnInit = (INIT) GetProcAddress(this->m_ChromaSDKModule, "UnInit"); // get process address of init
+    } else throw SDKExceptions::SDKConnectionFailed();
+}
+
+/**
  * A member function that returns device name in const char* which matches the RZDEVICEID deviceName.
  * The name will be each namespace's variable names with underscore(_) removed.
  * For example, ChromaSDK::BLACKWIDOW_CHROMA will return BLACKWIDOW CHROMA
@@ -180,37 +209,15 @@ void RazerSDK::connect() {
     if (this->isConnected) // if it was connected before, throw exception
         throw SDKExceptions::SDKAlreadyConnected();
     else { // if not, connect
-        this->m_ChromaSDKModule = LoadLibrary(CHROMASDKDLL); // Load dll
-        if (this->m_ChromaSDKModule != nullptr) { // if loading dll was successful, GetProcAddress
-            this->CreateEffect = reinterpret_cast<CREATEEFFECT>(GetProcAddress(this->m_ChromaSDKModule, "CreateEffect"));
-            this->CreateKeyboardEffect = reinterpret_cast<CREATEKEYBOARDEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
-                                                                                         "CreateKeyboardEffect"));
-            this->CreateMouseEffect = reinterpret_cast<CREATEMOUSEEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
-                                                                                   "CreateMouseEffect"));
-            this->CreateHeadsetEffect = reinterpret_cast<CREATEHEADSETEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
-                                                                                       "CreateHeadsetEffect"));
-            this->CreateMousepadEffect = reinterpret_cast<CREATEMOUSEPADEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
-                                                                                         "CreateMousepadEffect"));
-            this->CreateKeypadEffect = reinterpret_cast<CREATEKEYPADEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
-                                                                                     "CreateKeypadEffect"));
-            this->CreateChromaLinkEffect = reinterpret_cast<CREATECHROMALINKEFFECT>(GetProcAddress(this->m_ChromaSDKModule,
-                                                                                             "CreateChromaLinkEffect"));
-            this->SetEffect = reinterpret_cast<SETEFFECT>(GetProcAddress(this->m_ChromaSDKModule, "SetEffect"));
-            this->DeleteEffect = reinterpret_cast<DELETEEFFECT>(GetProcAddress(this->m_ChromaSDKModule, "DeleteEffect"));
-            this->QueryDevice = reinterpret_cast<QUERYDEVICE>(GetProcAddress(this->m_ChromaSDKModule, "QueryDevice"));
-
-            this->Init = (INIT) GetProcAddress(this->m_ChromaSDKModule, "Init"); // get process address of init
-            this->UnInit = (INIT) GetProcAddress(this->m_ChromaSDKModule, "UnInit"); // get process address of init
-
-            Init(); // perform init
-            setAllDeviceInfo(); // Try getting all device information since this shall be done first right after init.
-            this->isConnected = true;
-            if (CreateEffect && CreateKeyboardEffect && CreateMouseEffect && CreateHeadsetEffect &&
-                CreateMousepadEffect && CreateKeypadEffect && CreateChromaLinkEffect && SetEffect && DeleteEffect
-                && QueryDevice && Init && UnInit)
-                return;
-            else throw SDKExceptions::SDKUnexpectedError();
-        } else throw SDKExceptions::SDKConnectionFailed();
+        this->initDLL();
+        Init(); // perform init
+        setAllDeviceInfo(); // Try getting all device information since this shall be done first right after init.
+        this->isConnected = true;
+        if (CreateEffect && CreateKeyboardEffect && CreateMouseEffect && CreateHeadsetEffect &&
+            CreateMousepadEffect && CreateKeypadEffect && CreateChromaLinkEffect && SetEffect && DeleteEffect
+            && QueryDevice && Init && UnInit)
+            return;
+        else throw SDKExceptions::SDKUnexpectedError();
     }
 }
 
