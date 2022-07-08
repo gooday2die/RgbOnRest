@@ -4,13 +4,38 @@
 // @brief : A file that implements all member functions for class RazerSDK
 //
 #include "RazerSDK.h"
+#include "RzChromaSDKDefines.h"
 
 
 /**
  * A constructor member function for class RazerSDK.
  * This member function adds all device names into the deviceNames.
  */
-RazerSDK::RazerSDK(){
+RazerSDK::RazerSDK() {
+    this->initDeviceNames();
+    this->sdkName = "Razer";
+    this->isConnected = false;
+}
+
+/**
+ * A destructor member function for class RazerSDK.
+ * This member function Deletes all lists and Device objects that were generated before.
+ */
+RazerSDK::~RazerSDK() {
+    for (auto const& x : this->devices) { // For every device types
+        list<Device*>* deviceList = x.second; // Grab device list
+        for (auto const& y : *deviceList) {
+            delete y;  // delete all Device struct instances
+        }
+    }
+}
+
+/**
+ * A member function for RazerSDK for setting all device names into member variable deviceNames.
+ * These deviceNames will be used later for querying device connection status by SDK features.
+ * Be advised that there are some devices missing since Razer did not provide information on the devices.
+ */
+void RazerSDK::initDeviceNames() {
     // Keyboards
     this->deviceNames.push_back(ChromaSDK::BLACKWIDOW_CHROMA);
     this->deviceNames.push_back(ChromaSDK::BLACKWIDOW_CHROMA_TE);
@@ -62,7 +87,7 @@ RazerSDK::RazerSDK(){
  * @param deviceName the DeviceID to look for
  * @return returns const char* of device names.
  */
-const char* RazerSDK::getDeviceName(RZDEVICEID deviceName){
+const char* RazerSDK::getDeviceName(RZDEVICEID deviceName) {
     // Keyboards
     if (deviceName == ChromaSDK::BLACKWIDOW_CHROMA)
         return "BLACKWIDOW CHROMA";
@@ -147,7 +172,6 @@ const char* RazerSDK::getDeviceName(RZDEVICEID deviceName){
  * After this member function is done loading all process addresses, this will execute Init function and then return
  * If all functions from DLL is loaded correctly. Then this member function will call setAllDeviceInfo in order to
  * save all device information to the local attribute.
- * @return returns Result type value that represents result of connection.
  * @throws SDKExceptions::SDKAlreadyConnected: when SDK was already connected
  * @throws SDKExceptions::SDKConnectionFailed: when SDK's DLL was not found.
  * @throws SDKExceptions::SDKUnexpectedError: when SDK failed to initialize some functions.
@@ -186,17 +210,17 @@ void RazerSDK::connect() {
                 && QueryDevice && Init && UnInit)
                 return;
             else throw SDKExceptions::SDKUnexpectedError();
-        } else return SDKExceptions::SDKConnectionFailed();
+        } else throw SDKExceptions::SDKConnectionFailed();
     }
 }
 
 /**
  * A disconnect member function that performs UnInit for RazerSDK.
- * @return returns Result type value that represents the disconnection result.
+ * @throws SDKExceptions::SDKUnexpectedError: when this->UnInit() was not RZRESULT_SUCCESS.
  */
-Result RazerSDK::disconnect() {
-    if (this->UnInit() == RZRESULT_SUCCESS) return Result::Success;
-    else return Result ::SDKUnexpectedError;
+void RazerSDK::disconnect() {
+    if (this->UnInit() == RZRESULT_SUCCESS) return;
+    else throw SDKExceptions::SDKUnexpectedError();
 }
 
 /**
@@ -205,35 +229,39 @@ Result RazerSDK::disconnect() {
  * @param r the r value
  * @param g the g value
  * @param b the b value
- * @return returns Result type.
+ * @throws SDKExceptions::InvalidDeviceType: When invalid device type was given.
+ * @throws SDKExceptions::InvalidRGBValue: When invalid RGB value was given.
+ * @throws SDKExceptions::SDKNotConnected: When SDK was not connected before.
+ * @throws SDKExceptions::SomeRGBFailed: When some RGBs failed to set their LED values, at the same time some did.
+ * @throws SDKExceptions::AllRGBFailed When all RGBs failed to set their LED values.
  */
-Result RazerSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
+void RazerSDK::setRGB(DeviceType argDeviceType, int r, int g, int b) {
     if (this->isConnected) {
         if ((((r >= 0) && (r <= 255)) && ((g >= 0) && (g <= 255))) && ((b >= 0) && (b <= 255))) {
             switch (argDeviceType) {
                 case Mouse:
-                    return this->setMouseRgb(r, g, b);
+                    this->setMouseRgb(r, g, b);
                 case Headset:
-                    return this->setHeadsetRgb(r, g, b);
+                    this->setHeadsetRgb(r, g, b);
                 case Keyboard:
-                    return this->setKeyboardRgb(r, g, b);
+                    this->setKeyboardRgb(r, g, b);
                 case Mousemat:
-                    return this->setMouseMatRgb(r, g, b);
+                    this->setMouseMatRgb(r, g, b);
                 case HeadsetStand:
                 case Microphone:
                 case ETC: // Keypads and ChromaLink devices
-                    return this->setETCRgb(r, g, b);
+                    this->setETCRgb(r, g, b);
                 case UnknownDevice:
                 case RAM:
                 case Cooler:
                 case GPU:
                 case Mainboard:
-                    return Result::InvalidDeviceType;
+                    throw SDKExceptions::InvalidDeviceType();
                 case ALL:
-                    return this->setAllRgb(r, g, b);
+                    this->setAllRgb(r, g, b);
             }
-        } else return Result::InvalidRGBValue;
-    } else return Result::SDKNotConnected;
+        } else throw SDKExceptions::InvalidRGBValue();
+    } else throw SDKExceptions::SDKNotConnected();
 }
 
 /**
@@ -241,17 +269,20 @@ Result RazerSDK::setRgb(DeviceType argDeviceType, int r, int g, int b) {
  * @param r the r value
  * @param g the g value
  * @param b the b value
- * @return returns Result type value that represents response from SDK.
+ * @throws SDKExceptions::SDKServiceNotRunning: when SDK could not find Razer Chroma software running.
+ * @throws SDKExceptions::NoDevicesConnected: when SDK could not find any Razer devices connected.
+ * @throws SDKExceptions::SDKUnexpectedError: when SDK encountered unexpected error.
+ * @return returns 1 if successfully set RGB.
  */
-Result RazerSDK::setMouseRgb(int r, int g, int b) {
+int RazerSDK::setMouseRgb(int r, int g, int b) {
     ChromaSDK::Mouse::STATIC_EFFECT_TYPE StaticEffect = {};
     RZEFFECTID EffectId;
 
     StaticEffect.Color = RGB(r, g, b);
     StaticEffect.LEDId = ChromaSDK::Mouse::RZLED_ALL;
 
-    CreateMouseEffect(ChromaSDK::Mouse::CHROMA_STATIC, &StaticEffect, &EffectId);
-    return translateRzResult((RZRESULT) this->SetEffect(EffectId));
+    this->CreateMouseEffect(ChromaSDK::Mouse::CHROMA_STATIC, &StaticEffect, &EffectId);
+    return translateRzResult(this->SetEffect(EffectId));
 }
 
 /**
@@ -260,16 +291,19 @@ Result RazerSDK::setMouseRgb(int r, int g, int b) {
  * @param r the r value
  * @param g the g value
  * @param b the b value
- * @return returns Result type value that represents response from SDK.
+ * @throws SDKExceptions::SDKServiceNotRunning: when SDK could not find Razer Chroma software running.
+ * @throws SDKExceptions::NoDevicesConnected: when SDK could not find any Razer devices connected.
+ * @throws SDKExceptions::SDKUnexpectedError: when SDK encountered unexpected error.
+ * @return returns 1 if successfully set RGB.
  */
-Result RazerSDK::setKeyboardRgb(int r, int g, int b) {
+int RazerSDK::setKeyboardRgb(int r, int g, int b) {
     ChromaSDK::Keyboard::STATIC_EFFECT_TYPE StaticEffect = {};
     RZEFFECTID EffectId;
 
     StaticEffect.Color = RGB(r, g, b);
 
     CreateKeyboardEffect(ChromaSDK::Keyboard::CHROMA_STATIC, &StaticEffect, &EffectId);
-    return translateRzResult((RZRESULT) this->SetEffect(EffectId));
+    return translateRzResult(this->SetEffect(EffectId));
 }
 
 /**
@@ -277,16 +311,19 @@ Result RazerSDK::setKeyboardRgb(int r, int g, int b) {
  * @param r the r value
  * @param g the g value
  * @param b the b value
- * @return returns Result type value that represents response from SDK.
+ * @throws SDKExceptions::SDKServiceNotRunning: when SDK could not find Razer Chroma software running.
+ * @throws SDKExceptions::NoDevicesConnected: when SDK could not find any Razer devices connected.
+ * @throws SDKExceptions::SDKUnexpectedError: when SDK encountered unexpected error.
+ * @return returns 1 if successfully set RGB.
  */
-Result RazerSDK::setHeadsetRgb(int r, int g, int b) {
+int RazerSDK::setHeadsetRgb(int r, int g, int b) {
     ChromaSDK::Headset::STATIC_EFFECT_TYPE StaticEffect = {};
     RZEFFECTID EffectId;
 
     StaticEffect.Color = RGB(r, g, b);
 
     CreateHeadsetEffect(ChromaSDK::Headset::CHROMA_STATIC, &StaticEffect, &EffectId);
-    return translateRzResult((RZRESULT) this->SetEffect(EffectId));
+    return translateRzResult(this->SetEffect(EffectId));
 }
 
 /**
@@ -294,16 +331,19 @@ Result RazerSDK::setHeadsetRgb(int r, int g, int b) {
  * @param r the r value
  * @param g the g value
  * @param b the b value
- * @return returns Result type value that represents response from SDK.
+ * @throws SDKExceptions::SDKServiceNotRunning: when SDK could not find Razer Chroma software running.
+ * @throws SDKExceptions::NoDevicesConnected: when SDK could not find any Razer devices connected.
+ * @throws SDKExceptions::SDKUnexpectedError: when SDK encountered unexpected error.
+ * @return returns 1 if successfully set RGB.
  */
-Result RazerSDK::setMouseMatRgb(int r, int g, int b) {
+int RazerSDK::setMouseMatRgb(int r, int g, int b) {
     ChromaSDK::Mousepad::STATIC_EFFECT_TYPE StaticEffect = {};
     RZEFFECTID EffectId;
 
     StaticEffect.Color = RGB(r, g, b);
 
     CreateMousepadEffect(ChromaSDK::Mousepad::CHROMA_STATIC, &StaticEffect, &EffectId);
-    return translateRzResult((RZRESULT) this->SetEffect(EffectId));
+    return translateRzResult(this->SetEffect(EffectId));
 }
 
 /**
@@ -312,9 +352,14 @@ Result RazerSDK::setMouseMatRgb(int r, int g, int b) {
  * @param r the r value
  * @param g the g value
  * @param b the b value
- * @return returns Result type value that represents response from SDK.
+ * @throws SDKExceptions::SDKServiceNotRunning: when SDK could not find Razer Chroma software running.
+ * @throws SDKExceptions::NoDevicesConnected: when SDK could not find any Razer devices connected.
+ * @throws SDKExceptions::SDKUnexpectedError: when SDK encountered unexpected error.
+ * @throws SDKExceptions::SomeFailed when SDK failed to set some devices.
+ * @throws SDKExceptions::AllRGBFailed when SDK failed to set all devices.
+ * @return returns 1 if successfully set RGB.
  */
-Result RazerSDK::setETCRgb(int r, int g, int b){
+int RazerSDK::setETCRgb(int r, int g, int b) {
     ChromaSDK::Keypad::STATIC_EFFECT_TYPE KeypadStaticEffect = {};
     ChromaSDK::ChromaLink::STATIC_EFFECT_TYPE ChromaLinkStaticEffect = {};
     RZEFFECTID KeypadStaticEffectId;
@@ -326,9 +371,12 @@ Result RazerSDK::setETCRgb(int r, int g, int b){
     CreateKeypadEffect(ChromaSDK::Keypad::CHROMA_STATIC, &KeypadStaticEffect, &KeypadStaticEffectId);
     CreateChromaLinkEffect(ChromaSDK::ChromaLink::CHROMA_STATIC, &KeypadStaticEffect, &ChromaLinkStaticEffectId);
 
-    if ((RZRESULT)SetEffect(KeypadStaticEffectId) == (RZRESULT)SetEffect(ChromaLinkStaticEffectId) == 0)
-        return Result::Success;
-    else return Result::SomeFailed;
+    int result1 = SetEffect(KeypadStaticEffectId);
+    int result2 = SetEffect(ChromaLinkStaticEffectId);
+
+    if ((result1 == result2) && (result1 == 0)) return 1; // When all successfully set RGB
+    else if ((result1 == result2) && (result1 != 0)) throw SDKExceptions::AllRGBFailed(); // When some set RGB
+    else throw SDKExceptions::SomeRGBFailed(); // When all failed to set RGB
 }
 
 /**
@@ -336,10 +384,14 @@ Result RazerSDK::setETCRgb(int r, int g, int b){
  * @param r the r value
  * @param g the g value
  * @param b the b value
- * @return returns Result type value that represents response from SDK.
+ * @throws SDKExceptions::SDKServiceNotRunning: when SDK could not find Razer Chroma software running.
+ * @throws SDKExceptions::NoDevicesConnected: when SDK could not find any Razer devices connected.
+ * @throws SDKExceptions::SDKUnexpectedError: when SDK encountered unexpected error.
+ * @throws SDKExceptions::SomeFailed when SDK failed to set some devices.
+ * @throws SDKExceptions::AllRGBFailed when SDK failed to set all devices.
  */
-Result RazerSDK::setAllRgb(int r, int g, int b) {
-    vector<Result> results;
+void RazerSDK::setAllRgb(int r, int g, int b) {
+    vector<int> results;
     results.emplace_back(this->setMouseRgb(r, g, b));
     results.emplace_back(this->setKeyboardRgb(r, g, b));
     results.emplace_back(this->setMouseMatRgb(r, g, b));
@@ -348,10 +400,11 @@ Result RazerSDK::setAllRgb(int r, int g, int b) {
 
     int successCount = 0;
     for (auto const& x : results)
-        successCount += x == Result::Success;
+        successCount += x;
 
-    if (successCount == results.size()) return Result::Success;
-    else return Result::SomeFailed;
+    if (successCount == results.size()) return;
+    else if ((successCount > 0) && (successCount < results.size())) throw SDKExceptions::SomeRGBFailed();
+    else throw SDKExceptions::AllRGBFailed();
 }
 
 /**
@@ -373,7 +426,7 @@ void RazerSDK::setDeviceCount() {
  * @param index the index to retrieve
  * @return returns value of index
  */
-RZDEVICEID RazerSDK::getNthElementFromList(std::list<RZDEVICEID> list, int index){
+RZDEVICEID RazerSDK::getNthElementFromList(std::list<RZDEVICEID> list, int index) {
     auto l_front = list.begin();
     std::advance(l_front, index);
     return *l_front;
@@ -386,19 +439,50 @@ RZDEVICEID RazerSDK::getNthElementFromList(std::list<RZDEVICEID> list, int index
  */
 void RazerSDK::setAllDeviceInfo() {
     this->setDeviceCount();
-    for(int i = 0 ; i < this->deviceNames.size() ; i++){
+
+    list<Device*>* MouseList = new list<device*>; // generate lists of DeviceTypes
+    list<Device*>* KeyboardList = new list<device*>;
+    list<Device*>* HeadsetList = new list<device*>;
+    list<Device*>* MouseMatList = new list<device*>;
+    list<Device*>* ETCList = new list<device*>;
+
+    for(int i = 0 ; i < this->deviceNames.size() ; i++) {
         ChromaSDK::DEVICE_INFO_TYPE curDeviceInfo = {};
         RZDEVICEID deviceName = getNthElementFromList(this->deviceNames, i);
         QueryDevice(deviceName, curDeviceInfo);
-        if (curDeviceInfo.Connected){ // If we found devices, translate it into Device struct.
-            Device tmpDevice;
-            tmpDevice.deviceType = translateDeviceType(curDeviceInfo.DeviceType);
-            tmpDevice.name = getDeviceName(deviceName);
-            tmpDevice.sdkName = "RAZER";
 
-            this->devices.emplace_back(tmpDevice);
+        if (curDeviceInfo.Connected) { // If we found devices, translate it into Device struct.
+            Device* tmpDevice = nullptr;
+            tmpDevice = new Device; // generate a new Device instance for future use.
+            tmpDevice->deviceType = translateDeviceType(curDeviceInfo.DeviceType);
+            tmpDevice->name = getDeviceName(deviceName);
+            tmpDevice->sdkName = "Razer";
+            tmpDevice->deviceIndex = i;
+
+            switch(tmpDevice->deviceType) {
+                case DeviceType::Mouse:
+                    MouseList->push_back(tmpDevice);
+                    break;
+                case DeviceType::Keyboard:
+                    KeyboardList->push_back(tmpDevice);
+                    break;
+                case DeviceType::Headset:
+                    HeadsetList->push_back(tmpDevice);
+                    break;
+                case DeviceType::Mousemat:
+                    MouseMatList->push_back(tmpDevice);
+                    break;
+                default:
+                    ETCList->push_back(tmpDevice);
+                    break;
+            }
         }
     }
+    this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::Mouse, MouseList));
+    this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::Headset, HeadsetList));
+    this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::Keyboard, KeyboardList));
+    this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::Mousemat, MouseMatList));
+    this->devices.insert(pair<DeviceType, list<Device*>*>(DeviceType::ETC, ETCList));
 }
 
 /**
@@ -407,8 +491,8 @@ void RazerSDK::setAllDeviceInfo() {
  * @param rzDeviceType the int value to translate into DeviceType.
  * @return the translated DeviceType.
  */
-DeviceType RazerSDK::translateDeviceType(int rzDeviceType){
-    switch(rzDeviceType){
+DeviceType RazerSDK::translateDeviceType(int rzDeviceType) {
+    switch(rzDeviceType) {
         case 1:
             return DeviceType::Keyboard;
         case 2:
@@ -425,32 +509,47 @@ DeviceType RazerSDK::translateDeviceType(int rzDeviceType){
     }
 }
 
+
+
 /**
  * A member function that returns if a specific device with RZDEVICEID is connected or not
  * @param deviceName the RZDEVICEID to check connection.
  * @return returns 1 if connected, else 0
  */
-bool RazerSDK::isConnectedDevice(RZDEVICEID deviceName){
+bool RazerSDK::isConnectedDevice(RZDEVICEID deviceName) {
     ChromaSDK::DEVICE_INFO_TYPE curDeviceInfo = {};
     QueryDevice(deviceName, curDeviceInfo);
     return curDeviceInfo.Connected;
 }
 
 /**
- * A member function that translates RZRESULT into Result value
+ * A member function that translates RZRESULT.
+ * If it finds value which is not RZRESULT_SUCCESS, it will throw exception with corresponding exceptions.
+ * If it does not find any errors, then it will return 1 as its return value.
+ * @return returns 1.
  * @param rzResult the RZRESULT type to translate into Result.
- * @return the translated Result.
+ * @throws SDKExceptions::SDKServiceNotRunning: when SDK could not find Razer Chroma software running.
+ * @throws SDKExceptions::NoDevicesConnected: when SDK could not find any Razer devices connected.
+ * @throws SDKExceptions::SDKUnexpectedError: when SDK encountered unexpected error.
  */
-Result RazerSDK::translateRzResult(RZRESULT rzResult) {
-    if (rzResult == RZRESULT_SUCCESS) return Result::Success;
-    else if (rzResult == RZRESULT_DEVICE_NOT_CONNECTED) return Result::NoDevicesConnected;
-    else return Result::SDKUnexpectedError;
+int RazerSDK::translateRzResult(RZRESULT rzResult) {
+    switch (rzResult) {
+        case RZRESULT_SUCCESS:
+            return 1;
+        case RZRESULT_SERVICE_NOT_ACTIVE:
+            throw SDKExceptions::SDKServiceNotRunning();
+        case RZRESULT_DEVICE_NOT_CONNECTED:
+        case RZRESULT_DEVICE_NOT_AVAILABLE:
+            throw SDKExceptions::NoDevicesConnected();
+        default:
+            throw SDKExceptions::SDKUnexpectedError();
+    }
 }
 
 /**
  * A member function for class CorsairSDK that returns Devices.
- * @return returns vector of devices.
+ * @return returns a map of list that represents pointer address to connected devices.
  */
-vector<Device> RazerSDK::getDevices() {
+map<DeviceType, list<Device*>*> RazerSDK::getDevices() {
     return this->devices;
 }

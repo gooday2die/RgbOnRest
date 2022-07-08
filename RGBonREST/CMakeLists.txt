@@ -19,9 +19,12 @@ add_executable(RGBonREST main.cpp
         ./APIServer/RESTServer/RESTServer.cpp ./APIServer/RESTServer/RESTServer.h
         ./APIServer/SDKEngine/AbstractSDK.h ./APIServer/SDKEngine/SDKDefines.h
         ./APIServer/SDKEngine/CorsairSDK/CorsairSDK.h ./APIServer/SDKEngine/CorsairSDK/CorsairSDK.cpp
+        ./APIServer/SDKEngine/RazerSDK/RazerSDK.h ./APIServer/SDKEngine/RazerSDK/RazerSDK.cpp
         )
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/APIServer/SDKEngine/CorsairSDK/includes)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/APIServer/SDKEngine/CorsairSDK/includes
+        ${CMAKE_CURRENT_SOURCE_DIR}/APIServer/SDKEngine/RazerSDK/includes)
+
 target_link_libraries(RGBonREST cpprestsdk::cpprest cpprestsdk::cpprestsdk_zlib_internal
         cpprestsdk::cpprestsdk_brotli_internal nlohmann_json::nlohmann_json unofficial::sqlite3::sqlite3 ${CMAKE_CURRENT_SOURCE_DIR}/APIServer/SDKEngine/CorsairSDK/lib/CUESDK.x64_2019.lib)
 

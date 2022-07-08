@@ -29,7 +29,7 @@ private:
     int setMemoryModuleRgb(int, int, int);
     int setGPURgb(int, int, int);
     int setETCRgb(int, int, int);
-    int setAllRgb(int, int, int);
+    void setAllRgb(int, int, int);
     void setAllDeviceInfo();
     static DeviceType translateDeviceType(const CorsairDeviceType&);
 public:

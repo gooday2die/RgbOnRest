@@ -128,7 +128,8 @@ void CorsairSDK::setAllDeviceInfo() {
 
     for (int i = 0 ; i < deviceCount ; i++) {  // iterate over all indexes
         CorsairDeviceInfo* curDevice = CorsairGetDeviceInfo(i); // get information about current device
-        Device* tmpDevice = new Device; // generate a new Device instance for future use.
+        Device* tmpDevice = nullptr;
+        tmpDevice = new Device; // generate a new Device instance for future use.
 
         tmpDevice->sdkName = "Corsair";
         tmpDevice->name = string(curDevice->model);
@@ -692,7 +693,7 @@ int CorsairSDK::setETCRgb(int r, int g, int b) {
  * @throws SDKExceptions::AllRGBFailed When all RGBs failed to set their LED values.
  * If this member function did not throw any exceptions, it means that it had successfully set LED colors.
  */
-int CorsairSDK::setAllRgb(int r, int g, int b) {
+void CorsairSDK::setAllRgb(int r, int g, int b) {
     int resultSum = 0;
     resultSum += this->setMouseRgb(r, g, b);
     resultSum += this->setKeyboardRgb(r, g, b);
@@ -704,7 +705,7 @@ int CorsairSDK::setAllRgb(int r, int g, int b) {
     resultSum += this->setMouseMatRgb(r, g, b);
     resultSum += this->setMotherboardRgb(r, g, b);
 
-    if (resultSum == 9) return 1; // When all results were true, it means success
+    if (resultSum == 9) return; // When all results were true, it means success
     else if ((resultSum < 9) && (resultSum > 0))  // When Some RGBs failed.
         throw SDKExceptions::SomeRGBFailed();
     else // When all RGBs failed.

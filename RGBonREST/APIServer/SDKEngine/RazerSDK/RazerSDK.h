@@ -14,6 +14,7 @@
 #include <cassert>
 #include <wtypes.h>
 #include <list>
+#include <vector>
 
 #include "./includes/RzChromaSDKTypes.h"
 #include "./includes/RzChromaSDKTypes.h"
@@ -26,7 +27,10 @@
 #define CHROMASDKDLL        _T("RzChromaSDK.dll")
 #endif
 
-using namespace std;
+using std::vector;
+using std::list;
+using std::pair;
+
 
 class RazerSDK : public AbstractSDK {
 private:
@@ -58,7 +62,7 @@ private:
     DELETEEFFECT DeleteEffect = nullptr;
     QUERYDEVICE QueryDevice = nullptr;
     HMODULE m_ChromaSDKModule = nullptr;
-    std::list<RZDEVICEID> deviceNames;
+    list<RZDEVICEID> deviceNames;
 
     int deviceCount = 0;
 
@@ -67,9 +71,10 @@ private:
     int setHeadsetRgb(int, int, int);
     int setMouseMatRgb(int, int, int);
     int setETCRgb(int, int, int);
-    int setAllRgb(int, int, int);
+    void setAllRgb(int, int, int);
     void setAllDeviceInfo();
     void setDeviceCount();
+    void initDeviceNames();
     bool isConnectedDevice(RZDEVICEID);
     static RZDEVICEID getNthElementFromList(std::list<RZDEVICEID>, int);
     static DeviceType translateDeviceType(int);
