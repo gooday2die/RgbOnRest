@@ -81,6 +81,8 @@ class MainUI:
         self.set_buttons()
         self.set_labels()
         self.set_inputs()
+        requests.post(self.url + "/all/connect")
+
         self.show_connected_devices()
         self.master.mainloop()
 
@@ -164,18 +166,17 @@ class MainUI:
         self.connected_devices.place(x=240, y=30, width=200, height=175)
 
         dev_list = requests.get(self.url + "/all/get_devices").json()
-        print(dev_list)
         connected_device_string = ""
-        try:
-            for sdk in dev_list:
-                connected_device_string = connected_device_string + "- " + str(sdk) + "\n"
+        for sdk in dev_list:
+            connected_device_string = connected_device_string + "- " + str(sdk) + "\n"
+            try:
                 for device_type in dev_list[sdk]:
-                    for device in dev_list[sdk][device_type]:
-                        connected_device_string = connected_device_string + str(device_type) + " : " + \
-                                          str(device[0]) + "\n"
-        except TypeError:
-            connected_device_string = "No Connected Devices"
-
+                    if device_type is not None:
+                        for device in dev_list[sdk][device_type]:
+                            connected_device_string = connected_device_string + str(device_type) + " : " + \
+                                              str(device) + "\n"
+            except TypeError:
+                connected_device_string = connected_device_string + "None"
         self.connected_devices.insert(tkinter.INSERT, connected_device_string)
         self.connected_devices.config(state=DISABLED)
 
