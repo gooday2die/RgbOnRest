@@ -70,6 +70,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="CMake Application.Unnamed" />
       <item itemvalue="CMake Application.RGBonREST" />
@@ -91,7 +96,8 @@
       <workItem from="1656903723995" duration="7000" />
       <workItem from="1656912505221" duration="5906000" />
       <workItem from="1657007843896" duration="11244000" />
-      <workItem from="1657255340440" duration="894000" />
+      <workItem from="1657255340440" duration="13979000" />
+      <workItem from="1657339939904" duration="2941000" />
     </task>
     <servers />
   </component>
